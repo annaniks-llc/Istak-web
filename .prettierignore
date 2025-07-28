@@ -1,0 +1,62 @@
+# Ignore node modules directory
+node_modules/
+
+# Ignore build and output directories
+.next/
+out/
+dist/
+
+# Ignore environment files
+.env
+.env.* 
+
+# Ignore log and temporary files
+*.log
+*.tmp
+*.cache
+
+# Ignore lock files (optional based on your package manager)
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# Ignore generated static assets
+public/
+
+# Ignore images and other binary files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.webp
+*.mp4
+*.mp3
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# Ignore data export files
+*.csv
+*.json
+*.txt
+
+# Ignore test coverage and IDE-specific directories
+coverage/    # Test coverage reports
+.vscode/     # VSCode settings
+.idea/       # IntelliJ/WebStorm settings
+.DS_Store    # macOS system file
+
+# Ignore Storybook configuration and stories (if using Storybook)
+.storybook/
+stories/**/*.stories.*
+
+# Ignore Docker configuration files (if using Docker)
+Dockerfile
+Dockerfile.test
+docker-compose.yml
+docker-compose.front.yml
+docker-compose.front-test.yml
+.github/*

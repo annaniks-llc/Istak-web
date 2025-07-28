@@ -1,0 +1,13 @@
+{
+    "home": {
+        "heading": "Ղեկավարում"
+    },
+    "shop": {
+        "heading": "Խանութ",
+        "productTitle": "Ապրանք",
+        "productDescription": "Սա ապրանքի նկարագրություն է։"
+    },
+    "cards": {
+        "heading": "Քարտեր"
+    }
+}

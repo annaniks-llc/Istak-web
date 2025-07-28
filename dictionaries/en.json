@@ -1,0 +1,13 @@
+{
+    "home": {
+        "heading": "Heading"
+    },
+    "shop": {
+        "heading": "Shop",
+        "productTitle": "Product",
+        "productDescription": "This is a product description."
+    },
+    "cards": {
+        "heading": "Cards"
+    }
+}

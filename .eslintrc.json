@@ -1,0 +1,32 @@
+{
+  "parserOptions": {
+    "project": "./tsconfig.json", // Path to the tsconfig.json file of your project
+    "tsconfigRootDir": "./" // Root directory where tsconfig.json is located
+  },
+  "extends": [
+    "eslint:recommended", // Basic ESLint rules
+    "plugin:react/recommended", // Recommended rules for React
+    "plugin:react-hooks/recommended", // Recommended rules for React Hooks
+    "plugin:@typescript-eslint/recommended", // Best practices for TypeScript
+    "plugin:@typescript-eslint/recommended-requiring-type-checking", // Advanced TypeScript rules with type checking
+    "plugin:jsx-a11y/recommended", // Improves accessibility in JSX components
+    "next/core-web-vitals", // Next.js-specific rules to optimize Core Web Vitals
+    "prettier" // Integrates Prettier to avoid style conflicts
+  ],
+  "rules": {
+    "react/no-unescaped-entities": "error", // Disallow unescaped entities in JSX
+    "@next/next/no-page-custom-font": "off", // Allow using custom fonts outside next/font
+    "@typescript-eslint/no-unused-vars": "error", // Error on unused variables in TypeScript
+    "no-undef": "error", // Disallow undefined variables
+    "@next/next/no-img-element": "off", // Enforce using Next.js <Image /> component
+    "no-unused-expressions": "error" // Disallow unused expressions,
+  },
+  "overrides": [
+    {
+      "files": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+      "rules": {
+        "@next/next/no-img-element": "off"
+      }
+    }
+  ]
+}
