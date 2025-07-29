@@ -4,3 +4,10 @@ $color_primary_dark: #221C13;
 $color_menu:#231F20;
 // secondary
 $color_secondary: #D5873B;
+
+@mixin inner() {
+    width: 1919px;
+    max-width: 100%;
+    margin: auto;
+  }
+  

@@ -2,6 +2,7 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
 import styles from "./firstSlider.module.scss";
+import Button from "../../../Button";
 
 function FirstSlider() {
     const sliderRef = useRef<Slider>(null);
@@ -12,22 +13,29 @@ function FirstSlider() {
         sliderRef.current?.slickPrev();
     };
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        arrows:false
     };
     return (
         <div className={styles.containerForFirstSection}>
+            <div className={styles.container}>
             <div className={styles.sliderContainer}>
                 <Slider
                     ref={sliderRef}
                     {...settings}
                 >
-                    <div key={1}>
-                        <h3>ISTAK - Ավանդույթի ուժով</h3>
-                    </div>
+                    <div key={1} className={styles.sliderItem}>
+                        <h3 className={styles.heading}>ISTAK - Ավանդույթի ուժով</h3>
+                        <p className={styles.title}>Հայկական վարպետությամբ ստեղծված բարձրորակ օղի  ևվ ալկոհոլային խմիչքներ</p>
+                    
+    <div className={styles.buttonContainer}>
+    <Button text={"Գնել հիմա"} variant="secondary" onClick={() => { }}/>                   
+    </div>
+     </div>
                     <div key={2}>
                         <h3>2</h3>
                     </div>
@@ -52,6 +60,7 @@ function FirstSlider() {
                 <button className={styles.sliderButton} onClick={next}>
                     <img src='/img/svg/arrowRight.svg' alt="arrowRight" />
                 </button>
+            </div>
             </div>
         </div>
     );
