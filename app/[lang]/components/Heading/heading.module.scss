@@ -1,0 +1,55 @@
+@import "../../../styles/var.scss";
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 100px;
+    background: $color_menu;
+
+    &::after {
+        content: "";
+        height: 1px;
+        width: 100vw;
+        background: rgba(255, 255, 255, 0.1);
+        position: absolute;
+        top: 104px;
+        left: 0;
+    }
+
+    // border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    .navBar {
+        display: flex;
+        gap: 62px;
+
+        .link {
+            font-weight: 400;
+            font-style: Regular;
+            font-size: 20px;
+            line-height: 30px;
+            letter-spacing: 2%;
+            text-transform: uppercase;
+            color: white;
+            padding: 36px 0px;
+            text-decoration: none;
+        }
+
+        .active {
+            border-bottom: 2px solid $color_secondary;
+        }
+    }
+
+    .icons {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        padding: 0px 28px;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        height: fit-content;
+
+        button {
+            width: 237px;
+            height: 52px;
+        }
+    }
+}

@@ -17,9 +17,13 @@ const nextConfig: NextConfig = {
       config.externals = {
         ...config.externals,
         brotli: 'brotli',
+        turbo: false,
       };
     }
-
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
     return config;
   },
 };

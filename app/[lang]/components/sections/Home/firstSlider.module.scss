@@ -1,0 +1,27 @@
+
+@import "../../../../styles/var.scss";
+.containerForFirstSection{
+    height: 1078px;
+    width: 100%;
+    background-image: url(../../../../../public/img/png/sliderImg.png);
+    .sliderContainer{
+        display: inline;
+        position: absolute;
+        width: 657px;
+        left: 188px;
+    }
+    .sliderButtons{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        right: 188px;
+        .sliderButton{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.3);
+        }
+    }
+    
+}

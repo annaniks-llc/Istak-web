@@ -1,6 +1,9 @@
 {
     "home": {
-        "heading": "Heading"
+        "heading": "Heading",
+        "menu":{
+            "register":"Login / Register"
+        }
     },
     "shop": {
         "heading": "Shop",

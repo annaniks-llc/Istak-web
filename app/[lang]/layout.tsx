@@ -2,6 +2,8 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import DictionaryProvider from '@/dictionary-provider';
 import { getDictionary } from '@/get-dictionary';
 import { cookies } from 'next/headers';
@@ -28,9 +30,12 @@ export default async function RootLayout({ children, params }: { children: React
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+
         <DictionaryProvider dictionary={dictionary}>
           {children}
         </DictionaryProvider>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.9.0/slick/slick.min.js"></script>
+
       </body>
     </html>
   );
