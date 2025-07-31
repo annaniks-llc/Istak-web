@@ -15,13 +15,17 @@
     
 }
 
-.primary {}
+.primary {
+    color: white;
+    background-color: $color_menu;
+    border: 1px solid $color_secondary; 
+}
 
 .secondary {
     color: white;
     background-color: $color_primary_dark;
     border: none;
-    border: 2px solid #D5873B;
+    border: 2px solid $color_secondary;
 }
 
 .light {

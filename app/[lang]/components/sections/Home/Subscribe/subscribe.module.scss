@@ -1,0 +1,60 @@
+@import "../../../../../styles/var.scss";
+
+.container {
+    padding: 0px 30px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    align-items: center;
+
+    .title {
+        font-weight: 400;
+        font-style: Regular;
+        font-size: 40px;
+        leading-trim: NONE;
+        line-height: 100%;
+        letter-spacing: 3%;
+        text-transform: capitalize;
+        color: $color_primary_dark;
+        margin: 0;
+    }
+
+    .inputs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+        width: 1190px;
+        margin: 20px auto;
+
+        .inputContainer {
+            width: 585px;
+            height: 52px;
+
+        }
+    }
+
+    .description1, .description2 {
+        font-family: Mardoto;
+        font-weight: 400;
+        font-style: Regular;
+        font-size: 18px;
+        leading-trim: NONE;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-align: center;
+        text-transform: capitalize;
+        color: $color_primary;
+        width: 1190px;
+        max-width: 100%;
+    }
+
+    .description2 {
+        margin-top: 20px;
+    }
+
+    button {
+        width: 223px;
+        height: 64px;
+    }
+}
