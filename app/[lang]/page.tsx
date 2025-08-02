@@ -11,7 +11,6 @@ import Subscribe from './components/sections/Home/Subscribe';
 export default function Home() {
   return (
     <div>
-     <Heading/>
      <FirstSlider/>
      <Products/>
      <LearnMore/>

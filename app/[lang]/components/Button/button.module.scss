@@ -33,3 +33,15 @@
     background-color: white;
     border: none;
 }
+// Variants
+.default {
+    background-color: $color_secondary;
+    border: none;
+    color: white;
+
+    &:focus {
+        border-color: $color_secondary;
+        box-shadow: 0 0 0 3px rgba(213, 135, 59, 0.1);
+    }
+
+}

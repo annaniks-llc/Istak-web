@@ -12,5 +12,41 @@
     },
     "cards": {
         "heading": "Cards"
+    },
+    "footer": {
+        "istak": {
+            "title": "ISTAK",
+            "subtitle": "DISTILLERY",
+            "products": {
+                "barlieMalt": "Barlie Malt",
+                "wheatMalt": "Wheat Malt",
+                "maltMix": "Malt Mix",
+                "nightLife": "Night Life"
+            }
+        },
+        "ginFamily": {
+            "title": "202 GIN FAMILY",
+            "barEdition": "Bar Edition",
+            "dryGin": "Dry Gin",
+            "mandarin": "Mandarin",
+            "christmasEdition": "Christmas Edition"
+        },
+        "sharlieFamily": {
+            "title": "SHARLIE FAMILY",
+            "sharlieXO": "Sharlie X.O",
+            "sharlieVSOP": "Sharlie V.S.O.P."
+        },
+        "news": {
+            "title": "Նորություններ",
+            "opinions": "Կարծիքներ",
+            "community": "Հանրություն"
+        },
+        "contact": {
+            "title": "Contact",
+            "address": "30 Road Broklyn Street, 600 New York, USA",
+            "email": "needhelp@company.com",
+            "phone": "+92 (8800) - 8960"
+        },
+        "copyright": "© All Copyright 2022 by @Annaniks.com"
     }
 }

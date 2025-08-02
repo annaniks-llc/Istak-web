@@ -4,12 +4,25 @@ import Link from 'next/link';
 import Button from '../Button';
 import styles from './heading.module.scss';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function Heading() {
   const dictionary = useDictionary();
   const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className={styles.heading}>
+    <div className={`${styles.heading} ${isScrolled ? styles.scrolled : ''}`}>
       <img src="/img/svg/logo.svg" alt="logo" width={100} height={100} />
       <nav className={styles.navBar}>
         <Link className={`${styles.link} ${!pathname.includes("about") && !pathname.includes("contact") ? styles.active : ""}`} href="/">Home</Link>

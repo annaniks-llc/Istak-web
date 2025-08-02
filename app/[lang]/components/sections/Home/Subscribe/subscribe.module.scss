@@ -4,8 +4,12 @@
     padding: 0px 30px;
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 300px;
     align-items: center;
+    background: url('../../../../../../public/img/png/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
     .title {
         font-weight: 400;
@@ -25,10 +29,12 @@
         justify-content: space-between;
         gap: 20px;
         width: 1190px;
+        max-width: 100%;
         margin: 20px auto;
 
         .inputContainer {
             width: 585px;
+            max-width: 100%;
             height: 52px;
 
         }
@@ -54,7 +60,7 @@
     }
 
     button {
-        width: 223px;
+        width: 262px;
         height: 64px;
     }
 }

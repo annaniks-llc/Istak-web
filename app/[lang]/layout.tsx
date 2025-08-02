@@ -8,6 +8,8 @@ import DictionaryProvider from '@/dictionary-provider';
 import { getDictionary } from '@/get-dictionary';
 import { cookies } from 'next/headers';
 import { LanguagesEnum } from '@/interfaces';
+import Heading from './components/Heading';
+import Footer from './components/Footer';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -32,7 +34,9 @@ export default async function RootLayout({ children, params }: { children: React
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 
         <DictionaryProvider dictionary={dictionary}>
+          <Heading/>
           {children}
+          <Footer/>
         </DictionaryProvider>
         <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.9.0/slick/slick.min.js"></script>
 

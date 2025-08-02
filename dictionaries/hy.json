@@ -12,5 +12,41 @@
     },
     "cards": {
         "heading": "Քարտեր"
+    },
+    "footer": {
+        "istak": {
+            "title": "ԻՍՏԱԿ",
+            "subtitle": "ԹՈՒՐԲԱԳՈՐԾԱՐԱՆ",
+            "products": {
+                "barlieMalt": "Բարլի Մալտ",
+                "wheatMalt": "Ցորենի Մալտ",
+                "maltMix": "Մալտի Խառնուրդ",
+                "nightLife": "Գիշերային Կյանք"
+            }
+        },
+        "ginFamily": {
+            "title": "202 ՋԻՆ ԸՆՏԱՆԻԿ",
+            "barEdition": "Բարի Հրատարակություն",
+            "dryGin": "Չոր Ջին",
+            "mandarin": "Մանդարին",
+            "christmasEdition": "Սուրբ Ծննդյան Հրատարակություն"
+        },
+        "sharlieFamily": {
+            "title": "ՇԱՐԼԻ ԸՆՏԱՆԻԿ",
+            "sharlieXO": "Շարլի X.O",
+            "sharlieVSOP": "Շարլի V.S.O.P."
+        },
+        "news": {
+            "title": "Նորություններ",
+            "opinions": "Կարծիքներ",
+            "community": "Հանրություն"
+        },
+        "contact": {
+            "title": "Կապ",
+            "address": "30 Բրոկլինի Փողոց, 600 Նյու Յորք, ԱՄՆ",
+            "email": "needhelp@company.com",
+            "phone": "+92 (8800) - 8960"
+        },
+        "copyright": "© Բոլոր հեղինակային իրավունքները 2022 թվականին @Annaniks.com-ի կողմից"
     }
 }
