@@ -1,0 +1,67 @@
+[
+  {
+    "id": "WELCOME10",
+    "code": "WELCOME10",
+    "discount": 10,
+    "type": "percentage",
+    "minOrder": 50,
+    "maxDiscount": 25,
+    "validFrom": "2024-01-01T00:00:00Z",
+    "validUntil": "2024-12-31T23:59:59Z",
+    "usageLimit": 1000,
+    "usedCount": 156,
+    "active": true
+  },
+  {
+    "id": "SAVE20",
+    "code": "SAVE20",
+    "discount": 20,
+    "type": "percentage",
+    "minOrder": 100,
+    "maxDiscount": 50,
+    "validFrom": "2024-01-15T00:00:00Z",
+    "validUntil": "2024-02-15T23:59:59Z",
+    "usageLimit": 500,
+    "usedCount": 89,
+    "active": true
+  },
+  {
+    "id": "FREESHIP",
+    "code": "FREESHIP",
+    "discount": 9.99,
+    "type": "fixed",
+    "minOrder": 75,
+    "maxDiscount": 9.99,
+    "validFrom": "2024-01-01T00:00:00Z",
+    "validUntil": "2024-12-31T23:59:59Z",
+    "usageLimit": 2000,
+    "usedCount": 423,
+    "active": true
+  },
+  {
+    "id": "NEWCUSTOMER",
+    "code": "NEWCUSTOMER",
+    "discount": 15,
+    "type": "percentage",
+    "minOrder": 30,
+    "maxDiscount": 30,
+    "validFrom": "2024-01-01T00:00:00Z",
+    "validUntil": "2024-06-30T23:59:59Z",
+    "usageLimit": 300,
+    "usedCount": 45,
+    "active": true
+  },
+  {
+    "id": "PREMIUM25",
+    "code": "PREMIUM25",
+    "discount": 25,
+    "type": "percentage",
+    "minOrder": 150,
+    "maxDiscount": 75,
+    "validFrom": "2024-01-01T00:00:00Z",
+    "validUntil": "2024-03-31T23:59:59Z",
+    "usageLimit": 100,
+    "usedCount": 23,
+    "active": true
+  }
+] 

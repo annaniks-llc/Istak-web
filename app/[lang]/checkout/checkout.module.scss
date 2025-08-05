@@ -1,0 +1,270 @@
+@import '@/app/styles/var.scss';
+
+.container {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 40px 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+
+  h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: $color_primary_dark;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: #666;
+    font-size: 18px;
+  }
+}
+
+.checkoutContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.checkoutForm {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.section {
+  margin-bottom: 32px;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: $color_primary_dark;
+    margin-bottom: 20px;
+  }
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-weight: 600;
+    color: $color_primary_dark;
+    font-size: 14px;
+  }
+
+  input {
+    padding: 12px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+
+    &:focus {
+      outline: none;
+      border-color: $color_secondary;
+      box-shadow: 0 0 0 3px rgba(213, 135, 59, 0.1);
+    }
+
+    &.error {
+      border-color: #ef4444;
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+}
+
+.errorMessage {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.paymentMethods {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.paymentOption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: $color_secondary;
+  }
+
+  input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: $color_secondary;
+  }
+
+  .radioLabel {
+    font-size: 16px;
+    font-weight: 600;
+    color: $color_primary_dark;
+  }
+}
+
+.submitButton {
+  background: $color_secondary;
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+
+  &:hover:not(:disabled) {
+    background: darken($color_secondary, 10%);
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.orderSummary {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: $color_primary_dark;
+    margin-bottom: 24px;
+  }
+}
+
+.orderItems {
+  margin-bottom: 24px;
+}
+
+.orderItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .itemInfo {
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: $color_primary_dark;
+      margin-bottom: 4px;
+    }
+
+    .itemQuantity {
+      font-size: 14px;
+      color: #666;
+    }
+  }
+
+  .itemPrice {
+    font-size: 16px;
+    font-weight: 700;
+    color: $color_primary_dark;
+  }
+}
+
+.orderTotals {
+  border-top: 2px solid #e5e7eb;
+  padding-top: 16px;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 16px;
+
+  &.grandTotal {
+    font-size: 20px;
+    font-weight: 700;
+    color: $color_primary_dark;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 16px;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 16px;
+  }
+
+  .header {
+    h1 {
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+
+  .checkoutForm {
+    padding: 20px;
+  }
+
+  .orderSummary {
+    position: static;
+    padding: 20px;
+  }
+
+  .submitButton {
+    padding: 14px 24px;
+    font-size: 16px;
+  }
+} 

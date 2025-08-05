@@ -1,8 +1,227 @@
 {
     "home": {
-        "heading": "Heading",
-        "menu":{
-            "register":"Login / Register"
+        "heading": "Premium Drinks Store",
+        "menu": {
+            "register": "Login / Register"
+        },
+        "hero": {
+            "title": "Premium Alcoholic Beverages",
+            "subtitle": "Discover the finest selection of spirits, wines, and craft beers",
+            "cta": "Shop Now"
+        }
+    },
+    "navigation": {
+        "home": "Home",
+        "products": "Products",
+        "dashboard": "Dashboard",
+        "cart": "Cart",
+        "login": "Login",
+        "register": "Register",
+        "logout": "Logout",
+        "search": "Search"
+    },
+    "auth": {
+        "login": {
+            "title": "Welcome Back",
+            "subtitle": "Sign in to your account to continue",
+            "email": "Email Address",
+            "password": "Password",
+            "submit": "Sign In",
+            "loading": "Signing in...",
+            "noAccount": "Don't have an account?",
+            "signUp": "Sign up here",
+            "demoCredentials": "Demo Credentials",
+            "demoEmail": "demo@example.com",
+            "demoPassword": "password"
+        },
+        "register": {
+            "title": "Create Account",
+            "subtitle": "Join us and start exploring our premium drinks collection",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "Email Address",
+            "phone": "Phone Number (Optional)",
+            "password": "Password",
+            "confirmPassword": "Confirm Password",
+            "submit": "Create Account",
+            "loading": "Creating Account...",
+            "hasAccount": "Already have an account?",
+            "signIn": "Sign in here"
+        }
+    },
+    "dashboard": {
+        "title": "User Dashboard",
+        "profile": {
+            "title": "Personal Information",
+            "subtitle": "Update your account information",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "Email Address",
+            "phone": "Phone Number",
+            "address": "Address",
+            "street": "Street Address",
+            "city": "City",
+            "state": "State",
+            "zipCode": "ZIP Code",
+            "country": "Country",
+            "save": "Save Changes",
+            "saving": "Saving...",
+            "saved": "Profile updated successfully!"
+        },
+        "orders": {
+            "title": "Order History",
+            "subtitle": "View your past orders",
+            "orderId": "Order ID",
+            "date": "Date",
+            "status": "Status",
+            "total": "Total",
+            "viewDetails": "View Details",
+            "noOrders": "No orders found"
+        },
+        "tabs": {
+            "profile": "Profile",
+            "orders": "Orders"
+        }
+    },
+    "products": {
+        "title": "Our Products",
+        "subtitle": "Discover our premium selection of alcoholic beverages",
+        "filters": {
+            "title": "Filters",
+            "category": "Category",
+            "price": "Price Range",
+            "rating": "Minimum Rating",
+            "sortBy": "Sort By",
+            "sortOptions": {
+                "name": "Name",
+                "price": "Price",
+                "rating": "Rating"
+            },
+            "clear": "Clear Filters"
+        },
+        "search": {
+            "placeholder": "Search products...",
+            "noResults": "No products found"
+        },
+        "categories": {
+            "all": "All Categories",
+            "vodka": "Vodka",
+            "whiskey": "Whiskey",
+            "rum": "Rum",
+            "gin": "Gin",
+            "tequila": "Tequila",
+            "wine": "Wine",
+            "beer": "Beer",
+            "cocktail": "Cocktails"
+        },
+        "product": {
+            "addToCart": "Add to Cart",
+            "outOfStock": "Out of Stock",
+            "quantity": "Quantity",
+            "volume": "Volume",
+            "alcoholContent": "Alcohol Content",
+            "origin": "Origin",
+            "ingredients": "Ingredients",
+            "rating": "Rating",
+            "reviews": "Reviews",
+            "relatedProducts": "Related Products"
+        }
+    },
+    "productDetails": {
+        "title": "Product Details",
+        "specifications": "Specifications",
+        "description": "Description",
+        "reviews": "Customer Reviews",
+        "addToCart": "Add to Cart",
+        "quantity": "Quantity",
+        "outOfStock": "Out of Stock",
+        "relatedProducts": "You might also like"
+    },
+    "cart": {
+        "title": "Shopping Cart",
+        "empty": "Your cart is empty",
+        "emptySubtitle": "Start shopping to add items to your cart",
+        "continueShopping": "Continue Shopping",
+        "item": {
+            "title": "Item",
+            "price": "Price",
+            "quantity": "Quantity",
+            "total": "Total",
+            "remove": "Remove"
+        },
+        "summary": {
+            "title": "Order Summary",
+            "subtotal": "Subtotal",
+            "tax": "Tax",
+            "shipping": "Shipping",
+            "total": "Total",
+            "checkout": "Proceed to Checkout"
+        },
+        "actions": {
+            "updateCart": "Update Cart",
+            "clearCart": "Clear Cart",
+            "checkout": "Checkout"
+        }
+    },
+    "checkout": {
+        "title": "Checkout",
+        "shipping": {
+            "title": "Shipping Information",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "Email Address",
+            "phone": "Phone Number",
+            "address": "Address",
+            "street": "Street Address",
+            "city": "City",
+            "state": "State",
+            "zipCode": "ZIP Code",
+            "country": "Country"
+        },
+        "payment": {
+            "title": "Payment Method",
+            "creditCard": "Credit Card",
+            "paypal": "PayPal",
+            "applePay": "Apple Pay",
+            "googlePay": "Google Pay",
+            "cardNumber": "Card Number",
+            "expiryDate": "Expiry Date",
+            "cvv": "CVV",
+            "cardholderName": "Cardholder Name"
+        },
+        "orderSummary": {
+            "title": "Order Summary",
+            "items": "Items",
+            "subtotal": "Subtotal",
+            "tax": "Tax",
+            "shipping": "Shipping",
+            "total": "Total"
+        },
+        "actions": {
+            "placeOrder": "Place Order",
+            "placing": "Placing Order...",
+            "backToCart": "Back to Cart"
+        }
+    },
+    "orderConfirmation": {
+        "title": "Order Confirmation",
+        "success": "Thank you for your order!",
+        "orderId": "Order ID",
+        "orderDate": "Order Date",
+        "status": "Status",
+        "estimatedDelivery": "Estimated Delivery",
+        "shippingAddress": "Shipping Address",
+        "paymentMethod": "Payment Method",
+        "orderDetails": "Order Details",
+        "whatsNext": "What's Next?",
+        "nextSteps": [
+            "You'll receive an email confirmation shortly",
+            "We'll notify you when your order ships",
+            "Track your order using the order ID"
+        ],
+        "actions": {
+            "continueShopping": "Continue Shopping",
+            "viewOrder": "View Order Details"
         }
     },
     "shop": {
@@ -37,9 +256,9 @@
             "sharlieVSOP": "Sharlie V.S.O.P."
         },
         "news": {
-            "title": "Նորություններ",
-            "opinions": "Կարծիքներ",
-            "community": "Հանրություն"
+            "title": "News",
+            "opinions": "Opinions",
+            "community": "Community"
         },
         "contact": {
             "title": "Contact",
@@ -48,5 +267,33 @@
             "phone": "+92 (8800) - 8960"
         },
         "copyright": "© All Copyright 2022 by @Annaniks.com"
+    },
+    "common": {
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "success": "Success!",
+        "cancel": "Cancel",
+        "save": "Save",
+        "edit": "Edit",
+        "delete": "Delete",
+        "view": "View",
+        "back": "Back",
+        "next": "Next",
+        "previous": "Previous",
+        "close": "Close",
+        "confirm": "Confirm",
+        "yes": "Yes",
+        "no": "No",
+        "optional": "Optional",
+        "required": "Required"
+    },
+    "validation": {
+        "required": "This field is required",
+        "email": "Please enter a valid email address",
+        "minLength": "Must be at least {min} characters",
+        "maxLength": "Must be no more than {max} characters",
+        "passwordMatch": "Passwords don't match",
+        "invalidCredentials": "Invalid email or password",
+        "emailExists": "Email already exists"
     }
 }

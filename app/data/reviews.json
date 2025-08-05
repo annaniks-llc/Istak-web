@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1",
+    "productId": "1",
+    "userId": "1",
+    "rating": 5,
+    "title": "Excellent Premium Vodka",
+    "comment": "Smooth and clean taste. Perfect for cocktails. Highly recommend!",
+    "createdAt": "2024-01-16T12:30:00Z",
+    "verified": true
+  },
+  {
+    "id": "2",
+    "productId": "1",
+    "userId": "2",
+    "rating": 4,
+    "title": "Good Quality",
+    "comment": "Nice smooth finish. Good value for the price.",
+    "createdAt": "2024-01-17T09:15:00Z",
+    "verified": true
+  },
+  {
+    "id": "3",
+    "productId": "3",
+    "userId": "1",
+    "rating": 5,
+    "title": "Outstanding Whiskey",
+    "comment": "Rich and complex flavors. Worth every penny!",
+    "createdAt": "2024-01-19T14:20:00Z",
+    "verified": true
+  },
+  {
+    "id": "4",
+    "productId": "9",
+    "userId": "2",
+    "rating": 5,
+    "title": "Amazing Espresso Martini",
+    "comment": "Perfect coffee flavor. Great for after dinner!",
+    "createdAt": "2024-01-20T18:45:00Z",
+    "verified": false
+  },
+  {
+    "id": "5",
+    "productId": "5",
+    "userId": "3",
+    "rating": 4,
+    "title": "Classic London Dry",
+    "comment": "Traditional gin with excellent botanicals. Great for martinis.",
+    "createdAt": "2024-01-18T16:30:00Z",
+    "verified": true
+  },
+  {
+    "id": "6",
+    "productId": "6",
+    "userId": "1",
+    "rating": 4,
+    "title": "Authentic Tequila",
+    "comment": "Smooth and authentic Mexican character. Perfect for margaritas.",
+    "createdAt": "2024-01-20T10:15:00Z",
+    "verified": true
+  },
+  {
+    "id": "7",
+    "productId": "8",
+    "userId": "2",
+    "rating": 3,
+    "title": "Decent IPA",
+    "comment": "Good hoppy flavor but could be more balanced.",
+    "createdAt": "2024-01-19T20:45:00Z",
+    "verified": false
+  },
+  {
+    "id": "8",
+    "productId": "4",
+    "userId": "3",
+    "rating": 5,
+    "title": "Excellent Rum",
+    "comment": "Smooth Caribbean rum with great tropical notes.",
+    "createdAt": "2024-01-17T14:20:00Z",
+    "verified": true
+  }
+] 

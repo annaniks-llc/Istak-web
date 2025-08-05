@@ -1,0 +1,406 @@
+@import '@/app/styles/var.scss';
+
+.container {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 40px 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+
+  h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: $color_primary_dark;
+    margin-bottom: 12px;
+  }
+
+  p {
+    color: #666;
+    font-size: 18px;
+  }
+}
+
+.filters {
+  max-width: 1200px;
+  margin: 0 auto 32px;
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.searchContainer {
+  margin-bottom: 20px;
+
+  .searchInput {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $color_secondary;
+      box-shadow: 0 0 0 3px rgba(213, 135, 59, 0.1);
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+}
+
+.filterControls {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.categoryFilter,
+.sortControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  label {
+    font-weight: 600;
+    color: $color_primary_dark;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .select {
+    padding: 8px 12px;
+    border: 2px solid #e1e5e9;
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: $color_secondary;
+    }
+  }
+}
+
+.sortButton {
+  background: $color_secondary;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: darken($color_secondary, 10%);
+  }
+}
+
+.results {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+
+  .resultsCount {
+    color: #666;
+    font-size: 14px;
+  }
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  p {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+}
+
+.clearFiltersButton {
+  background: $color_secondary;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: darken($color_secondary, 10%);
+  }
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.productCard {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.productImage {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.productOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.productCard:hover .productOverlay {
+  opacity: 1;
+}
+
+.addToCartButton {
+  background: $color_secondary;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background: darken($color_secondary, 10%);
+    transform: scale(1.05);
+  }
+
+  &:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+  }
+}
+
+.productInfo {
+  padding: 20px;
+}
+
+.productHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: $color_primary_dark;
+    margin: 0;
+    flex: 1;
+  }
+
+  .category {
+    background: $color_secondary;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: 8px;
+  }
+}
+
+.description {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.productDetails {
+  margin-bottom: 16px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+
+  .stars {
+    color: #fbbf24;
+    font-size: 14px;
+  }
+
+  .ratingText {
+    color: #666;
+    font-size: 12px;
+  }
+}
+
+.specs {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+
+  .volume,
+  .alcohol {
+    background: #f3f4f6;
+    color: #374151;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+.origin {
+  font-size: 12px;
+  color: #666;
+}
+
+.productFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 700;
+  color: $color_primary_dark;
+
+  .currency {
+    font-size: 16px;
+    vertical-align: top;
+  }
+}
+
+.stockStatus {
+  .inStock {
+    color: #059669;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .outOfStock {
+    color: #dc2626;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 16px;
+
+  p {
+    color: #666;
+    font-size: 16px;
+  }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid $color_secondary;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 16px;
+  }
+
+  .header {
+    h1 {
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+
+  .filters {
+    padding: 16px;
+  }
+
+  .productsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .productCard {
+    margin: 0 8px;
+  }
+
+  .productImage {
+    height: 200px;
+  }
+} 

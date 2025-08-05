@@ -26,6 +26,10 @@
         left: 0;
     }
 
+    .logo {
+        text-decoration: none;
+    }
+
     // border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     .navBar {
         display: flex;
@@ -41,6 +45,11 @@
             color: white;
             padding: 36px 0px;
             text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: $color_secondary;
+            }
         }
 
         .active {
@@ -55,6 +64,67 @@
         padding: 0px 28px;
         border-left: 1px solid rgba(255, 255, 255, 0.1);
         height: fit-content;
+
+        .cartIcon {
+            position: relative;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cartBadge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: $color_secondary;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .userMenu {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            .userName {
+                color: white;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .logoutButton {
+                background: #ef4444;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 6px;
+                font-size: 14px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    background: #dc2626;
+                }
+            }
+        }
+
+        .authButtons {
+            display: flex;
+            gap: 12px;
+
+            a {
+                text-decoration: none;
+            }
+        }
 
         button {
             width: 237px;

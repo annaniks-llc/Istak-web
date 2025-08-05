@@ -10,6 +10,7 @@ import { cookies } from 'next/headers';
 import { LanguagesEnum } from '@/interfaces';
 import Heading from './components/Heading';
 import Footer from './components/Footer';
+import { Toaster } from 'react-hot-toast';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -37,6 +38,30 @@ export default async function RootLayout({ children, params }: { children: React
           <Heading/>
           {children}
           <Footer/>
+          <Toaster 
+            position="top-right"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: '#363636',
+                color: '#fff',
+              },
+              success: {
+                duration: 3000,
+                iconTheme: {
+                  primary: '#4ade80',
+                  secondary: '#fff',
+                },
+              },
+              error: {
+                duration: 4000,
+                iconTheme: {
+                  primary: '#ef4444',
+                  secondary: '#fff',
+                },
+              },
+            }}
+          />
         </DictionaryProvider>
         <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.9.0/slick/slick.min.js"></script>
 

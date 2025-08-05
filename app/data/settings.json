@@ -1,0 +1,110 @@
+{
+  "store": {
+    "name": "Premium Drinks Store",
+    "description": "Your premium destination for fine alcoholic beverages",
+    "currency": "USD",
+    "taxRate": 0.1,
+    "shippingCost": 9.99,
+    "freeShippingThreshold": 100,
+    "contactEmail": "info@premiumdrinks.com",
+    "contactPhone": "+1-800-DRINKS",
+    "address": {
+      "street": "123 Liquor Lane",
+      "city": "Beverage City",
+      "state": "CA",
+      "zipCode": "90210",
+      "country": "United States"
+    },
+    "socialMedia": {
+      "facebook": "https://facebook.com/premiumdrinks",
+      "instagram": "https://instagram.com/premiumdrinks",
+      "twitter": "https://twitter.com/premiumdrinks"
+    }
+  },
+  "features": {
+    "reviews": true,
+    "wishlist": true,
+    "coupons": true,
+    "newsletter": true,
+    "guestCheckout": true,
+    "multiplePaymentMethods": true,
+    "orderTracking": true,
+    "emailNotifications": true
+  },
+  "paymentMethods": [
+    {
+      "id": "credit_card",
+      "name": "Credit Card",
+      "description": "Visa, Mastercard, American Express",
+      "enabled": true
+    },
+    {
+      "id": "paypal",
+      "name": "PayPal",
+      "description": "Pay with your PayPal account",
+      "enabled": true
+    },
+    {
+      "id": "apple_pay",
+      "name": "Apple Pay",
+      "description": "Pay with Apple Pay",
+      "enabled": true
+    },
+    {
+      "id": "google_pay",
+      "name": "Google Pay",
+      "description": "Pay with Google Pay",
+      "enabled": true
+    }
+  ],
+  "shippingMethods": [
+    {
+      "id": "standard",
+      "name": "Standard Shipping",
+      "description": "5-7 business days",
+      "cost": 9.99,
+      "enabled": true
+    },
+    {
+      "id": "express",
+      "name": "Express Shipping",
+      "description": "2-3 business days",
+      "cost": 19.99,
+      "enabled": true
+    },
+    {
+      "id": "overnight",
+      "name": "Overnight Shipping",
+      "description": "Next business day",
+      "cost": 29.99,
+      "enabled": true
+    }
+  ],
+  "orderStatuses": [
+    {
+      "id": "pending",
+      "name": "Pending",
+      "description": "Order is being processed"
+    },
+    {
+      "id": "processing",
+      "name": "Processing",
+      "description": "Order is being prepared"
+    },
+    {
+      "id": "shipped",
+      "name": "Shipped",
+      "description": "Order has been shipped"
+    },
+    {
+      "id": "delivered",
+      "name": "Delivered",
+      "description": "Order has been delivered"
+    },
+    {
+      "id": "cancelled",
+      "name": "Cancelled",
+      "description": "Order has been cancelled"
+    }
+  ]
+} 

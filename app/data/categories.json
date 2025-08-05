@@ -1,0 +1,58 @@
+[
+  {
+    "id": "vodka",
+    "name": "Vodka",
+    "description": "Clear, neutral spirits perfect for cocktails",
+    "image": "/img/categories/vodka.jpg",
+    "productCount": 15
+  },
+  {
+    "id": "whiskey",
+    "name": "Whiskey",
+    "description": "Aged spirits with rich, complex flavors",
+    "image": "/img/categories/whiskey.jpg",
+    "productCount": 23
+  },
+  {
+    "id": "rum",
+    "name": "Rum",
+    "description": "Caribbean spirits with tropical character",
+    "image": "/img/categories/rum.jpg",
+    "productCount": 12
+  },
+  {
+    "id": "gin",
+    "name": "Gin",
+    "description": "Botanical spirits with juniper-forward profiles",
+    "image": "/img/categories/gin.jpg",
+    "productCount": 18
+  },
+  {
+    "id": "tequila",
+    "name": "Tequila",
+    "description": "Mexican agave spirits with authentic character",
+    "image": "/img/categories/tequila.jpg",
+    "productCount": 9
+  },
+  {
+    "id": "wine",
+    "name": "Wine",
+    "description": "Fine wines from around the world",
+    "image": "/img/categories/wine.jpg",
+    "productCount": 45
+  },
+  {
+    "id": "beer",
+    "name": "Beer",
+    "description": "Craft beers and premium lagers",
+    "image": "/img/categories/beer.jpg",
+    "productCount": 32
+  },
+  {
+    "id": "cocktail",
+    "name": "Cocktails",
+    "description": "Pre-mixed cocktails and cocktail kits",
+    "image": "/img/categories/cocktail.jpg",
+    "productCount": 8
+  }
+] 

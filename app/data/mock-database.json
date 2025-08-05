@@ -1,0 +1,553 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Premium Vodka",
+      "description": "Smooth and clean premium vodka with a crisp finish. Perfect for cocktails or sipping neat.",
+      "price": 45.99,
+      "volume": 750,
+      "category": "vodka",
+      "image": "/img/png/drink.png",
+      "ingredients": ["Grain", "Water"],
+      "alcoholContent": 40,
+      "origin": "Russia",
+      "inStock": true,
+      "rating": 4.5,
+      "reviews": 128,
+      "tags": ["premium", "smooth", "cocktails"],
+      "salePrice": null,
+      "discount": 0,
+      "featured": true
+    },
+    {
+      "id": "2",
+      "name": "Classic Martini",
+      "description": "A sophisticated blend of gin and vermouth, garnished with an olive or lemon twist.",
+      "price": 12.99,
+      "volume": 200,
+      "category": "cocktail",
+      "image": "/img/png/drink.png",
+      "ingredients": ["Gin", "Dry Vermouth", "Olive"],
+      "alcoholContent": 35,
+      "origin": "United States",
+      "inStock": true,
+      "rating": 4.8,
+      "reviews": 95,
+      "tags": ["classic", "sophisticated", "gin"],
+      "salePrice": null,
+      "discount": 0,
+      "featured": false
+    },
+    {
+      "id": "3",
+      "name": "Single Malt Whiskey",
+      "description": "Aged for 12 years in oak barrels, offering rich flavors of vanilla, oak, and spice.",
+      "price": 89.99,
+      "volume": 750,
+      "category": "whiskey",
+      "image": "/img/png/drink.png",
+      "ingredients": ["Malted Barley", "Water"],
+      "alcoholContent": 43,
+      "origin": "Scotland",
+      "inStock": true,
+      "rating": 4.7,
+      "reviews": 203,
+      "tags": ["aged", "premium", "single-malt"],
+      "salePrice": 79.99,
+      "discount": 11,
+      "featured": true
+    },
+    {
+      "id": "4",
+      "name": "Aged Rum",
+      "description": "Smooth Caribbean rum aged for 8 years, with notes of caramel and tropical fruits.",
+      "price": 65.99,
+      "volume": 750,
+      "category": "rum",
+      "image": "/img/png/drink.png",
+      "ingredients": ["Sugarcane", "Water"],
+      "alcoholContent": 40,
+      "origin": "Jamaica",
+      "inStock": true,
+      "rating": 4.3,
+      "reviews": 87,
+      "tags": ["aged", "caribbean", "smooth"],
+      "salePrice": null,
+      "discount": 0,
+      "featured": false
+    },
+    {
+      "id": "5",
+      "name": "London Dry Gin",
+      "description": "Classic London dry gin with juniper berries and traditional botanicals.",
+      "price": 38.99,
+      "volume": 750,
+      "category": "gin",
+      "image": "/img/png/drink.png",
+      "ingredients": ["Juniper", "Botanicals", "Grain"],
+      "alcoholContent": 47,
+      "origin": "England",
+      "inStock": true,
+      "rating": 4.6,
+      "reviews": 156,
+      "tags": ["london-dry", "botanicals", "classic"],
+      "salePrice": null,
+      "discount": 0,
+      "featured": false
+    },
+    {
+      "id": "6",
+      "name": "Premium Tequila",
+      "description": "100% agave tequila with smooth finish and authentic Mexican character.",
+      "price": 55.99,
+      "volume": 750,
+      "category": "tequila",
+      "image": "/img/png/drink.png",
+      "ingredients": ["Blue Agave"],
+      "alcoholContent": 40,
+      "origin": "Mexico",
+      "inStock": true,
+      "rating": 4.4,
+      "reviews": 112,
+      "tags": ["agave", "mexican", "premium"],
+      "salePrice": 49.99,
+      "discount": 11,
+      "featured": false
+    },
+    {
+      "id": "7",
+      "name": "Red Wine Blend",
+      "description": "Rich red wine blend with notes of dark fruit, oak, and subtle tannins.",
+      "price": 28.99,
+      "volume": 750,
+      "category": "wine",
+      "image": "/img/png/drink.png",
+      "ingredients": ["Red Grapes"],
+      "alcoholContent": 13.5,
+      "origin": "France",
+      "inStock": true,
+      "rating": 4.2,
+      "reviews": 89,
+      "tags": ["red-wine", "blend", "french"],
+      "salePrice": null,
+      "discount": 0,
+      "featured": false
+    },
+    {
+      "id": "8",
+      "name": "Craft Beer IPA",
+      "description": "Hoppy India Pale Ale with citrus notes and balanced bitterness.",
+      "price": 8.99,
+      "volume": 330,
+      "category": "beer",
+      "image": "/img/png/drink.png",
+      "ingredients": ["Malt", "Hops", "Yeast", "Water"],
+      "alcoholContent": 6.5,
+      "origin": "United States",
+      "inStock": true,
+      "rating": 4.1,
+      "reviews": 234,
+      "tags": ["craft-beer", "ipa", "hoppy"],
+      "salePrice": null,
+      "discount": 0,
+      "featured": false
+    },
+    {
+      "id": "9",
+      "name": "Espresso Martini",
+      "description": "Coffee-infused cocktail with vodka, coffee liqueur, and fresh espresso.",
+      "price": 15.99,
+      "volume": 200,
+      "category": "cocktail",
+      "image": "/img/png/drink.png",
+      "ingredients": ["Vodka", "Coffee Liqueur", "Espresso"],
+      "alcoholContent": 30,
+      "origin": "United States",
+      "inStock": true,
+      "rating": 4.9,
+      "reviews": 67,
+      "tags": ["coffee", "espresso", "cocktail"],
+      "salePrice": null,
+      "discount": 0,
+      "featured": true
+    },
+    {
+      "id": "10",
+      "name": "Bourbon Whiskey",
+      "description": "American bourbon aged in charred oak barrels with sweet vanilla and caramel notes.",
+      "price": 42.99,
+      "volume": 750,
+      "category": "whiskey",
+      "image": "/img/png/drink.png",
+      "ingredients": ["Corn", "Rye", "Barley"],
+      "alcoholContent": 45,
+      "origin": "United States",
+      "inStock": true,
+      "rating": 4.3,
+      "reviews": 178,
+      "tags": ["bourbon", "american", "aged"],
+      "salePrice": null,
+      "discount": 0,
+      "featured": false
+    }
+  ],
+  "categories": [
+    {
+      "id": "vodka",
+      "name": "Vodka",
+      "description": "Clear, neutral spirits perfect for cocktails",
+      "image": "/img/categories/vodka.jpg",
+      "productCount": 15
+    },
+    {
+      "id": "whiskey",
+      "name": "Whiskey",
+      "description": "Aged spirits with rich, complex flavors",
+      "image": "/img/categories/whiskey.jpg",
+      "productCount": 23
+    },
+    {
+      "id": "rum",
+      "name": "Rum",
+      "description": "Caribbean spirits with tropical character",
+      "image": "/img/categories/rum.jpg",
+      "productCount": 12
+    },
+    {
+      "id": "gin",
+      "name": "Gin",
+      "description": "Botanical spirits with juniper-forward profiles",
+      "image": "/img/categories/gin.jpg",
+      "productCount": 18
+    },
+    {
+      "id": "tequila",
+      "name": "Tequila",
+      "description": "Mexican agave spirits with authentic character",
+      "image": "/img/categories/tequila.jpg",
+      "productCount": 9
+    },
+    {
+      "id": "wine",
+      "name": "Wine",
+      "description": "Fine wines from around the world",
+      "image": "/img/categories/wine.jpg",
+      "productCount": 45
+    },
+    {
+      "id": "beer",
+      "name": "Beer",
+      "description": "Craft beers and premium lagers",
+      "image": "/img/categories/beer.jpg",
+      "productCount": 32
+    },
+    {
+      "id": "cocktail",
+      "name": "Cocktails",
+      "description": "Pre-mixed cocktails and cocktail kits",
+      "image": "/img/categories/cocktail.jpg",
+      "productCount": 8
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "demo@example.com",
+      "firstName": "John",
+      "lastName": "Doe",
+      "phone": "+1234567890",
+      "address": {
+        "street": "123 Main St",
+        "city": "New York",
+        "state": "NY",
+        "zipCode": "10001",
+        "country": "United States"
+      },
+      "createdAt": "2024-01-15T10:30:00Z",
+      "lastLogin": "2024-01-20T14:45:00Z",
+      "isVerified": true,
+      "preferences": {
+        "newsletter": true,
+        "marketing": false,
+        "language": "en"
+      }
+    },
+    {
+      "id": "2",
+      "email": "jane.smith@example.com",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "phone": "+1987654321",
+      "address": {
+        "street": "456 Oak Ave",
+        "city": "Los Angeles",
+        "state": "CA",
+        "zipCode": "90210",
+        "country": "United States"
+      },
+      "createdAt": "2024-01-10T09:15:00Z",
+      "lastLogin": "2024-01-19T16:20:00Z",
+      "isVerified": true,
+      "preferences": {
+        "newsletter": true,
+        "marketing": true,
+        "language": "en"
+      }
+    },
+    {
+      "id": "3",
+      "email": "mike.wilson@example.com",
+      "firstName": "Mike",
+      "lastName": "Wilson",
+      "phone": "+1555123456",
+      "address": {
+        "street": "789 Pine St",
+        "city": "Chicago",
+        "state": "IL",
+        "zipCode": "60601",
+        "country": "United States"
+      },
+      "createdAt": "2024-01-05T11:45:00Z",
+      "lastLogin": "2024-01-18T13:30:00Z",
+      "isVerified": false,
+      "preferences": {
+        "newsletter": false,
+        "marketing": false,
+        "language": "en"
+      }
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-001",
+      "userId": "1",
+      "items": [
+        {
+          "productId": "1",
+          "name": "Premium Vodka",
+          "price": 45.99,
+          "quantity": 2,
+          "total": 91.98
+        },
+        {
+          "productId": "3",
+          "name": "Single Malt Whiskey",
+          "price": 79.99,
+          "quantity": 1,
+          "total": 79.99
+        }
+      ],
+      "subtotal": 171.97,
+      "tax": 17.20,
+      "shipping": 9.99,
+      "total": 199.16,
+      "status": "delivered",
+      "paymentMethod": "credit_card",
+      "shippingAddress": {
+        "street": "123 Main St",
+        "city": "New York",
+        "state": "NY",
+        "zipCode": "10001",
+        "country": "United States"
+      },
+      "billingAddress": {
+        "street": "123 Main St",
+        "city": "New York",
+        "state": "NY",
+        "zipCode": "10001",
+        "country": "United States"
+      },
+      "createdAt": "2024-01-15T14:30:00Z",
+      "updatedAt": "2024-01-18T10:15:00Z",
+      "deliveredAt": "2024-01-18T10:15:00Z",
+      "trackingNumber": "TRK123456789"
+    },
+    {
+      "id": "ORD-002",
+      "userId": "2",
+      "items": [
+        {
+          "productId": "5",
+          "name": "London Dry Gin",
+          "price": 38.99,
+          "quantity": 1,
+          "total": 38.99
+        },
+        {
+          "productId": "9",
+          "name": "Espresso Martini",
+          "price": 15.99,
+          "quantity": 3,
+          "total": 47.97
+        }
+      ],
+      "subtotal": 86.96,
+      "tax": 8.70,
+      "shipping": 9.99,
+      "total": 105.65,
+      "status": "processing",
+      "paymentMethod": "paypal",
+      "shippingAddress": {
+        "street": "456 Oak Ave",
+        "city": "Los Angeles",
+        "state": "CA",
+        "zipCode": "90210",
+        "country": "United States"
+      },
+      "billingAddress": {
+        "street": "456 Oak Ave",
+        "city": "Los Angeles",
+        "state": "CA",
+        "zipCode": "90210",
+        "country": "United States"
+      },
+      "createdAt": "2024-01-20T16:45:00Z",
+      "updatedAt": "2024-01-20T16:45:00Z",
+      "deliveredAt": null,
+      "trackingNumber": null
+    }
+  ],
+  "reviews": [
+    {
+      "id": "1",
+      "productId": "1",
+      "userId": "1",
+      "rating": 5,
+      "title": "Excellent Premium Vodka",
+      "comment": "Smooth and clean taste. Perfect for cocktails. Highly recommend!",
+      "createdAt": "2024-01-16T12:30:00Z",
+      "verified": true
+    },
+    {
+      "id": "2",
+      "productId": "1",
+      "userId": "2",
+      "rating": 4,
+      "title": "Good Quality",
+      "comment": "Nice smooth finish. Good value for the price.",
+      "createdAt": "2024-01-17T09:15:00Z",
+      "verified": true
+    },
+    {
+      "id": "3",
+      "productId": "3",
+      "userId": "1",
+      "rating": 5,
+      "title": "Outstanding Whiskey",
+      "comment": "Rich and complex flavors. Worth every penny!",
+      "createdAt": "2024-01-19T14:20:00Z",
+      "verified": true
+    },
+    {
+      "id": "4",
+      "productId": "9",
+      "userId": "2",
+      "rating": 5,
+      "title": "Amazing Espresso Martini",
+      "comment": "Perfect coffee flavor. Great for after dinner!",
+      "createdAt": "2024-01-20T18:45:00Z",
+      "verified": false
+    }
+  ],
+  "cart": [
+    {
+      "userId": "1",
+      "items": [
+        {
+          "productId": "6",
+          "name": "Premium Tequila",
+          "price": 49.99,
+          "quantity": 1,
+          "total": 49.99
+        },
+        {
+          "productId": "8",
+          "name": "Craft Beer IPA",
+          "price": 8.99,
+          "quantity": 6,
+          "total": 53.94
+        }
+      ],
+      "total": 103.93,
+      "updatedAt": "2024-01-20T19:30:00Z"
+    }
+  ],
+  "wishlist": [
+    {
+      "userId": "1",
+      "productId": "4",
+      "addedAt": "2024-01-18T11:20:00Z"
+    },
+    {
+      "userId": "1",
+      "productId": "10",
+      "addedAt": "2024-01-19T15:45:00Z"
+    },
+    {
+      "userId": "2",
+      "productId": "7",
+      "addedAt": "2024-01-20T12:10:00Z"
+    }
+  ],
+  "coupons": [
+    {
+      "id": "WELCOME10",
+      "code": "WELCOME10",
+      "discount": 10,
+      "type": "percentage",
+      "minOrder": 50,
+      "maxDiscount": 25,
+      "validFrom": "2024-01-01T00:00:00Z",
+      "validUntil": "2024-12-31T23:59:59Z",
+      "usageLimit": 1000,
+      "usedCount": 156,
+      "active": true
+    },
+    {
+      "id": "SAVE20",
+      "code": "SAVE20",
+      "discount": 20,
+      "type": "percentage",
+      "minOrder": 100,
+      "maxDiscount": 50,
+      "validFrom": "2024-01-15T00:00:00Z",
+      "validUntil": "2024-02-15T23:59:59Z",
+      "usageLimit": 500,
+      "usedCount": 89,
+      "active": true
+    },
+    {
+      "id": "FREESHIP",
+      "code": "FREESHIP",
+      "discount": 9.99,
+      "type": "fixed",
+      "minOrder": 75,
+      "maxDiscount": 9.99,
+      "validFrom": "2024-01-01T00:00:00Z",
+      "validUntil": "2024-12-31T23:59:59Z",
+      "usageLimit": 2000,
+      "usedCount": 423,
+      "active": true
+    }
+  ],
+  "settings": {
+    "store": {
+      "name": "Premium Drinks Store",
+      "description": "Your premium destination for fine alcoholic beverages",
+      "currency": "USD",
+      "taxRate": 0.1,
+      "shippingCost": 9.99,
+      "freeShippingThreshold": 100,
+      "contactEmail": "info@premiumdrinks.com",
+      "contactPhone": "+1-800-DRINKS"
+    },
+    "features": {
+      "reviews": true,
+      "wishlist": true,
+      "coupons": true,
+      "newsletter": true,
+      "guestCheckout": true,
+      "multiplePaymentMethods": true
+    }
+  }
+} 

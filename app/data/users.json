@@ -1,0 +1,68 @@
+[
+  {
+    "id": "1",
+    "email": "demo@example.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "phone": "+1234567890",
+    "address": {
+      "street": "123 Main St",
+      "city": "New York",
+      "state": "NY",
+      "zipCode": "10001",
+      "country": "United States"
+    },
+    "createdAt": "2024-01-15T10:30:00Z",
+    "lastLogin": "2024-01-20T14:45:00Z",
+    "isVerified": true,
+    "preferences": {
+      "newsletter": true,
+      "marketing": false,
+      "language": "en"
+    }
+  },
+  {
+    "id": "2",
+    "email": "jane.smith@example.com",
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "phone": "+1987654321",
+    "address": {
+      "street": "456 Oak Ave",
+      "city": "Los Angeles",
+      "state": "CA",
+      "zipCode": "90210",
+      "country": "United States"
+    },
+    "createdAt": "2024-01-10T09:15:00Z",
+    "lastLogin": "2024-01-19T16:20:00Z",
+    "isVerified": true,
+    "preferences": {
+      "newsletter": true,
+      "marketing": true,
+      "language": "en"
+    }
+  },
+  {
+    "id": "3",
+    "email": "mike.wilson@example.com",
+    "firstName": "Mike",
+    "lastName": "Wilson",
+    "phone": "+1555123456",
+    "address": {
+      "street": "789 Pine St",
+      "city": "Chicago",
+      "state": "IL",
+      "zipCode": "60601",
+      "country": "United States"
+    },
+    "createdAt": "2024-01-05T11:45:00Z",
+    "lastLogin": "2024-01-18T13:30:00Z",
+    "isVerified": false,
+    "preferences": {
+      "newsletter": false,
+      "marketing": false,
+      "language": "en"
+    }
+  }
+] 
