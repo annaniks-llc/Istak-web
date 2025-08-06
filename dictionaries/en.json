@@ -28,11 +28,14 @@
             "password": "Password",
             "submit": "Sign In",
             "loading": "Signing in...",
-            "noAccount": "Don't have an account?",
+            "noAccount": "Don&apos;t have an account?",
             "signUp": "Sign up here",
             "demoCredentials": "Demo Credentials",
             "demoEmail": "demo@example.com",
-            "demoPassword": "password"
+            "demoPassword": "password",
+            "success": "Login successful!",
+            "genericError": "Login failed. Please check your credentials.",
+            "unexpectedError": "An unexpected error occurred."
         },
         "register": {
             "title": "Create Account",
@@ -213,10 +216,10 @@
         "shippingAddress": "Shipping Address",
         "paymentMethod": "Payment Method",
         "orderDetails": "Order Details",
-        "whatsNext": "What's Next?",
+        "whatsNext": "What&apos;s Next?",
         "nextSteps": [
-            "You'll receive an email confirmation shortly",
-            "We'll notify you when your order ships",
+            "You&apos;ll receive an email confirmation shortly",
+            "We&apos;ll notify you when your order ships",
             "Track your order using the order ID"
         ],
         "actions": {
@@ -292,7 +295,7 @@
         "email": "Please enter a valid email address",
         "minLength": "Must be at least {min} characters",
         "maxLength": "Must be no more than {max} characters",
-        "passwordMatch": "Passwords don't match",
+        "passwordMatch": "Passwords don&apos;t match",
         "invalidCredentials": "Invalid email or password",
         "emailExists": "Email already exists"
     }

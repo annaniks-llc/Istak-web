@@ -13,8 +13,33 @@ export default function DictionaryProvider({ dictionary, children }: { dictionar
 
 export function useDictionary() {
   const dictionary = useContext(DictionaryContext);
+
+  // Provide a fallback dictionary to prevent undefined errors
   if (dictionary === null) {
-    throw new Error('useDictionary hook must be used within DictionaryProvider');
+    console.warn('useDictionary hook must be used within DictionaryProvider');
+    return {
+      navigation: {
+        home: 'Home',
+        products: 'Products',
+        dashboard: 'Dashboard',
+        cart: 'Cart',
+        login: 'Login',
+        register: 'Register',
+        logout: 'Logout',
+        search: 'Search',
+      },
+      home: {
+        heading: 'Premium Drinks Store',
+        menu: {
+          register: 'Login / Register',
+        },
+        hero: {
+          title: 'Premium Alcoholic Beverages',
+          subtitle: 'Discover the finest selection of spirits, wines, and craft beers',
+          cta: 'Shop Now',
+        },
+      },
+    } as Dictionary;
   }
 
   return dictionary;

@@ -29,9 +29,15 @@ jest.mock('react-hot-toast', () => ({
 
 // Mock Next.js Link component
 jest.mock('next/link', () => {
-  return ({ children, href, ...props }: any) => {
-    return <a href={href} {...props}>{children}</a>;
+  const MockLink = ({ children, href, ...props }: { children: React.ReactNode; href: string; [key: string]: unknown }) => {
+    return (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    );
   };
+  MockLink.displayName = 'MockLink';
+  return MockLink;
 });
 
 const mockRouter = {
@@ -73,7 +79,7 @@ describe('RegisterPage', () => {
 
   it('renders registration form with all fields', () => {
     render(<RegisterPage />);
-    
+
     expect(screen.getByText('Create Account')).toBeInTheDocument();
     expect(screen.getByText('Join us and start exploring our premium drinks collection')).toBeInTheDocument();
     expect(screen.getByLabelText('First Name')).toBeInTheDocument();
@@ -87,7 +93,7 @@ describe('RegisterPage', () => {
 
   it('shows link to login page', () => {
     render(<RegisterPage />);
-    
+
     const loginLink = screen.getByText('Sign in here');
     expect(loginLink).toBeInTheDocument();
     expect(loginLink.closest('a')).toHaveAttribute('href', '/login');
@@ -95,10 +101,10 @@ describe('RegisterPage', () => {
 
   it('validates required fields', async () => {
     render(<RegisterPage />);
-    
+
     const submitButton = screen.getByRole('button', { name: 'Create Account' });
     fireEvent.click(submitButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText('First name must be at least 2 characters')).toBeInTheDocument();
       expect(screen.getByText('Last name must be at least 2 characters')).toBeInTheDocument();
@@ -109,13 +115,13 @@ describe('RegisterPage', () => {
 
   it('validates email format', async () => {
     render(<RegisterPage />);
-    
+
     const emailInput = screen.getByLabelText('Email Address');
     const submitButton = screen.getByRole('button', { name: 'Create Account' });
-    
+
     fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
     fireEvent.click(submitButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText('Please enter a valid email address')).toBeInTheDocument();
     });
@@ -123,13 +129,13 @@ describe('RegisterPage', () => {
 
   it('validates password length', async () => {
     render(<RegisterPage />);
-    
+
     const passwordInput = screen.getByLabelText('Password');
     const submitButton = screen.getByRole('button', { name: 'Create Account' });
-    
+
     fireEvent.change(passwordInput, { target: { value: '123' } });
     fireEvent.click(submitButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText('Password must be at least 6 characters')).toBeInTheDocument();
     });
@@ -137,25 +143,25 @@ describe('RegisterPage', () => {
 
   it('validates password confirmation match', async () => {
     render(<RegisterPage />);
-    
+
     const passwordInput = screen.getByLabelText('Password');
     const confirmPasswordInput = screen.getByLabelText('Confirm Password');
     const submitButton = screen.getByRole('button', { name: 'Create Account' });
-    
+
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.change(confirmPasswordInput, { target: { value: 'differentpassword' } });
     fireEvent.click(submitButton);
-    
+
     await waitFor(() => {
-      expect(screen.getByText("Passwords don't match")).toBeInTheDocument();
+      expect(screen.getByText('Passwords don&apos;t match')).toBeInTheDocument();
     });
   });
 
   it('submits form with valid data', async () => {
     mockRegister.mockResolvedValue({ success: true });
-    
+
     render(<RegisterPage />);
-    
+
     const firstNameInput = screen.getByLabelText('First Name');
     const lastNameInput = screen.getByLabelText('Last Name');
     const emailInput = screen.getByLabelText('Email Address');
@@ -163,7 +169,7 @@ describe('RegisterPage', () => {
     const passwordInput = screen.getByLabelText('Password');
     const confirmPasswordInput = screen.getByLabelText('Confirm Password');
     const submitButton = screen.getByRole('button', { name: 'Create Account' });
-    
+
     fireEvent.change(firstNameInput, { target: { value: 'John' } });
     fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
@@ -171,7 +177,7 @@ describe('RegisterPage', () => {
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.change(confirmPasswordInput, { target: { value: 'password123' } });
     fireEvent.click(submitButton);
-    
+
     await waitFor(() => {
       expect(mockRegister).toHaveBeenCalledWith({
         email: 'john@example.com',
@@ -185,23 +191,23 @@ describe('RegisterPage', () => {
 
   it('shows success message and redirects on successful registration', async () => {
     mockRegister.mockResolvedValue({ success: true });
-    
+
     render(<RegisterPage />);
-    
+
     const firstNameInput = screen.getByLabelText('First Name');
     const lastNameInput = screen.getByLabelText('Last Name');
     const emailInput = screen.getByLabelText('Email Address');
     const passwordInput = screen.getByLabelText('Password');
     const confirmPasswordInput = screen.getByLabelText('Confirm Password');
     const submitButton = screen.getByRole('button', { name: 'Create Account' });
-    
+
     fireEvent.change(firstNameInput, { target: { value: 'John' } });
     fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.change(confirmPasswordInput, { target: { value: 'password123' } });
     fireEvent.click(submitButton);
-    
+
     await waitFor(() => {
       expect(toast.success).toHaveBeenCalledWith('Registration successful! Please log in.');
       expect(mockRouter.push).toHaveBeenCalledWith('/login');
@@ -209,27 +215,27 @@ describe('RegisterPage', () => {
   });
 
   it('shows error message on failed registration', async () => {
-    mockRegister.mockResolvedValue({ 
-      success: false, 
-      message: 'Email already exists' 
+    mockRegister.mockResolvedValue({
+      success: false,
+      message: 'Email already exists',
     });
-    
+
     render(<RegisterPage />);
-    
+
     const firstNameInput = screen.getByLabelText('First Name');
     const lastNameInput = screen.getByLabelText('Last Name');
     const emailInput = screen.getByLabelText('Email Address');
     const passwordInput = screen.getByLabelText('Password');
     const confirmPasswordInput = screen.getByLabelText('Confirm Password');
     const submitButton = screen.getByRole('button', { name: 'Create Account' });
-    
+
     fireEvent.change(firstNameInput, { target: { value: 'John' } });
     fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.change(confirmPasswordInput, { target: { value: 'password123' } });
     fireEvent.click(submitButton);
-    
+
     await waitFor(() => {
       expect(toast.error).toHaveBeenCalledWith('Email already exists');
     });
@@ -237,23 +243,23 @@ describe('RegisterPage', () => {
 
   it('shows generic error message when registration fails without specific message', async () => {
     mockRegister.mockResolvedValue({ success: false });
-    
+
     render(<RegisterPage />);
-    
+
     const firstNameInput = screen.getByLabelText('First Name');
     const lastNameInput = screen.getByLabelText('Last Name');
     const emailInput = screen.getByLabelText('Email Address');
     const passwordInput = screen.getByLabelText('Password');
     const confirmPasswordInput = screen.getByLabelText('Confirm Password');
     const submitButton = screen.getByRole('button', { name: 'Create Account' });
-    
+
     fireEvent.change(firstNameInput, { target: { value: 'John' } });
     fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.change(confirmPasswordInput, { target: { value: 'password123' } });
     fireEvent.click(submitButton);
-    
+
     await waitFor(() => {
       expect(toast.error).toHaveBeenCalledWith('Registration failed. Please try again.');
     });
@@ -261,70 +267,70 @@ describe('RegisterPage', () => {
 
   it('shows error message on unexpected error', async () => {
     mockRegister.mockRejectedValue(new Error('Network error'));
-    
+
     render(<RegisterPage />);
-    
+
     const firstNameInput = screen.getByLabelText('First Name');
     const lastNameInput = screen.getByLabelText('Last Name');
     const emailInput = screen.getByLabelText('Email Address');
     const passwordInput = screen.getByLabelText('Password');
     const confirmPasswordInput = screen.getByLabelText('Confirm Password');
     const submitButton = screen.getByRole('button', { name: 'Create Account' });
-    
+
     fireEvent.change(firstNameInput, { target: { value: 'John' } });
     fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.change(confirmPasswordInput, { target: { value: 'password123' } });
     fireEvent.click(submitButton);
-    
+
     await waitFor(() => {
       expect(toast.error).toHaveBeenCalledWith('An unexpected error occurred.');
     });
   });
 
-  it('disables submit button while loading', async () => {
-    mockRegister.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 100)));
-    
+  it('disables submit button while loading', () => {
+    mockRegister.mockImplementation(() => new Promise((resolve) => setTimeout(resolve, 100)));
+
     render(<RegisterPage />);
-    
+
     const firstNameInput = screen.getByLabelText('First Name');
     const lastNameInput = screen.getByLabelText('Last Name');
     const emailInput = screen.getByLabelText('Email Address');
     const passwordInput = screen.getByLabelText('Password');
     const confirmPasswordInput = screen.getByLabelText('Confirm Password');
     const submitButton = screen.getByRole('button', { name: 'Create Account' });
-    
+
     fireEvent.change(firstNameInput, { target: { value: 'John' } });
     fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.change(confirmPasswordInput, { target: { value: 'password123' } });
     fireEvent.click(submitButton);
-    
+
     expect(submitButton).toBeDisabled();
     expect(screen.getByText('Creating Account...')).toBeInTheDocument();
   });
 
   it('handles optional phone field correctly', async () => {
     mockRegister.mockResolvedValue({ success: true });
-    
+
     render(<RegisterPage />);
-    
+
     const firstNameInput = screen.getByLabelText('First Name');
     const lastNameInput = screen.getByLabelText('Last Name');
     const emailInput = screen.getByLabelText('Email Address');
     const passwordInput = screen.getByLabelText('Password');
     const confirmPasswordInput = screen.getByLabelText('Confirm Password');
     const submitButton = screen.getByRole('button', { name: 'Create Account' });
-    
+
     fireEvent.change(firstNameInput, { target: { value: 'John' } });
     fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.change(confirmPasswordInput, { target: { value: 'password123' } });
     fireEvent.click(submitButton);
-    
+
     await waitFor(() => {
       expect(mockRegister).toHaveBeenCalledWith({
         email: 'john@example.com',
@@ -338,14 +344,14 @@ describe('RegisterPage', () => {
 
   it('has correct form accessibility attributes', () => {
     render(<RegisterPage />);
-    
+
     const firstNameInput = screen.getByLabelText('First Name');
     const lastNameInput = screen.getByLabelText('Last Name');
     const emailInput = screen.getByLabelText('Email Address');
     const phoneInput = screen.getByLabelText('Phone Number (Optional)');
     const passwordInput = screen.getByLabelText('Password');
     const confirmPasswordInput = screen.getByLabelText('Confirm Password');
-    
+
     expect(firstNameInput).toHaveAttribute('type', 'text');
     expect(firstNameInput).toHaveAttribute('id', 'firstName');
     expect(lastNameInput).toHaveAttribute('type', 'text');
@@ -362,18 +368,18 @@ describe('RegisterPage', () => {
 
   it('validates minimum length for names', async () => {
     render(<RegisterPage />);
-    
+
     const firstNameInput = screen.getByLabelText('First Name');
     const lastNameInput = screen.getByLabelText('Last Name');
     const submitButton = screen.getByRole('button', { name: 'Create Account' });
-    
+
     fireEvent.change(firstNameInput, { target: { value: 'J' } });
     fireEvent.change(lastNameInput, { target: { value: 'D' } });
     fireEvent.click(submitButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText('First name must be at least 2 characters')).toBeInTheDocument();
       expect(screen.getByText('Last name must be at least 2 characters')).toBeInTheDocument();
     });
   });
-}); 
+});

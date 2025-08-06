@@ -1,14 +1,13 @@
 // primary
-$color_primary: #827E78;
-$color_primary_dark: #221C13;
-$color_menu:#231F20;
+$color_primary: #827e78;
+$color_primary_dark: #221c13;
+$color_menu: #231f20;
 // secondary
-$color_secondary: #D5873B;
-$color_placeholder:#F6F4F1;
+$color_secondary: #d5873b;
+$color_placeholder: #f6f4f1;
 
 @mixin inner() {
-    width: 1919px;
-    max-width: 100%;
-    margin: auto;
-  }
-  
+  width: 1919px;
+  max-width: 100%;
+  margin: auto;
+}

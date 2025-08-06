@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import ProductsPage from './page';
 import { useProductsStore } from '@/app/zustand/store/products';
 import { useCartStore } from '@/app/zustand/store/cart';
@@ -134,35 +134,35 @@ describe('ProductsPage', () => {
 
   it('renders products page with header', () => {
     render(<ProductsPage />);
-    
+
     expect(screen.getByText('Our Products')).toBeInTheDocument();
     expect(screen.getByText('Discover our premium selection of alcoholic beverages')).toBeInTheDocument();
   });
 
   it('renders search input', () => {
     render(<ProductsPage />);
-    
+
     const searchInput = screen.getByPlaceholderText('Search products...');
     expect(searchInput).toBeInTheDocument();
   });
 
   it('renders category filter', () => {
     render(<ProductsPage />);
-    
+
     expect(screen.getByText('Category:')).toBeInTheDocument();
     expect(screen.getByDisplayValue('all')).toBeInTheDocument();
   });
 
   it('renders sort controls', () => {
     render(<ProductsPage />);
-    
+
     expect(screen.getByText('Sort By:')).toBeInTheDocument();
     expect(screen.getByDisplayValue('name')).toBeInTheDocument();
   });
 
   it('renders all products by default', () => {
     render(<ProductsPage />);
-    
+
     expect(screen.getByText('Premium Vodka')).toBeInTheDocument();
     expect(screen.getByText('Classic Whiskey')).toBeInTheDocument();
     expect(screen.getByText('Out of Stock Gin')).toBeInTheDocument();
@@ -170,10 +170,10 @@ describe('ProductsPage', () => {
 
   it('filters products by category', () => {
     render(<ProductsPage />);
-    
+
     const categorySelect = screen.getByDisplayValue('all');
     fireEvent.change(categorySelect, { target: { value: 'vodka' } });
-    
+
     expect(screen.getByText('Premium Vodka')).toBeInTheDocument();
     expect(screen.queryByText('Classic Whiskey')).not.toBeInTheDocument();
     expect(screen.queryByText('Out of Stock Gin')).not.toBeInTheDocument();
@@ -181,21 +181,21 @@ describe('ProductsPage', () => {
 
   it('searches products when search query is entered', () => {
     mockSearchProducts.mockReturnValue([mockProducts[0]]);
-    
+
     render(<ProductsPage />);
-    
+
     const searchInput = screen.getByPlaceholderText('Search products...');
     fireEvent.change(searchInput, { target: { value: 'vodka' } });
-    
+
     expect(mockSearchProducts).toHaveBeenCalledWith('vodka');
   });
 
   it('sorts products by name', () => {
     render(<ProductsPage />);
-    
+
     const sortSelect = screen.getByDisplayValue('name');
     fireEvent.change(sortSelect, { target: { value: 'name' } });
-    
+
     // Products should be sorted alphabetically
     const productNames = screen.getAllByText(/Premium Vodka|Classic Whiskey|Out of Stock Gin/);
     expect(productNames[0]).toHaveTextContent('Classic Whiskey');
@@ -203,10 +203,10 @@ describe('ProductsPage', () => {
 
   it('sorts products by price', () => {
     render(<ProductsPage />);
-    
+
     const sortSelect = screen.getByDisplayValue('name');
     fireEvent.change(sortSelect, { target: { value: 'price' } });
-    
+
     // Products should be sorted by price (lowest first)
     const productNames = screen.getAllByText(/Premium Vodka|Classic Whiskey|Out of Stock Gin/);
     expect(productNames[0]).toHaveTextContent('Out of Stock Gin'); // $35.99
@@ -214,10 +214,10 @@ describe('ProductsPage', () => {
 
   it('sorts products by rating', () => {
     render(<ProductsPage />);
-    
+
     const sortSelect = screen.getByDisplayValue('name');
     fireEvent.change(sortSelect, { target: { value: 'rating' } });
-    
+
     // Products should be sorted by rating (highest first)
     const productNames = screen.getAllByText(/Premium Vodka|Classic Whiskey|Out of Stock Gin/);
     expect(productNames[0]).toHaveTextContent('Classic Whiskey'); // 4.8 rating
@@ -225,20 +225,20 @@ describe('ProductsPage', () => {
 
   it('toggles sort order when sort button is clicked', () => {
     render(<ProductsPage />);
-    
+
     const sortButton = screen.getByText('↑');
     expect(sortButton).toBeInTheDocument();
-    
+
     fireEvent.click(sortButton);
     expect(screen.getByText('↓')).toBeInTheDocument();
   });
 
   it('adds product to cart when add to cart button is clicked', () => {
     render(<ProductsPage />);
-    
+
     const addToCartButtons = screen.getAllByText('Add to Cart');
     fireEvent.click(addToCartButtons[0]);
-    
+
     expect(mockAddItem).toHaveBeenCalledWith({
       id: '1',
       name: 'Premium Vodka',
@@ -251,10 +251,10 @@ describe('ProductsPage', () => {
 
   it('shows out of stock message for unavailable products', () => {
     render(<ProductsPage />);
-    
+
     const outOfStockButtons = screen.getAllByText('Out of Stock');
     expect(outOfStockButtons).toHaveLength(1);
-    
+
     const outOfStockButton = outOfStockButtons[0];
     expect(outOfStockButton).toBeDisabled();
   });
@@ -264,11 +264,11 @@ describe('ProductsPage', () => {
       ...mockProductsStore,
       isLoading: true,
     };
-    
+
     (useProductsStore as jest.Mock).mockReturnValue(loadingStore);
-    
+
     render(<ProductsPage />);
-    
+
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
 
@@ -277,29 +277,29 @@ describe('ProductsPage', () => {
       ...mockProductsStore,
       products: [],
     };
-    
+
     (useProductsStore as jest.Mock).mockReturnValue(emptyStore);
-    
+
     render(<ProductsPage />);
-    
+
     expect(screen.getByText('No products found')).toBeInTheDocument();
     expect(screen.getByText('Clear Filters')).toBeInTheDocument();
   });
 
   it('clears filters when clear filters button is clicked', () => {
     render(<ProductsPage />);
-    
+
     // Set some filters first
     const categorySelect = screen.getByDisplayValue('all');
     const searchInput = screen.getByPlaceholderText('Search products...');
-    
+
     fireEvent.change(categorySelect, { target: { value: 'vodka' } });
     fireEvent.change(searchInput, { target: { value: 'test' } });
-    
+
     // Click clear filters
     const clearFiltersButton = screen.getByText('Clear Filters');
     fireEvent.click(clearFiltersButton);
-    
+
     // Filters should be reset
     expect(screen.getByDisplayValue('all')).toBeInTheDocument();
     expect(searchInput).toHaveValue('');
@@ -307,7 +307,7 @@ describe('ProductsPage', () => {
 
   it('displays product details correctly', () => {
     render(<ProductsPage />);
-    
+
     // Check product information is displayed
     expect(screen.getByText('Premium Vodka')).toBeInTheDocument();
     expect(screen.getByText('Smooth and clean premium vodka')).toBeInTheDocument();
@@ -319,38 +319,38 @@ describe('ProductsPage', () => {
 
   it('displays product ratings', () => {
     render(<ProductsPage />);
-    
+
     // Check rating is displayed
     expect(screen.getByText('4.5 (128 reviews)')).toBeInTheDocument();
   });
 
   it('displays stock status', () => {
     render(<ProductsPage />);
-    
+
     expect(screen.getByText('In Stock')).toBeInTheDocument();
     expect(screen.getByText('Out of Stock')).toBeInTheDocument();
   });
 
   it('handles search with no results', () => {
     mockSearchProducts.mockReturnValue([]);
-    
+
     render(<ProductsPage />);
-    
+
     const searchInput = screen.getByPlaceholderText('Search products...');
     fireEvent.change(searchInput, { target: { value: 'nonexistent' } });
-    
+
     expect(screen.getByText('No products found')).toBeInTheDocument();
   });
 
   it('calls fetchProducts on mount', () => {
     render(<ProductsPage />);
-    
+
     expect(mockProductsStore.fetchProducts).toHaveBeenCalled();
   });
 
   it('displays correct number of products found', () => {
     render(<ProductsPage />);
-    
+
     expect(screen.getByText('3 products found')).toBeInTheDocument();
   });
 
@@ -359,30 +359,30 @@ describe('ProductsPage', () => {
       ...mockProductsStore,
       products: [mockProducts[0]],
     };
-    
+
     (useProductsStore as jest.Mock).mockReturnValue(singleProductStore);
-    
+
     render(<ProductsPage />);
-    
+
     expect(screen.getByText('1 product found')).toBeInTheDocument();
   });
 
   it('handles product image display', () => {
     render(<ProductsPage />);
-    
+
     const productImages = screen.getAllByAltText(/Premium Vodka|Classic Whiskey|Out of Stock Gin/);
     expect(productImages).toHaveLength(3);
-    
-    productImages.forEach(img => {
+
+    productImages.forEach((img) => {
       expect(img).toHaveAttribute('src');
     });
   });
 
   it('handles category display', () => {
     render(<ProductsPage />);
-    
+
     expect(screen.getByText('vodka')).toBeInTheDocument();
     expect(screen.getByText('whiskey')).toBeInTheDocument();
     expect(screen.getByText('gin')).toBeInTheDocument();
   });
-}); 
+});

@@ -43,11 +43,11 @@ export const useAuthStore = create<AuthState>()(
 
       login: async (email: string, password: string) => {
         set({ isLoading: true });
-        
+
         try {
           // Mock API call
-          await new Promise(resolve => setTimeout(resolve, 1000));
-          
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+
           // Simulate authentication
           if (email === 'demo@example.com' && password === 'password') {
             const user: User = {
@@ -60,18 +60,18 @@ export const useAuthStore = create<AuthState>()(
                 street: '123 Main St',
                 city: 'New York',
                 state: 'NY',
-                zipCode: '10001'
+                zipCode: '10001',
               },
-              createdAt: new Date().toISOString()
+              createdAt: new Date().toISOString(),
             };
-            
+
             set({ user, isAuthenticated: true, isLoading: false });
             return { success: true };
           } else {
             set({ isLoading: false });
             return { success: false, error: 'Invalid credentials' };
           }
-        } catch (error) {
+        } catch {
           set({ isLoading: false });
           return { success: false, error: 'Login failed' };
         }
@@ -83,23 +83,23 @@ export const useAuthStore = create<AuthState>()(
 
       register: async (userData: RegisterData) => {
         set({ isLoading: true });
-        
+
         try {
           // Mock API call
-          await new Promise(resolve => setTimeout(resolve, 1000));
-          
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+
           const user: User = {
             id: Math.random().toString(36).substr(2, 9),
             email: userData.email,
             firstName: userData.firstName,
             lastName: userData.lastName,
             phone: userData.phone,
-            createdAt: new Date().toISOString()
+            createdAt: new Date().toISOString(),
           };
-          
+
           set({ user, isAuthenticated: true, isLoading: false });
           return { success: true };
-        } catch (error) {
+        } catch {
           set({ isLoading: false });
           return { success: false, error: 'Registration failed' };
         }
@@ -107,29 +107,29 @@ export const useAuthStore = create<AuthState>()(
 
       updateProfile: async (userData: Partial<User>) => {
         set({ isLoading: true });
-        
+
         try {
           // Mock API call
-          await new Promise(resolve => setTimeout(resolve, 1000));
-          
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+
           const currentUser = get().user;
           if (!currentUser) {
             set({ isLoading: false });
             return { success: false, error: 'User not found' };
           }
-          
+
           const updatedUser = { ...currentUser, ...userData };
           set({ user: updatedUser, isLoading: false });
           return { success: true };
-        } catch (error) {
+        } catch {
           set({ isLoading: false });
           return { success: false, error: 'Profile update failed' };
         }
-      }
+      },
     }),
     {
       name: 'auth-storage',
-      partialize: (state) => ({ user: state.user, isAuthenticated: state.isAuthenticated })
-    }
-  )
-); 
+      partialize: (state) => ({ user: state.user, isAuthenticated: state.isAuthenticated }),
+    },
+  ),
+);

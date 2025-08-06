@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuthStore, User } from '@/app/zustand/store/auth';
+import { useAuthStore } from '@/app/zustand/store/auth';
 import { useOrdersStore } from '@/app/zustand/store/orders';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -28,7 +28,7 @@ export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState<'profile' | 'orders'>('profile');
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const router = useRouter();
   const { user, isAuthenticated, logout, updateProfile } = useAuthStore();
   const { getUserOrders } = useOrdersStore();
@@ -71,7 +71,7 @@ export default function DashboardPage() {
 
   const onSubmit = async (data: ProfileFormData) => {
     setIsLoading(true);
-    
+
     try {
       const result = await updateProfile({
         firstName: data.firstName,
@@ -85,14 +85,14 @@ export default function DashboardPage() {
           zipCode: data.zipCode,
         },
       });
-      
+
       if (result.success) {
         toast.success('Profile updated successfully');
         setIsEditing(false);
       } else {
         toast.error(result.error || 'Failed to update profile');
       }
-    } catch (error) {
+    } catch {
       toast.error('An unexpected error occurred');
     } finally {
       setIsLoading(false);
@@ -121,10 +121,7 @@ export default function DashboardPage() {
         >
           {dictionary.dashboard.tabs.profile}
         </button>
-        <button
-          className={`${styles.tab} ${activeTab === 'orders' ? styles.active : ''}`}
-          onClick={() => setActiveTab('orders')}
-        >
+        <button className={`${styles.tab} ${activeTab === 'orders' ? styles.active : ''}`} onClick={() => setActiveTab('orders')}>
           {dictionary.dashboard.tabs.orders} ({userOrders.length})
         </button>
       </div>
@@ -134,125 +131,76 @@ export default function DashboardPage() {
           <div className={styles.profileSection}>
             <div className={styles.sectionHeader}>
               <h2>{dictionary.dashboard.profile.title}</h2>
-              <button
-                onClick={() => setIsEditing(!isEditing)}
-                className={styles.editButton}
-              >
+              <button onClick={() => setIsEditing(!isEditing)} className={styles.editButton}>
                 {isEditing ? dictionary.common.cancel : dictionary.common.edit}
               </button>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+            {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+            <form
+              // eslint-disable-next-line @typescript-eslint/no-misused-promises
+              onSubmit={handleSubmit((data: ProfileFormData) => {
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                onSubmit(data);
+              })}
+              className={styles.form}
+            >
               <div className={styles.row}>
                 <div className={styles.formGroup}>
                   <label>{dictionary.dashboard.profile.firstName}</label>
-                  <input
-                    {...register('firstName')}
-                    disabled={!isEditing}
-                    className={errors.firstName ? styles.error : ''}
-                  />
-                  {errors.firstName && (
-                    <span className={styles.errorMessage}>{errors.firstName.message}</span>
-                  )}
+                  <input {...register('firstName')} disabled={!isEditing} className={errors.firstName ? styles.error : ''} />
+                  {errors.firstName && <span className={styles.errorMessage}>{errors.firstName.message}</span>}
                 </div>
 
                 <div className={styles.formGroup}>
                   <label>{dictionary.dashboard.profile.lastName}</label>
-                  <input
-                    {...register('lastName')}
-                    disabled={!isEditing}
-                    className={errors.lastName ? styles.error : ''}
-                  />
-                  {errors.lastName && (
-                    <span className={styles.errorMessage}>{errors.lastName.message}</span>
-                  )}
+                  <input {...register('lastName')} disabled={!isEditing} className={errors.lastName ? styles.error : ''} />
+                  {errors.lastName && <span className={styles.errorMessage}>{errors.lastName.message}</span>}
                 </div>
               </div>
 
               <div className={styles.formGroup}>
                 <label>{dictionary.dashboard.profile.email}</label>
-                <input
-                  {...register('email')}
-                  type="email"
-                  disabled={!isEditing}
-                  className={errors.email ? styles.error : ''}
-                />
-                {errors.email && (
-                  <span className={styles.errorMessage}>{errors.email.message}</span>
-                )}
+                <input {...register('email')} type="email" disabled={!isEditing} className={errors.email ? styles.error : ''} />
+                {errors.email && <span className={styles.errorMessage}>{errors.email.message}</span>}
               </div>
 
               <div className={styles.formGroup}>
                 <label>{dictionary.dashboard.profile.phone}</label>
-                <input
-                  {...register('phone')}
-                  type="tel"
-                  disabled={!isEditing}
-                  className={errors.phone ? styles.error : ''}
-                />
-                {errors.phone && (
-                  <span className={styles.errorMessage}>{errors.phone.message}</span>
-                )}
+                <input {...register('phone')} type="tel" disabled={!isEditing} className={errors.phone ? styles.error : ''} />
+                {errors.phone && <span className={styles.errorMessage}>{errors.phone.message}</span>}
               </div>
 
               <h3>{dictionary.dashboard.profile.address}</h3>
 
               <div className={styles.formGroup}>
                 <label>{dictionary.dashboard.profile.street}</label>
-                <input
-                  {...register('street')}
-                  disabled={!isEditing}
-                  className={errors.street ? styles.error : ''}
-                />
-                {errors.street && (
-                  <span className={styles.errorMessage}>{errors.street.message}</span>
-                )}
+                <input {...register('street')} disabled={!isEditing} className={errors.street ? styles.error : ''} />
+                {errors.street && <span className={styles.errorMessage}>{errors.street.message}</span>}
               </div>
 
               <div className={styles.row}>
                 <div className={styles.formGroup}>
                   <label>{dictionary.dashboard.profile.city}</label>
-                  <input
-                    {...register('city')}
-                    disabled={!isEditing}
-                    className={errors.city ? styles.error : ''}
-                  />
-                  {errors.city && (
-                    <span className={styles.errorMessage}>{errors.city.message}</span>
-                  )}
+                  <input {...register('city')} disabled={!isEditing} className={errors.city ? styles.error : ''} />
+                  {errors.city && <span className={styles.errorMessage}>{errors.city.message}</span>}
                 </div>
 
                 <div className={styles.formGroup}>
                   <label>{dictionary.dashboard.profile.state}</label>
-                  <input
-                    {...register('state')}
-                    disabled={!isEditing}
-                    className={errors.state ? styles.error : ''}
-                  />
-                  {errors.state && (
-                    <span className={styles.errorMessage}>{errors.state.message}</span>
-                  )}
+                  <input {...register('state')} disabled={!isEditing} className={errors.state ? styles.error : ''} />
+                  {errors.state && <span className={styles.errorMessage}>{errors.state.message}</span>}
                 </div>
               </div>
 
               <div className={styles.formGroup}>
                 <label>{dictionary.dashboard.profile.zipCode}</label>
-                <input
-                  {...register('zipCode')}
-                  disabled={!isEditing}
-                  className={errors.zipCode ? styles.error : ''}
-                />
-                {errors.zipCode && (
-                  <span className={styles.errorMessage}>{errors.zipCode.message}</span>
-                )}
+                <input {...register('zipCode')} disabled={!isEditing} className={errors.zipCode ? styles.error : ''} />
+                {errors.zipCode && <span className={styles.errorMessage}>{errors.zipCode.message}</span>}
               </div>
 
               {isEditing && (
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className={styles.saveButton}
-                >
+                <button type="submit" disabled={isLoading} className={styles.saveButton}>
                   {isLoading ? dictionary.dashboard.profile.saving : dictionary.dashboard.profile.save}
                 </button>
               )}
@@ -266,10 +214,7 @@ export default function DashboardPage() {
             {userOrders.length === 0 ? (
               <div className={styles.emptyOrders}>
                 <p>{dictionary.dashboard.orders.noOrders}</p>
-                <button
-                  onClick={() => router.push('/products')}
-                  className={styles.shopButton}
-                >
+                <button onClick={() => router.push('/products')} className={styles.shopButton}>
                   {dictionary.navigation.products}
                 </button>
               </div>
@@ -279,9 +224,7 @@ export default function DashboardPage() {
                   <div key={order.id} className={styles.orderCard}>
                     <div className={styles.orderHeader}>
                       <h3>Order #{order.id}</h3>
-                      <span className={`${styles.status} ${styles[order.status]}`}>
-                        {order.status}
-                      </span>
+                      <span className={`${styles.status} ${styles[order.status]}`}>{order.status}</span>
                     </div>
                     <div className={styles.orderDetails}>
                       <p>Total: ${order.totalAmount.toFixed(2)}</p>
@@ -297,4 +240,4 @@ export default function DashboardPage() {
       </div>
     </div>
   );
-} 
+}

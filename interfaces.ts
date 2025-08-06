@@ -7,11 +7,10 @@ export enum PresaleFilterEnum {
 
 export enum LanguagesEnum {
   en = 'en',
-  hy = 'hy'
+  hy = 'hy',
 }
 
 export interface IParams {
   lang?: LanguagesEnum;
   [key: string]: string | undefined;
 }
-

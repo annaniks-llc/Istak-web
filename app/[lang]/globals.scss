@@ -1,4 +1,4 @@
-@import "../styles/var.scss";
+@import '../styles/var.scss';
 
 :root {
   --background: #ffffff;
@@ -23,4 +23,24 @@
 body {
   margin: 0;
   padding: 0;
+}
+
+// Fix for slick-carousel font issues - use Unicode arrows instead of font
+.slick-prev:before,
+.slick-next:before {
+  font-family: inherit;
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.75;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev:before {
+  content: '←';
+}
+
+.slick-next:before {
+  content: '→';
 }

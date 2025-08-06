@@ -11,11 +11,11 @@ export default function OrderConfirmationPage() {
   const params = useParams();
   const router = useRouter();
   const orderId = params.id as string;
-  
+
   const { getOrderById } = useOrdersStore();
   const { user, isAuthenticated } = useAuthStore();
   const dictionary = useDictionary();
-  
+
   const [order, setOrder] = useState<Order | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -50,7 +50,7 @@ export default function OrderConfirmationPage() {
       <div className={styles.container}>
         <div className={styles.error}>
           <h1>Order Not Found</h1>
-          <p>The order you're looking for doesn't exist or you don't have permission to view it.</p>
+          <p>The order you&apos;re looking for doesn&apos;t exist or you don&apos;t have permission to view it.</p>
           <button onClick={() => router.push('/dashboard')} className={styles.backButton}>
             Go to Dashboard
           </button>
@@ -91,7 +91,7 @@ export default function OrderConfirmationPage() {
       <div className={styles.header}>
         <div className={styles.successIcon}>✅</div>
         <h1>{dictionary.orderConfirmation.success}</h1>
-        <p>Thank you for your order. We'll send you updates as your order progresses.</p>
+        <p>Thank you for your order. We&apos;ll send you updates as your order progresses.</p>
       </div>
 
       <div className={styles.orderDetails}>
@@ -131,7 +131,9 @@ export default function OrderConfirmationPage() {
           <h2>Shipping Address</h2>
           <div className={styles.address}>
             <p>{order.shippingAddress.street}</p>
-            <p>{order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.zipCode}</p>
+            <p>
+              {order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.zipCode}
+            </p>
             <p>{order.shippingAddress.country}</p>
           </div>
         </div>
@@ -163,9 +165,7 @@ export default function OrderConfirmationPage() {
                 <div className={styles.itemQuantity}>
                   <span>Qty: {item.quantity}</span>
                 </div>
-                <div className={styles.itemPrice}>
-                  ${(item.price * item.quantity).toFixed(2)}
-                </div>
+                <div className={styles.itemPrice}>${(item.price * item.quantity).toFixed(2)}</div>
               </div>
             ))}
           </div>
@@ -181,20 +181,20 @@ export default function OrderConfirmationPage() {
       </div>
 
       <div className={styles.nextSteps}>
-        <h2>What's Next?</h2>
+        <h2>What&apos;s Next?</h2>
         <div className={styles.steps}>
           <div className={styles.step}>
             <div className={styles.stepNumber}>1</div>
             <div className={styles.stepContent}>
               <h3>Order Confirmation</h3>
-              <p>You'll receive an email confirmation with your order details.</p>
+              <p>You&apos;ll receive an email confirmation with your order details.</p>
             </div>
           </div>
           <div className={styles.step}>
             <div className={styles.stepNumber}>2</div>
             <div className={styles.stepContent}>
               <h3>Processing</h3>
-              <p>We'll prepare your order and notify you when it ships.</p>
+              <p>We&apos;ll prepare your order and notify you when it ships.</p>
             </div>
           </div>
           <div className={styles.step}>
@@ -217,4 +217,4 @@ export default function OrderConfirmationPage() {
       </div>
     </div>
   );
-} 
+}

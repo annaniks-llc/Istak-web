@@ -29,9 +29,15 @@ jest.mock('@/dictionary-provider', () => ({
 
 // Mock Next.js Link component
 jest.mock('next/link', () => {
-  return ({ children, href, ...props }: any) => {
-    return <a href={href} {...props}>{children}</a>;
+  const MockLink = ({ children, href, ...props }: { children: React.ReactNode; href: string; [key: string]: unknown }) => {
+    return (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    );
   };
+  MockLink.displayName = 'MockLink';
+  return MockLink;
 });
 
 const mockRouter = {
@@ -73,7 +79,7 @@ describe('Heading Component', () => {
 
   it('renders navigation links correctly', () => {
     render(<Heading />);
-    
+
     expect(screen.getByText('Home')).toBeInTheDocument();
     expect(screen.getByText('Products')).toBeInTheDocument();
     expect(screen.getByText('Cart')).toBeInTheDocument();
@@ -81,7 +87,7 @@ describe('Heading Component', () => {
 
   it('shows login and register buttons when user is not authenticated', () => {
     render(<Heading />);
-    
+
     expect(screen.getByText('Login')).toBeInTheDocument();
     expect(screen.getByText('Register')).toBeInTheDocument();
     expect(screen.queryByText('Dashboard')).not.toBeInTheDocument();
@@ -93,11 +99,11 @@ describe('Heading Component', () => {
       isAuthenticated: true,
       logout: jest.fn(),
     };
-    
+
     (useAuthStore as jest.Mock).mockReturnValue(authenticatedUser);
-    
+
     render(<Heading />);
-    
+
     expect(screen.getByText('John Doe')).toBeInTheDocument();
     expect(screen.getByText('Dashboard')).toBeInTheDocument();
     expect(screen.getByText('Logout')).toBeInTheDocument();
@@ -112,14 +118,14 @@ describe('Heading Component', () => {
       isAuthenticated: true,
       logout: mockLogout,
     };
-    
+
     (useAuthStore as jest.Mock).mockReturnValue(authenticatedUser);
-    
+
     render(<Heading />);
-    
+
     const logoutButton = screen.getByText('Logout');
     fireEvent.click(logoutButton);
-    
+
     expect(mockLogout).toHaveBeenCalledTimes(1);
   });
 
@@ -127,11 +133,11 @@ describe('Heading Component', () => {
     const mockCartWithItems = {
       getTotalItems: jest.fn(() => 3),
     };
-    
+
     (useCartStore as jest.Mock).mockReturnValue(mockCartWithItems);
-    
+
     render(<Heading />);
-    
+
     expect(screen.getByText('3')).toBeInTheDocument();
   });
 
@@ -139,26 +145,26 @@ describe('Heading Component', () => {
     const mockEmptyCart = {
       getTotalItems: jest.fn(() => 0),
     };
-    
+
     (useCartStore as jest.Mock).mockReturnValue(mockEmptyCart);
-    
+
     render(<Heading />);
-    
+
     expect(screen.queryByText('0')).not.toBeInTheDocument();
   });
 
   it('highlights active navigation link', () => {
     (usePathname as jest.Mock).mockReturnValue('/products');
-    
+
     render(<Heading />);
-    
+
     const productsLink = screen.getByText('Products');
     expect(productsLink).toHaveClass('active');
   });
 
   it('renders logo with correct link', () => {
     render(<Heading />);
-    
+
     const logo = screen.getByAltText('logo');
     expect(logo).toBeInTheDocument();
     expect(logo.closest('a')).toHaveAttribute('href', '/');
@@ -166,14 +172,14 @@ describe('Heading Component', () => {
 
   it('renders search icon', () => {
     render(<Heading />);
-    
+
     const searchIcon = screen.getByAltText('Search');
     expect(searchIcon).toBeInTheDocument();
   });
 
   it('renders cart icon with correct link', () => {
     render(<Heading />);
-    
+
     const cartIcon = screen.getByAltText('Cart');
     expect(cartIcon).toBeInTheDocument();
     expect(cartIcon.closest('a')).toHaveAttribute('href', '/cart');
@@ -181,18 +187,18 @@ describe('Heading Component', () => {
 
   it('handles scroll effect correctly', () => {
     const { container } = render(<Heading />);
-    
+
     const heading = container.firstChild as HTMLElement;
     expect(heading).not.toHaveClass('scrolled');
-    
+
     // Simulate scroll
     Object.defineProperty(window, 'scrollY', {
       writable: true,
       value: 100,
     });
-    
+
     fireEvent.scroll(window);
-    
+
     // Note: The scroll effect is handled by useEffect, so we can't easily test it
     // without more complex setup. This test ensures the component renders without errors.
     expect(heading).toBeInTheDocument();
@@ -200,11 +206,11 @@ describe('Heading Component', () => {
 
   it('renders with correct accessibility attributes', () => {
     render(<Heading />);
-    
+
     const logo = screen.getByAltText('logo');
     const searchIcon = screen.getByAltText('Search');
     const cartIcon = screen.getByAltText('Cart');
-    
+
     expect(logo).toHaveAttribute('width', '100');
     expect(logo).toHaveAttribute('height', '100');
     expect(searchIcon).toHaveAttribute('width', '16');
@@ -212,4 +218,4 @@ describe('Heading Component', () => {
     expect(cartIcon).toHaveAttribute('width', '16');
     expect(cartIcon).toHaveAttribute('height', '16');
   });
-}); 
+});

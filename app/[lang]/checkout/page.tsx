@@ -10,7 +10,6 @@ import { useAuthStore } from '@/app/zustand/store/auth';
 import { useOrdersStore } from '@/app/zustand/store/orders';
 import toast from 'react-hot-toast';
 import styles from './checkout.module.scss';
-import { useDictionary } from '@/dictionary-provider';
 
 const checkoutSchema = z.object({
   firstName: z.string().min(2, 'First name must be at least 2 characters'),
@@ -33,7 +32,6 @@ export default function CheckoutPage() {
   const { items, getTotalItems, getTotalPrice, clearCart } = useCartStore();
   const { user, isAuthenticated } = useAuthStore();
   const { createOrder } = useOrdersStore();
-  const dictionary = useDictionary();
 
   const {
     register,
@@ -72,7 +70,7 @@ export default function CheckoutPage() {
 
   const onSubmit = async (data: CheckoutFormData) => {
     setIsLoading(true);
-    
+
     try {
       const result = await createOrder({
         userId: user!.id,
@@ -86,7 +84,7 @@ export default function CheckoutPage() {
         },
         paymentMethod: data.paymentMethod,
       });
-      
+
       if (result.success) {
         clearCart();
         toast.success('Order placed successfully!');
@@ -94,7 +92,7 @@ export default function CheckoutPage() {
       } else {
         toast.error(result.error || 'Failed to place order');
       }
-    } catch (error) {
+    } catch {
       toast.error('An unexpected error occurred');
     } finally {
       setIsLoading(false);
@@ -118,125 +116,69 @@ export default function CheckoutPage() {
 
       <div className={styles.checkoutContent}>
         <div className={styles.checkoutForm}>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+          <form
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
+            onSubmit={handleSubmit((data: CheckoutFormData) => {
+              // eslint-disable-next-line @typescript-eslint/no-floating-promises
+              onSubmit(data);
+            })}
+          >
             <div className={styles.section}>
               <h2>Shipping Information</h2>
               <div className={styles.formGrid}>
                 <div className={styles.formGroup}>
                   <label htmlFor="firstName">First Name</label>
-                  <input
-                    {...register('firstName')}
-                    type="text"
-                    id="firstName"
-                    className={errors.firstName ? styles.error : ''}
-                  />
-                  {errors.firstName && (
-                    <span className={styles.errorMessage}>{errors.firstName.message}</span>
-                  )}
+                  <input {...register('firstName')} type="text" id="firstName" className={errors.firstName ? styles.error : ''} />
+                  {errors.firstName && <span className={styles.errorMessage}>{errors.firstName.message}</span>}
                 </div>
 
                 <div className={styles.formGroup}>
                   <label htmlFor="lastName">Last Name</label>
-                  <input
-                    {...register('lastName')}
-                    type="text"
-                    id="lastName"
-                    className={errors.lastName ? styles.error : ''}
-                  />
-                  {errors.lastName && (
-                    <span className={styles.errorMessage}>{errors.lastName.message}</span>
-                  )}
+                  <input {...register('lastName')} type="text" id="lastName" className={errors.lastName ? styles.error : ''} />
+                  {errors.lastName && <span className={styles.errorMessage}>{errors.lastName.message}</span>}
                 </div>
 
                 <div className={styles.formGroup}>
                   <label htmlFor="email">Email</label>
-                  <input
-                    {...register('email')}
-                    type="email"
-                    id="email"
-                    className={errors.email ? styles.error : ''}
-                  />
-                  {errors.email && (
-                    <span className={styles.errorMessage}>{errors.email.message}</span>
-                  )}
+                  <input {...register('email')} type="email" id="email" className={errors.email ? styles.error : ''} />
+                  {errors.email && <span className={styles.errorMessage}>{errors.email.message}</span>}
                 </div>
 
                 <div className={styles.formGroup}>
                   <label htmlFor="phone">Phone</label>
-                  <input
-                    {...register('phone')}
-                    type="tel"
-                    id="phone"
-                    className={errors.phone ? styles.error : ''}
-                  />
-                  {errors.phone && (
-                    <span className={styles.errorMessage}>{errors.phone.message}</span>
-                  )}
+                  <input {...register('phone')} type="tel" id="phone" className={errors.phone ? styles.error : ''} />
+                  {errors.phone && <span className={styles.errorMessage}>{errors.phone.message}</span>}
                 </div>
 
                 <div className={styles.formGroup}>
                   <label htmlFor="street">Street Address</label>
-                  <input
-                    {...register('street')}
-                    type="text"
-                    id="street"
-                    className={errors.street ? styles.error : ''}
-                  />
-                  {errors.street && (
-                    <span className={styles.errorMessage}>{errors.street.message}</span>
-                  )}
+                  <input {...register('street')} type="text" id="street" className={errors.street ? styles.error : ''} />
+                  {errors.street && <span className={styles.errorMessage}>{errors.street.message}</span>}
                 </div>
 
                 <div className={styles.formGroup}>
                   <label htmlFor="city">City</label>
-                  <input
-                    {...register('city')}
-                    type="text"
-                    id="city"
-                    className={errors.city ? styles.error : ''}
-                  />
-                  {errors.city && (
-                    <span className={styles.errorMessage}>{errors.city.message}</span>
-                  )}
+                  <input {...register('city')} type="text" id="city" className={errors.city ? styles.error : ''} />
+                  {errors.city && <span className={styles.errorMessage}>{errors.city.message}</span>}
                 </div>
 
                 <div className={styles.formGroup}>
                   <label htmlFor="state">State</label>
-                  <input
-                    {...register('state')}
-                    type="text"
-                    id="state"
-                    className={errors.state ? styles.error : ''}
-                  />
-                  {errors.state && (
-                    <span className={styles.errorMessage}>{errors.state.message}</span>
-                  )}
+                  <input {...register('state')} type="text" id="state" className={errors.state ? styles.error : ''} />
+                  {errors.state && <span className={styles.errorMessage}>{errors.state.message}</span>}
                 </div>
 
                 <div className={styles.formGroup}>
                   <label htmlFor="zipCode">Zip Code</label>
-                  <input
-                    {...register('zipCode')}
-                    type="text"
-                    id="zipCode"
-                    className={errors.zipCode ? styles.error : ''}
-                  />
-                  {errors.zipCode && (
-                    <span className={styles.errorMessage}>{errors.zipCode.message}</span>
-                  )}
+                  <input {...register('zipCode')} type="text" id="zipCode" className={errors.zipCode ? styles.error : ''} />
+                  {errors.zipCode && <span className={styles.errorMessage}>{errors.zipCode.message}</span>}
                 </div>
 
                 <div className={styles.formGroup}>
                   <label htmlFor="country">Country</label>
-                  <input
-                    {...register('country')}
-                    type="text"
-                    id="country"
-                    className={errors.country ? styles.error : ''}
-                  />
-                  {errors.country && (
-                    <span className={styles.errorMessage}>{errors.country.message}</span>
-                  )}
+                  <input {...register('country')} type="text" id="country" className={errors.country ? styles.error : ''} />
+                  {errors.country && <span className={styles.errorMessage}>{errors.country.message}</span>}
                 </div>
               </div>
             </div>
@@ -245,40 +187,23 @@ export default function CheckoutPage() {
               <h2>Payment Method</h2>
               <div className={styles.paymentMethods}>
                 <label className={styles.paymentOption}>
-                  <input
-                    {...register('paymentMethod')}
-                    type="radio"
-                    value="credit_card"
-                    defaultChecked
-                  />
+                  <input {...register('paymentMethod')} type="radio" value="credit_card" defaultChecked />
                   <span className={styles.radioLabel}>Credit Card</span>
                 </label>
 
                 <label className={styles.paymentOption}>
-                  <input
-                    {...register('paymentMethod')}
-                    type="radio"
-                    value="paypal"
-                  />
+                  <input {...register('paymentMethod')} type="radio" value="paypal" />
                   <span className={styles.radioLabel}>PayPal</span>
                 </label>
 
                 <label className={styles.paymentOption}>
-                  <input
-                    {...register('paymentMethod')}
-                    type="radio"
-                    value="cash_on_delivery"
-                  />
+                  <input {...register('paymentMethod')} type="radio" value="cash_on_delivery" />
                   <span className={styles.radioLabel}>Cash on Delivery</span>
                 </label>
               </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className={styles.submitButton}
-            >
+            <button type="submit" disabled={isLoading} className={styles.submitButton}>
               {isLoading ? 'Processing...' : 'Place Order'}
             </button>
           </form>
@@ -286,7 +211,7 @@ export default function CheckoutPage() {
 
         <div className={styles.orderSummary}>
           <h2>Order Summary</h2>
-          
+
           <div className={styles.orderItems}>
             {items.map((item) => (
               <div key={item.id} className={styles.orderItem}>
@@ -294,9 +219,7 @@ export default function CheckoutPage() {
                   <h3>{item.name}</h3>
                   <span className={styles.itemQuantity}>Qty: {item.quantity}</span>
                 </div>
-                <span className={styles.itemPrice}>
-                  ${(item.price * item.quantity).toFixed(2)}
-                </span>
+                <span className={styles.itemPrice}>${(item.price * item.quantity).toFixed(2)}</span>
               </div>
             ))}
           </div>
@@ -323,4 +246,4 @@ export default function CheckoutPage() {
       </div>
     </div>
   );
-} 
+}

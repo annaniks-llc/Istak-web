@@ -149,38 +149,38 @@ describe('DashboardPage', () => {
 
   it('renders dashboard with header', () => {
     render(<DashboardPage />);
-    
+
     expect(screen.getByText('User Dashboard')).toBeInTheDocument();
     expect(screen.getByText('Logout')).toBeInTheDocument();
   });
 
   it('renders tabs correctly', () => {
     render(<DashboardPage />);
-    
+
     expect(screen.getByText('Profile')).toBeInTheDocument();
     expect(screen.getByText('Orders (2)')).toBeInTheDocument();
   });
 
   it('shows profile tab by default', () => {
     render(<DashboardPage />);
-    
+
     expect(screen.getByText('Personal Information')).toBeInTheDocument();
     expect(screen.getByText('Edit')).toBeInTheDocument();
   });
 
   it('switches to orders tab when clicked', () => {
     render(<DashboardPage />);
-    
+
     const ordersTab = screen.getByText('Orders (2)');
     fireEvent.click(ordersTab);
-    
+
     expect(screen.getByText('Order History')).toBeInTheDocument();
     expect(screen.queryByText('Personal Information')).not.toBeInTheDocument();
   });
 
   it('displays user information in profile form', () => {
     render(<DashboardPage />);
-    
+
     expect(screen.getByDisplayValue('John')).toBeInTheDocument();
     expect(screen.getByDisplayValue('Doe')).toBeInTheDocument();
     expect(screen.getByDisplayValue('john@example.com')).toBeInTheDocument();
@@ -193,26 +193,26 @@ describe('DashboardPage', () => {
 
   it('enables form editing when edit button is clicked', () => {
     render(<DashboardPage />);
-    
+
     const editButton = screen.getByText('Edit');
     fireEvent.click(editButton);
-    
+
     expect(screen.getByText('Cancel')).toBeInTheDocument();
     expect(screen.getByText('Save Changes')).toBeInTheDocument();
   });
 
   it('validates form fields when submitted', async () => {
     render(<DashboardPage />);
-    
+
     const editButton = screen.getByText('Edit');
     fireEvent.click(editButton);
-    
+
     const firstNameInput = screen.getByDisplayValue('John');
     fireEvent.change(firstNameInput, { target: { value: '' } });
-    
+
     const saveButton = screen.getByText('Save Changes');
     fireEvent.click(saveButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText('First name must be at least 2 characters')).toBeInTheDocument();
     });
@@ -220,18 +220,18 @@ describe('DashboardPage', () => {
 
   it('submits form with valid data', async () => {
     mockUpdateProfile.mockResolvedValue({ success: true });
-    
+
     render(<DashboardPage />);
-    
+
     const editButton = screen.getByText('Edit');
     fireEvent.click(editButton);
-    
+
     const firstNameInput = screen.getByDisplayValue('John');
     fireEvent.change(firstNameInput, { target: { value: 'Jane' } });
-    
+
     const saveButton = screen.getByText('Save Changes');
     fireEvent.click(saveButton);
-    
+
     await waitFor(() => {
       expect(mockUpdateProfile).toHaveBeenCalledWith({
         firstName: 'Jane',
@@ -250,34 +250,34 @@ describe('DashboardPage', () => {
 
   it('shows success message on successful profile update', async () => {
     mockUpdateProfile.mockResolvedValue({ success: true });
-    
+
     render(<DashboardPage />);
-    
+
     const editButton = screen.getByText('Edit');
     fireEvent.click(editButton);
-    
+
     const saveButton = screen.getByText('Save Changes');
     fireEvent.click(saveButton);
-    
+
     await waitFor(() => {
       expect(toast.success).toHaveBeenCalledWith('Profile updated successfully!');
     });
   });
 
   it('shows error message on failed profile update', async () => {
-    mockUpdateProfile.mockResolvedValue({ 
-      success: false, 
-      error: 'Update failed' 
+    mockUpdateProfile.mockResolvedValue({
+      success: false,
+      error: 'Update failed',
     });
-    
+
     render(<DashboardPage />);
-    
+
     const editButton = screen.getByText('Edit');
     fireEvent.click(editButton);
-    
+
     const saveButton = screen.getByText('Save Changes');
     fireEvent.click(saveButton);
-    
+
     await waitFor(() => {
       expect(toast.error).toHaveBeenCalledWith('Update failed');
     });
@@ -285,46 +285,46 @@ describe('DashboardPage', () => {
 
   it('disables form fields when not editing', () => {
     render(<DashboardPage />);
-    
+
     const firstNameInput = screen.getByDisplayValue('John');
     const lastNameInput = screen.getByDisplayValue('Doe');
-    
+
     expect(firstNameInput).toBeDisabled();
     expect(lastNameInput).toBeDisabled();
   });
 
   it('enables form fields when editing', () => {
     render(<DashboardPage />);
-    
+
     const editButton = screen.getByText('Edit');
     fireEvent.click(editButton);
-    
+
     const firstNameInput = screen.getByDisplayValue('John');
     const lastNameInput = screen.getByDisplayValue('Doe');
-    
+
     expect(firstNameInput).not.toBeDisabled();
     expect(lastNameInput).not.toBeDisabled();
   });
 
   it('cancels editing when cancel button is clicked', () => {
     render(<DashboardPage />);
-    
+
     const editButton = screen.getByText('Edit');
     fireEvent.click(editButton);
-    
+
     const cancelButton = screen.getByText('Cancel');
     fireEvent.click(cancelButton);
-    
+
     expect(screen.getByText('Edit')).toBeInTheDocument();
     expect(screen.queryByText('Cancel')).not.toBeInTheDocument();
   });
 
   it('displays order history correctly', () => {
     render(<DashboardPage />);
-    
+
     const ordersTab = screen.getByText('Orders (2)');
     fireEvent.click(ordersTab);
-    
+
     expect(screen.getByText('Order History')).toBeInTheDocument();
     expect(screen.getByText('Order #ORD-001')).toBeInTheDocument();
     expect(screen.getByText('Order #ORD-002')).toBeInTheDocument();
@@ -332,10 +332,10 @@ describe('DashboardPage', () => {
 
   it('displays order details correctly', () => {
     render(<DashboardPage />);
-    
+
     const ordersTab = screen.getByText('Orders (2)');
     fireEvent.click(ordersTab);
-    
+
     expect(screen.getByText('Total: $91.98')).toBeInTheDocument();
     expect(screen.getByText('Items: 1')).toBeInTheDocument();
     expect(screen.getByText('delivered')).toBeInTheDocument();
@@ -343,36 +343,36 @@ describe('DashboardPage', () => {
 
   it('shows empty orders message when no orders exist', () => {
     mockGetUserOrders.mockReturnValue([]);
-    
+
     render(<DashboardPage />);
-    
+
     const ordersTab = screen.getByText('Orders (0)');
     fireEvent.click(ordersTab);
-    
+
     expect(screen.getByText('No orders found')).toBeInTheDocument();
     expect(screen.getByText('Products')).toBeInTheDocument();
   });
 
   it('redirects to products when shop button is clicked', () => {
     mockGetUserOrders.mockReturnValue([]);
-    
+
     render(<DashboardPage />);
-    
+
     const ordersTab = screen.getByText('Orders (0)');
     fireEvent.click(ordersTab);
-    
+
     const shopButton = screen.getByText('Products');
     fireEvent.click(shopButton);
-    
+
     expect(mockRouter.push).toHaveBeenCalledWith('/products');
   });
 
   it('calls logout when logout button is clicked', () => {
     render(<DashboardPage />);
-    
+
     const logoutButton = screen.getByText('Logout');
     fireEvent.click(logoutButton);
-    
+
     expect(mockLogout).toHaveBeenCalled();
     expect(toast.success).toHaveBeenCalledWith('Logged out successfully');
     expect(mockRouter.push).toHaveBeenCalledWith('/');
@@ -385,26 +385,26 @@ describe('DashboardPage', () => {
       logout: mockLogout,
       updateProfile: mockUpdateProfile,
     };
-    
+
     (useAuthStore as jest.Mock).mockReturnValue(unauthenticatedAuthStore);
-    
+
     render(<DashboardPage />);
-    
+
     expect(mockRouter.push).toHaveBeenCalledWith('/login');
   });
 
   it('validates email format', async () => {
     render(<DashboardPage />);
-    
+
     const editButton = screen.getByText('Edit');
     fireEvent.click(editButton);
-    
+
     const emailInput = screen.getByDisplayValue('john@example.com');
     fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
-    
+
     const saveButton = screen.getByText('Save Changes');
     fireEvent.click(saveButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText('Please enter a valid email address')).toBeInTheDocument();
     });
@@ -412,16 +412,16 @@ describe('DashboardPage', () => {
 
   it('validates minimum length for names', async () => {
     render(<DashboardPage />);
-    
+
     const editButton = screen.getByText('Edit');
     fireEvent.click(editButton);
-    
+
     const firstNameInput = screen.getByDisplayValue('John');
     fireEvent.change(firstNameInput, { target: { value: 'J' } });
-    
+
     const saveButton = screen.getByText('Save Changes');
     fireEvent.click(saveButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText('First name must be at least 2 characters')).toBeInTheDocument();
     });
@@ -429,32 +429,32 @@ describe('DashboardPage', () => {
 
   it('validates address fields', async () => {
     render(<DashboardPage />);
-    
+
     const editButton = screen.getByText('Edit');
     fireEvent.click(editButton);
-    
+
     const streetInput = screen.getByDisplayValue('123 Main St');
     fireEvent.change(streetInput, { target: { value: '123' } });
-    
+
     const saveButton = screen.getByText('Save Changes');
     fireEvent.click(saveButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText('Street address must be at least 5 characters')).toBeInTheDocument();
     });
   });
 
-  it('shows loading state when saving profile', async () => {
-    mockUpdateProfile.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 100)));
-    
+  it('shows loading state when saving profile', () => {
+    mockUpdateProfile.mockImplementation(() => new Promise((resolve) => setTimeout(resolve, 100)));
+
     render(<DashboardPage />);
-    
+
     const editButton = screen.getByText('Edit');
     fireEvent.click(editButton);
-    
+
     const saveButton = screen.getByText('Save Changes');
     fireEvent.click(saveButton);
-    
+
     expect(saveButton).toBeDisabled();
     expect(screen.getByText('Saving...')).toBeInTheDocument();
   });
@@ -464,19 +464,19 @@ describe('DashboardPage', () => {
       ...mockUser,
       address: null,
     };
-    
+
     const authStoreWithoutAddress = {
       ...mockAuthStore,
       user: userWithoutAddress,
     };
-    
+
     (useAuthStore as jest.Mock).mockReturnValue(authStoreWithoutAddress);
-    
+
     render(<DashboardPage />);
-    
+
     const editButton = screen.getByText('Edit');
     fireEvent.click(editButton);
-    
+
     // Form should render without errors even without address
     expect(screen.getByDisplayValue('John')).toBeInTheDocument();
     expect(screen.getByDisplayValue('Doe')).toBeInTheDocument();
@@ -487,19 +487,19 @@ describe('DashboardPage', () => {
       ...mockUser,
       phone: null,
     };
-    
+
     const authStoreWithoutPhone = {
       ...mockAuthStore,
       user: userWithoutPhone,
     };
-    
+
     (useAuthStore as jest.Mock).mockReturnValue(authStoreWithoutPhone);
-    
+
     render(<DashboardPage />);
-    
+
     const editButton = screen.getByText('Edit');
     fireEvent.click(editButton);
-    
+
     // Form should render without errors even without phone
     expect(screen.getByDisplayValue('John')).toBeInTheDocument();
     expect(screen.getByDisplayValue('Doe')).toBeInTheDocument();
@@ -507,10 +507,10 @@ describe('DashboardPage', () => {
 
   it('displays order dates correctly', () => {
     render(<DashboardPage />);
-    
+
     const ordersTab = screen.getByText('Orders (2)');
     fireEvent.click(ordersTab);
-    
+
     // Check that order dates are displayed
     expect(screen.getByText(/1\/15\/2024/)).toBeInTheDocument();
     expect(screen.getByText(/1\/20\/2024/)).toBeInTheDocument();
@@ -518,11 +518,11 @@ describe('DashboardPage', () => {
 
   it('handles multiple orders with different statuses', () => {
     render(<DashboardPage />);
-    
+
     const ordersTab = screen.getByText('Orders (2)');
     fireEvent.click(ordersTab);
-    
+
     expect(screen.getByText('delivered')).toBeInTheDocument();
     expect(screen.getByText('pending')).toBeInTheDocument();
   });
-}); 
+});

@@ -1,12 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.scss';
 import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+// import 'slick-carousel/slick/slick-theme.css'; // Removed to avoid font loading issues
+import './globals.scss';
 import DictionaryProvider from '@/dictionary-provider';
 import { getDictionary } from '@/get-dictionary';
-import { cookies } from 'next/headers';
 import { LanguagesEnum } from '@/interfaces';
 import Heading from './components/Heading';
 import Footer from './components/Footer';
@@ -29,16 +28,14 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: LanguagesEnum } }) {
   const dictionary = await getDictionary(params.lang);
-  const cookieStore = cookies();
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-
         <DictionaryProvider dictionary={dictionary}>
-          <Heading/>
+          <Heading />
           {children}
-          <Footer/>
-          <Toaster 
+          <Footer />
+          <Toaster
             position="top-right"
             toastOptions={{
               duration: 4000,
@@ -63,8 +60,6 @@ export default async function RootLayout({ children, params }: { children: React
             }}
           />
         </DictionaryProvider>
-        <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.9.0/slick/slick.min.js"></script>
-
       </body>
     </html>
   );

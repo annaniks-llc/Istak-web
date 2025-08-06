@@ -5,18 +5,21 @@ A modern, full-featured online store for alcoholic beverages built with Next.js 
 ## ✨ Features
 
 ### 🔐 Authentication System
+
 - **Login Page** (`/login`) - User authentication with form validation
 - **Registration Page** (`/register`) - New user registration with comprehensive form validation
-- **Demo Credentials**: 
+- **Demo Credentials**:
   - Email: `demo@example.com`
   - Password: `password`
 
 ### 👤 User Dashboard (`/dashboard`)
+
 - **Profile Management** - View and edit personal information
 - **Order History** - Track all past orders with status updates
 - **Responsive Design** - Works seamlessly on all devices
 
 ### 🛍️ Product Management
+
 - **Products Page** (`/products`) - Browse all available drinks with:
   - Advanced filtering by category (Vodka, Cocktail, Whiskey, Rum, Gin, Tequila, Wine, Beer)
   - Search functionality
@@ -29,18 +32,21 @@ A modern, full-featured online store for alcoholic beverages built with Next.js 
   - Add to cart with quantity selection
 
 ### 🛒 Shopping Cart (`/cart`)
+
 - **Cart Management** - Add, remove, and update item quantities
 - **Real-time Updates** - Cart badge shows total items in header
 - **Order Summary** - Calculate totals with tax and shipping
 - **Persistent Storage** - Cart data persists across sessions
 
 ### 💳 Checkout Process (`/checkout`)
+
 - **Shipping Information** - Comprehensive address form
 - **Payment Methods** - Credit Card, PayPal, Cash on Delivery
 - **Order Review** - Complete order summary before confirmation
 - **Form Validation** - Real-time validation with error messages
 
 ### ✅ Order Confirmation (`/order-confirmation/[id]`)
+
 - **Order Details** - Complete order information
 - **Tracking Information** - Order status and tracking number
 - **Next Steps** - Clear guidance on what happens next
@@ -49,6 +55,7 @@ A modern, full-featured online store for alcoholic beverages built with Next.js 
 ## 🏗️ Technical Architecture
 
 ### State Management
+
 - **Zustand Stores**:
   - `auth.ts` - User authentication and profile management
   - `cart.ts` - Shopping cart functionality
@@ -56,11 +63,13 @@ A modern, full-featured online store for alcoholic beverages built with Next.js 
   - `orders.ts` - Order management and history
 
 ### Form Handling
+
 - **React Hook Form** - Efficient form management
 - **Zod Validation** - Type-safe form validation
 - **Real-time Validation** - Instant feedback on form errors
 
 ### UI/UX Features
+
 - **Responsive Design** - Mobile-first approach
 - **Modern Styling** - SCSS modules with consistent design system
 - **Toast Notifications** - User feedback for all actions
@@ -68,6 +77,7 @@ A modern, full-featured online store for alcoholic beverages built with Next.js 
 - **Error Handling** - Graceful error states and user guidance
 
 ### Mock Data
+
 - **10 Premium Products** - Realistic alcoholic beverage data
 - **User Profiles** - Complete user information structure
 - **Order System** - Full order lifecycle simulation
@@ -75,10 +85,12 @@ A modern, full-featured online store for alcoholic beverages built with Next.js 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - Yarn package manager
 
 ### Installation
+
 ```bash
 # Clone the repository
 git clone <repository-url>
@@ -92,6 +104,7 @@ yarn dev
 ```
 
 ### Available Scripts
+
 ```bash
 yarn dev          # Start development server
 yarn build        # Build for production
@@ -103,6 +116,7 @@ yarn test         # Run tests
 ## 📱 Pages Overview
 
 ### Public Pages
+
 - **Home** (`/`) - Landing page with featured products
 - **Products** (`/products`) - Product catalog with filtering
 - **Product Details** (`/products/[id]`) - Individual product pages
@@ -111,6 +125,7 @@ yarn test         # Run tests
 - **Cart** (`/cart`) - Shopping cart management
 
 ### Protected Pages (Requires Authentication)
+
 - **Dashboard** (`/dashboard`) - User profile and order history
 - **Checkout** (`/checkout`) - Order completion
 - **Order Confirmation** (`/order-confirmation/[id]`) - Order success page
@@ -118,16 +133,19 @@ yarn test         # Run tests
 ## 🎨 Design System
 
 ### Color Palette
+
 - **Primary**: `#827E78` (Gray)
 - **Primary Dark**: `#221C13` (Dark Gray)
 - **Secondary**: `#D5873B` (Orange)
 - **Placeholder**: `#F6F4F1` (Light Gray)
 
 ### Typography
+
 - **Geist Sans** - Primary font family
 - **Geist Mono** - Monospace font for code elements
 
 ### Components
+
 - **Button** - Consistent button styling with variants
 - **Input** - Form input components with validation states
 - **ProductCard** - Product display component
@@ -147,6 +165,7 @@ yarn test         # Run tests
 ## 📊 Data Structure
 
 ### Product Schema
+
 ```typescript
 interface Product {
   id: string;
@@ -166,6 +185,7 @@ interface Product {
 ```
 
 ### User Schema
+
 ```typescript
 interface User {
   id: string;
@@ -184,6 +204,7 @@ interface User {
 ```
 
 ### Order Schema
+
 ```typescript
 interface Order {
   id: string;
@@ -202,6 +223,7 @@ interface Order {
 ## 🧪 Testing
 
 The project includes Jest configuration for testing:
+
 ```bash
 yarn test         # Run all tests
 yarn test:watch   # Run tests in watch mode
@@ -210,12 +232,14 @@ yarn test:watch   # Run tests in watch mode
 ## 📦 Deployment
 
 ### Build for Production
+
 ```bash
 yarn build
 yarn start
 ```
 
 ### Environment Variables
+
 Create a `.env.local` file for any environment-specific configurations.
 
 ## 🤝 Contributing

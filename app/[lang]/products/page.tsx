@@ -7,17 +7,7 @@ import toast from 'react-hot-toast';
 import styles from './products.module.scss';
 import { useDictionary } from '@/dictionary-provider';
 
-const categories = [
-  'all',
-  'vodka',
-  'cocktail',
-  'whiskey',
-  'rum',
-  'gin',
-  'tequila',
-  'wine',
-  'beer'
-] as const;
+const categories = ['all', 'vodka', 'cocktail', 'whiskey', 'rum', 'gin', 'tequila', 'wine', 'beer'] as const;
 
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState<'all' | Product['category']>('all');
@@ -30,7 +20,7 @@ export default function ProductsPage() {
   const dictionary = useDictionary();
 
   useEffect(() => {
-    fetchProducts();
+    void fetchProducts();
   }, [fetchProducts]);
 
   const handleAddToCart = (product: Product) => {
@@ -49,7 +39,7 @@ export default function ProductsPage() {
 
     // Filter by category
     if (selectedCategory !== 'all') {
-      filtered = filtered.filter(product => product.category === selectedCategory);
+      filtered = filtered.filter((product) => product.category === selectedCategory);
     }
 
     // Filter by search query
@@ -103,53 +93,52 @@ export default function ProductsPage() {
 
   return (
     <div className={styles.container}>
-             <div className={styles.header}>
-         <h1>{dictionary.products.title}</h1>
-         <p>{dictionary.products.subtitle}</p>
-       </div>
+      <div className={styles.header}>
+        <h1>{dictionary.products.title}</h1>
+        <p>{dictionary.products.subtitle}</p>
+      </div>
 
       <div className={styles.filters}>
-                 <div className={styles.searchContainer}>
-           <input
-             type="text"
-             placeholder={dictionary.products.search.placeholder}
-             value={searchQuery}
-             onChange={(e) => setSearchQuery(e.target.value)}
-             className={styles.searchInput}
-           />
-         </div>
+        <div className={styles.searchContainer}>
+          <input
+            type="text"
+            placeholder={dictionary.products.search.placeholder}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className={styles.searchInput}
+          />
+        </div>
 
         <div className={styles.filterControls}>
-                     <div className={styles.categoryFilter}>
-             <label>{dictionary.products.filters.category}:</label>
-             <select
-               value={selectedCategory}
-               onChange={(e) => setSelectedCategory(e.target.value as any)}
-               className={styles.select}
-             >
-               {categories.map(category => (
-                 <option key={category} value={category}>
-                   {category === 'all' ? dictionary.products.categories.all : dictionary.products.categories[category as keyof typeof dictionary.products.categories]}
-                 </option>
-               ))}
-             </select>
-           </div>
-
-                     <div className={styles.sortControls}>
-             <label>{dictionary.products.filters.sortBy}:</label>
-             <select
-               value={sortBy}
-               onChange={(e) => setSortBy(e.target.value as any)}
-               className={styles.select}
-             >
-               <option value="name">{dictionary.products.filters.sortOptions.name}</option>
-               <option value="price">{dictionary.products.filters.sortOptions.price}</option>
-               <option value="rating">{dictionary.products.filters.sortOptions.rating}</option>
-             </select>
-            <button
-              onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-              className={styles.sortButton}
+          <div className={styles.categoryFilter}>
+            <label>{dictionary.products.filters.category}:</label>
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value as 'all' | Product['category'])}
+              className={styles.select}
             >
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category === 'all'
+                    ? dictionary.products.categories.all
+                    : dictionary.products.categories[category as keyof typeof dictionary.products.categories]}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.sortControls}>
+            <label>{dictionary.products.filters.sortBy}:</label>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as 'name' | 'price' | 'rating')}
+              className={styles.select}
+            >
+              <option value="name">{dictionary.products.filters.sortOptions.name}</option>
+              <option value="price">{dictionary.products.filters.sortOptions.price}</option>
+              <option value="rating">{dictionary.products.filters.sortOptions.rating}</option>
+            </select>
+            <button onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')} className={styles.sortButton}>
               {sortOrder === 'asc' ? '↑' : '↓'}
             </button>
           </div>
@@ -162,19 +151,19 @@ export default function ProductsPage() {
         </p>
       </div>
 
-             {filteredProducts.length === 0 ? (
-         <div className={styles.emptyState}>
-           <p>{dictionary.products.search.noResults}</p>
-           <button
-             onClick={() => {
-               setSelectedCategory('all');
-               setSearchQuery('');
-             }}
-             className={styles.clearFiltersButton}
-           >
-             {dictionary.products.filters.clear}
-           </button>
-         </div>
+      {filteredProducts.length === 0 ? (
+        <div className={styles.emptyState}>
+          <p>{dictionary.products.search.noResults}</p>
+          <button
+            onClick={() => {
+              setSelectedCategory('all');
+              setSearchQuery('');
+            }}
+            className={styles.clearFiltersButton}
+          >
+            {dictionary.products.filters.clear}
+          </button>
+        </div>
       ) : (
         <div className={styles.productsGrid}>
           {filteredProducts.map((product) => (
@@ -182,13 +171,9 @@ export default function ProductsPage() {
               <div className={styles.productImage}>
                 <img src={product.image} alt={product.name} />
                 <div className={styles.productOverlay}>
-                                     <button
-                     onClick={() => handleAddToCart(product)}
-                     className={styles.addToCartButton}
-                     disabled={!product.inStock}
-                   >
-                     {product.inStock ? dictionary.products.product.addToCart : dictionary.products.product.outOfStock}
-                   </button>
+                  <button onClick={() => handleAddToCart(product)} className={styles.addToCartButton} disabled={!product.inStock}>
+                    {product.inStock ? dictionary.products.product.addToCart : dictionary.products.product.outOfStock}
+                  </button>
                 </div>
               </div>
 
@@ -241,4 +226,4 @@ export default function ProductsPage() {
       )}
     </div>
   );
-} 
+}

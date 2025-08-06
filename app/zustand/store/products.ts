@@ -39,7 +39,7 @@ const mockProducts: Product[] = [
     origin: 'Russia',
     inStock: true,
     rating: 4.5,
-    reviews: 128
+    reviews: 128,
   },
   {
     id: '2',
@@ -54,7 +54,7 @@ const mockProducts: Product[] = [
     origin: 'United States',
     inStock: true,
     rating: 4.8,
-    reviews: 95
+    reviews: 95,
   },
   {
     id: '3',
@@ -69,7 +69,7 @@ const mockProducts: Product[] = [
     origin: 'Scotland',
     inStock: true,
     rating: 4.7,
-    reviews: 203
+    reviews: 203,
   },
   {
     id: '4',
@@ -84,7 +84,7 @@ const mockProducts: Product[] = [
     origin: 'Jamaica',
     inStock: true,
     rating: 4.3,
-    reviews: 87
+    reviews: 87,
   },
   {
     id: '5',
@@ -99,7 +99,7 @@ const mockProducts: Product[] = [
     origin: 'England',
     inStock: true,
     rating: 4.6,
-    reviews: 156
+    reviews: 156,
   },
   {
     id: '6',
@@ -114,7 +114,7 @@ const mockProducts: Product[] = [
     origin: 'Mexico',
     inStock: true,
     rating: 4.4,
-    reviews: 112
+    reviews: 112,
   },
   {
     id: '7',
@@ -129,7 +129,7 @@ const mockProducts: Product[] = [
     origin: 'France',
     inStock: true,
     rating: 4.2,
-    reviews: 89
+    reviews: 89,
   },
   {
     id: '8',
@@ -144,7 +144,7 @@ const mockProducts: Product[] = [
     origin: 'United States',
     inStock: true,
     rating: 4.1,
-    reviews: 234
+    reviews: 234,
   },
   {
     id: '9',
@@ -159,7 +159,7 @@ const mockProducts: Product[] = [
     origin: 'United Kingdom',
     inStock: true,
     rating: 4.9,
-    reviews: 67
+    reviews: 67,
   },
   {
     id: '10',
@@ -174,8 +174,8 @@ const mockProducts: Product[] = [
     origin: 'United States',
     inStock: true,
     rating: 4.6,
-    reviews: 178
-  }
+    reviews: 178,
+  },
 ];
 
 export const useProductsStore = create<ProductsState>((set, get) => ({
@@ -184,10 +184,10 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
 
   fetchProducts: async () => {
     set({ isLoading: true });
-    
+
     try {
       // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 800));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       set({ products: mockProducts, isLoading: false });
     } catch (error) {
       console.error('Failed to fetch products:', error);
@@ -197,21 +197,22 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
 
   getProductById: (id: string) => {
     const { products } = get();
-    return products.find(product => product.id === id);
+    return products.find((product) => product.id === id);
   },
 
   getProductsByCategory: (category: Product['category']) => {
     const { products } = get();
-    return products.filter(product => product.category === category);
+    return products.filter((product) => product.category === category);
   },
 
   searchProducts: (query: string) => {
     const { products } = get();
     const lowercaseQuery = query.toLowerCase();
-    return products.filter(product => 
-      product.name.toLowerCase().includes(lowercaseQuery) ||
-      product.description.toLowerCase().includes(lowercaseQuery) ||
-      product.category.toLowerCase().includes(lowercaseQuery)
+    return products.filter(
+      (product) =>
+        product.name.toLowerCase().includes(lowercaseQuery) ||
+        product.description.toLowerCase().includes(lowercaseQuery) ||
+        product.category.toLowerCase().includes(lowercaseQuery),
     );
-  }
-})); 
+  },
+}));

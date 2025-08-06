@@ -200,23 +200,24 @@ export class MockDatabase {
   }
 
   getProductById(id: string): Product | undefined {
-    return this._products.find(product => product.id === id);
+    return this._products.find((product) => product.id === id);
   }
 
   getProductsByCategory(category: string): Product[] {
-    return this._products.filter(product => product.category === category);
+    return this._products.filter((product) => product.category === category);
   }
 
   getFeaturedProducts(): Product[] {
-    return this._products.filter(product => product.featured);
+    return this._products.filter((product) => product.featured);
   }
 
   searchProducts(query: string): Product[] {
     const lowercaseQuery = query.toLowerCase();
-    return this._products.filter(product =>
-      product.name.toLowerCase().includes(lowercaseQuery) ||
-      product.description.toLowerCase().includes(lowercaseQuery) ||
-      product.tags.some(tag => tag.toLowerCase().includes(lowercaseQuery))
+    return this._products.filter(
+      (product) =>
+        product.name.toLowerCase().includes(lowercaseQuery) ||
+        product.description.toLowerCase().includes(lowercaseQuery) ||
+        product.tags.some((tag) => tag.toLowerCase().includes(lowercaseQuery)),
     );
   }
 
@@ -226,7 +227,7 @@ export class MockDatabase {
   }
 
   getCategoryById(id: string): Category | undefined {
-    return this._categories.find(category => category.id === id);
+    return this._categories.find((category) => category.id === id);
   }
 
   // User methods
@@ -235,11 +236,11 @@ export class MockDatabase {
   }
 
   getUserById(id: string): User | undefined {
-    return this._users.find(user => user.id === id);
+    return this._users.find((user) => user.id === id);
   }
 
   getUserByEmail(email: string): User | undefined {
-    return this._users.find(user => user.email === email);
+    return this._users.find((user) => user.email === email);
   }
 
   createUser(userData: Omit<User, 'id' | 'createdAt' | 'lastLogin'>): User {
@@ -254,9 +255,9 @@ export class MockDatabase {
   }
 
   updateUser(id: string, updates: Partial<User>): User | undefined {
-    const userIndex = this._users.findIndex(user => user.id === id);
+    const userIndex = this._users.findIndex((user) => user.id === id);
     if (userIndex === -1) return undefined;
-    
+
     this._users[userIndex] = { ...this._users[userIndex], ...updates };
     return this._users[userIndex];
   }
@@ -267,11 +268,11 @@ export class MockDatabase {
   }
 
   getOrderById(id: string): Order | undefined {
-    return this._orders.find(order => order.id === id);
+    return this._orders.find((order) => order.id === id);
   }
 
   getUserOrders(userId: string): Order[] {
-    return this._orders.filter(order => order.userId === userId);
+    return this._orders.filter((order) => order.userId === userId);
   }
 
   createOrder(orderData: Omit<Order, 'id' | 'createdAt' | 'updatedAt'>): Order {
@@ -286,13 +287,13 @@ export class MockDatabase {
   }
 
   updateOrderStatus(id: string, status: string): Order | undefined {
-    const orderIndex = this._orders.findIndex(order => order.id === id);
+    const orderIndex = this._orders.findIndex((order) => order.id === id);
     if (orderIndex === -1) return undefined;
-    
-    this._orders[orderIndex] = { 
-      ...this._orders[orderIndex], 
+
+    this._orders[orderIndex] = {
+      ...this._orders[orderIndex],
       status,
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
     };
     return this._orders[orderIndex];
   }
@@ -303,7 +304,7 @@ export class MockDatabase {
   }
 
   getProductReviews(productId: string): Review[] {
-    return this._reviews.filter(review => review.productId === productId);
+    return this._reviews.filter((review) => review.productId === productId);
   }
 
   createReview(reviewData: Omit<Review, 'id' | 'createdAt'>): Review {
@@ -322,12 +323,12 @@ export class MockDatabase {
   }
 
   getCouponByCode(code: string): Coupon | undefined {
-    return this._coupons.find(coupon => coupon.code === code && coupon.active);
+    return this._coupons.find((coupon) => coupon.code === code && coupon.active);
   }
 
   validateCoupon(code: string, orderTotal: number): { valid: boolean; coupon?: Coupon; error?: string } {
     const coupon = this.getCouponByCode(code);
-    
+
     if (!coupon) {
       return { valid: false, error: 'Invalid coupon code' };
     }
@@ -383,4 +384,4 @@ export const getCategories = () => mockDB.getCategories();
 export const getUsers = () => mockDB.getUsers();
 export const getOrders = () => mockDB.getOrders();
 export const getReviews = () => mockDB.getReviews();
-export const getSettings = () => mockDB.getSettings(); 
+export const getSettings = () => mockDB.getSettings();

@@ -1,51 +1,51 @@
 @import "../../../../../styles/var.scss";
 
 .container {
-    padding: 48px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 131px;
-    margin-top: 100px;
-    background-image: url('../../../../../../public/img/png/bgArt.png');
-    background-size: cover;
-    background-position: center;
-    .learnMore {
-        width: 759px;
-        max-width: 100%;
+  padding: 48px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 131px;
+  margin-top: 100px;
+  background-image: url("../../../../../../public/img/png/bgArt.png");
+  background-size: cover;
+  background-position: center;
+  .learnMore {
+    width: 759px;
+    max-width: 100%;
 
-        .title {
-            font-weight: 400;
-            font-style: Regular;
-            font-size: 48px;
-            line-height: 100%;
-            letter-spacing: 0%;
-            text-transform: uppercase;
-            color: $color_secondary;
-            margin: 0;
-        }
-
-        .description {
-            font-family: Mardoto;
-            font-weight: 900;
-            font-style: Black;
-            font-size: 20px;
-            leading-trim: NONE;
-            line-height: 30px;
-            letter-spacing: 0%;
-            color: $color_primary;
-            margin-top: 10px;
-            margin-bottom: 40px;
-        }
-
-        button{
-            width: 223px;
-            height: 64px;
-        }
+    .title {
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 48px;
+      line-height: 100%;
+      letter-spacing: 0%;
+      text-transform: uppercase;
+      color: $color_secondary;
+      margin: 0;
     }
 
-    .image {
-        width: 535px;
-        height: auto;
+    .description {
+      font-family: Mardoto;
+      font-weight: 900;
+      font-style: Black;
+      font-size: 20px;
+      leading-trim: NONE;
+      line-height: 30px;
+      letter-spacing: 0%;
+      color: $color_primary;
+      margin-top: 10px;
+      margin-bottom: 40px;
     }
+
+    button {
+      width: 223px;
+      height: 64px;
+    }
+  }
+
+  .image {
+    width: 535px;
+    height: auto;
+  }
 }

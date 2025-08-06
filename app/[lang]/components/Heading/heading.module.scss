@@ -1,134 +1,134 @@
 @import "../../../styles/var.scss";
 
 .heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 100px;
+  // background: $color_menu;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+
+  &.scrolled {
+    background: #221c13;
+  }
+
+  &::after {
+    content: "";
+    height: 1px;
+    width: 100vw;
+    background: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 104px;
+    left: 0;
+  }
+
+  .logo {
+    text-decoration: none;
+  }
+
+  // border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  .navBar {
     display: flex;
-    justify-content: space-between;
+    gap: 62px;
+
+    .link {
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 20px;
+      line-height: 30px;
+      letter-spacing: 2%;
+      text-transform: uppercase;
+      color: white;
+      padding: 36px 0px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $color_secondary;
+      }
+    }
+
+    .active {
+      border-bottom: 2px solid $color_secondary;
+    }
+  }
+
+  .icons {
+    display: flex;
     align-items: center;
-    padding: 0px 100px;
-    // background: $color_menu;
-    width: 100%;
-    box-sizing: border-box;
-    position: fixed;
-    transition: background-color 0.3s ease;
-    z-index: 1000;
+    gap: 28px;
+    padding: 0px 28px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    height: fit-content;
 
-    &.scrolled {
-        background: #221C13;
+    .cartIcon {
+      position: relative;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    &::after {
-        content: "";
-        height: 1px;
-        width: 100vw;
-        background: rgba(255, 255, 255, 0.1);
-        position: absolute;
-        top: 104px;
-        left: 0;
+    .cartBadge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: $color_secondary;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
     }
 
-    .logo {
+    .userMenu {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .userName {
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .logoutButton {
+        background: #ef4444;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #dc2626;
+        }
+      }
+    }
+
+    .authButtons {
+      display: flex;
+      gap: 12px;
+
+      a {
         text-decoration: none;
+      }
     }
 
-    // border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    .navBar {
-        display: flex;
-        gap: 62px;
-
-        .link {
-            font-weight: 400;
-            font-style: Regular;
-            font-size: 20px;
-            line-height: 30px;
-            letter-spacing: 2%;
-            text-transform: uppercase;
-            color: white;
-            padding: 36px 0px;
-            text-decoration: none;
-            transition: color 0.3s ease;
-
-            &:hover {
-                color: $color_secondary;
-            }
-        }
-
-        .active {
-            border-bottom: 2px solid $color_secondary;
-        }
+    button {
+      width: 237px;
+      height: 52px;
     }
-
-    .icons {
-        display: flex;
-        align-items: center;
-        gap: 28px;
-        padding: 0px 28px;
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
-        height: fit-content;
-
-        .cartIcon {
-            position: relative;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .cartBadge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: $color_secondary;
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .userMenu {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-
-            .userName {
-                color: white;
-                font-size: 16px;
-                font-weight: 600;
-            }
-
-            .logoutButton {
-                background: #ef4444;
-                color: white;
-                border: none;
-                padding: 8px 16px;
-                border-radius: 6px;
-                font-size: 14px;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.3s ease;
-
-                &:hover {
-                    background: #dc2626;
-                }
-            }
-        }
-
-        .authButtons {
-            display: flex;
-            gap: 12px;
-
-            a {
-                text-decoration: none;
-            }
-        }
-
-        button {
-            width: 237px;
-            height: 52px;
-        }
-    }
+  }
 }

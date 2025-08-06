@@ -21,31 +21,31 @@ type LoginFormData = z.infer<typeof loginSchema>;
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const login = useAuthStore(state => state.login);
+  const login = useAuthStore((state) => state.login);
   const dictionary = useDictionary();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    clearErrors,
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
 
   const onSubmit = async (data: LoginFormData) => {
     setIsLoading(true);
-    
     try {
       const result = await login(data.email, data.password);
-      
       if (result.success) {
         toast.success('Login successful!');
         router.push('/dashboard');
       } else {
-        toast.error(result.error || 'Login failed');
+        const errorMessage = 'message' in result ? String(result.message) : 'Login failed. Please check your credentials.';
+        toast.error(errorMessage);
       }
-    } catch (error) {
-      toast.error('An unexpected error occurred');
+    } catch {
+      toast.error('An unexpected error occurred.');
     } finally {
       setIsLoading(false);
     }
@@ -59,40 +59,44 @@ export default function LoginPage() {
           <p>{dictionary.auth.login.subtitle}</p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+        <form
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+          onSubmit={handleSubmit((data: LoginFormData) => {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            onSubmit(data);
+          })}
+          className={styles.form}
+        >
           <div className={styles.formGroup}>
             <label htmlFor="email">{dictionary.auth.login.email}</label>
             <input
-              {...register('email')}
+              {...register('email', {
+                onChange: () => clearErrors('email'),
+              })}
               type="email"
               id="email"
               placeholder={dictionary.auth.login.email}
               className={errors.email ? styles.error : ''}
             />
-            {errors.email && (
-              <span className={styles.errorMessage}>{errors.email.message}</span>
-            )}
+            {errors.email && <span className={styles.errorMessage}>{errors.email.message || ''}</span>}
           </div>
 
           <div className={styles.formGroup}>
             <label htmlFor="password">{dictionary.auth.login.password}</label>
             <input
-              {...register('password')}
+              {...register('password', {
+                onChange: () => clearErrors('password'),
+              })}
               type="password"
               id="password"
               placeholder={dictionary.auth.login.password}
               className={errors.password ? styles.error : ''}
             />
-            {errors.password && (
-              <span className={styles.errorMessage}>{errors.password.message}</span>
-            )}
+            {errors.password && <span className={styles.errorMessage}>{errors.password.message || ''}</span>}
           </div>
 
-          <button
-            type="submit"
-            disabled={isLoading}
-            className={styles.submitButton}
-          >
+          <button type="submit" disabled={isLoading} className={styles.submitButton}>
             {isLoading ? dictionary.auth.login.loading : dictionary.auth.login.submit}
           </button>
         </form>
@@ -107,11 +111,11 @@ export default function LoginPage() {
         </div>
 
         <div className={styles.demo}>
-          <p>Demo credentials:</p>
+          <p>Demo Credentials:</p>
           <p>Email: demo@example.com</p>
           <p>Password: password</p>
         </div>
       </div>
     </div>
   );
-} 
+}

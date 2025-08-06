@@ -7,18 +7,18 @@ describe('ProductCard', () => {
     src: '/test-image.jpg',
     title: 'Test Product',
     prise: 500,
-    volume: 0.5
+    volume: 0.5,
   };
 
   it('renders product card with correct props', () => {
     render(<ProductCard {...mockProps} />);
-    
+
     // Check if title is rendered
     expect(screen.getByText('Test Product')).toBeInTheDocument();
-    
+
     // Check if price and volume are rendered
     expect(screen.getByText('500 դր 0.5 լ')).toBeInTheDocument();
-    
+
     // Check if image is rendered with correct src
     const image = screen.getByRole('img');
     expect(image).toHaveAttribute('src', '/test-image.jpg');
@@ -29,14 +29,14 @@ describe('ProductCard', () => {
       src: '/another-image.jpg',
       title: 'Another Product',
       prise: 750,
-      volume: 1.0
+      volume: 1.0,
     };
 
     render(<ProductCard {...differentProps} />);
-    
+
     expect(screen.getByText('Another Product')).toBeInTheDocument();
     expect(screen.getByText('750 դր 1 լ')).toBeInTheDocument();
-    
+
     const image = screen.getByRole('img');
     expect(image).toHaveAttribute('src', '/another-image.jpg');
   });
@@ -46,12 +46,12 @@ describe('ProductCard', () => {
       src: '/zero-image.jpg',
       title: 'Free Product',
       prise: 0,
-      volume: 0
+      volume: 0,
     };
 
     render(<ProductCard {...zeroProps} />);
-    
+
     expect(screen.getByText('Free Product')).toBeInTheDocument();
     expect(screen.getByText('0 դր 0 լ')).toBeInTheDocument();
   });
-}); 
+});

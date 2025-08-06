@@ -27,19 +27,15 @@ export const useCartStore = create<CartState>()(
 
       addItem: (item) => {
         const { items } = get();
-        const existingItem = items.find(i => i.id === item.id);
-        
+        const existingItem = items.find((i) => i.id === item.id);
+
         if (existingItem) {
           set({
-            items: items.map(i => 
-              i.id === item.id 
-                ? { ...i, quantity: i.quantity + 1 }
-                : i
-            )
+            items: items.map((i) => (i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i)),
           });
         } else {
           set({
-            items: [...items, { ...item, quantity: 1 }]
+            items: [...items, { ...item, quantity: 1 }],
           });
         }
       },
@@ -47,7 +43,7 @@ export const useCartStore = create<CartState>()(
       removeItem: (itemId) => {
         const { items } = get();
         set({
-          items: items.filter(item => item.id !== itemId)
+          items: items.filter((item) => item.id !== itemId),
         });
       },
 
@@ -55,15 +51,11 @@ export const useCartStore = create<CartState>()(
         const { items } = get();
         if (quantity <= 0) {
           set({
-            items: items.filter(item => item.id !== itemId)
+            items: items.filter((item) => item.id !== itemId),
           });
         } else {
           set({
-            items: items.map(item => 
-              item.id === itemId 
-                ? { ...item, quantity }
-                : item
-            )
+            items: items.map((item) => (item.id === itemId ? { ...item, quantity } : item)),
           });
         }
       },
@@ -79,11 +71,11 @@ export const useCartStore = create<CartState>()(
 
       getTotalPrice: () => {
         const { items } = get();
-        return items.reduce((total, item) => total + (item.price * item.quantity), 0);
-      }
+        return items.reduce((total, item) => total + item.price * item.quantity, 0);
+      },
     }),
     {
-      name: 'cart-storage'
-    }
-  )
-); 
+      name: 'cart-storage',
+    },
+  ),
+);

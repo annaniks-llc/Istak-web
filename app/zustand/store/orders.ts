@@ -48,39 +48,39 @@ export const useOrdersStore = create<OrdersState>((set, get) => ({
 
   createOrder: async (orderData: CreateOrderData) => {
     set({ isLoading: true });
-    
+
     try {
       // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       const orderId = Math.random().toString(36).substr(2, 9).toUpperCase();
       const estimatedDelivery = new Date();
       estimatedDelivery.setDate(estimatedDelivery.getDate() + 3); // 3 days from now
-      
+
       const order: Order = {
         id: orderId,
         userId: orderData.userId,
-        items: orderData.items.map(item => ({
+        items: orderData.items.map((item) => ({
           ...item,
-          productId: item.id
+          productId: item.id,
         })),
-        totalAmount: orderData.items.reduce((total, item) => total + (item.price * item.quantity), 0),
+        totalAmount: orderData.items.reduce((total, item) => total + item.price * item.quantity, 0),
         status: 'pending',
         shippingAddress: orderData.shippingAddress,
         paymentMethod: orderData.paymentMethod,
         createdAt: new Date().toISOString(),
         estimatedDelivery: estimatedDelivery.toISOString(),
-        trackingNumber: `TRK${Math.random().toString(36).substr(2, 8).toUpperCase()}`
+        trackingNumber: `TRK${Math.random().toString(36).substr(2, 8).toUpperCase()}`,
       };
-      
-      set(state => ({
+
+      set((state) => ({
         orders: [...state.orders, order],
         currentOrder: order,
-        isLoading: false
+        isLoading: false,
       }));
-      
+
       return { success: true, orderId: order.id };
-    } catch (error) {
+    } catch {
       set({ isLoading: false });
       return { success: false, error: 'Failed to create order' };
     }
@@ -88,21 +88,17 @@ export const useOrdersStore = create<OrdersState>((set, get) => ({
 
   getOrderById: (orderId: string) => {
     const { orders } = get();
-    return orders.find(order => order.id === orderId);
+    return orders.find((order) => order.id === orderId);
   },
 
   getUserOrders: (userId: string) => {
     const { orders } = get();
-    return orders.filter(order => order.userId === userId);
+    return orders.filter((order) => order.userId === userId);
   },
 
   updateOrderStatus: (orderId: string, status: Order['status']) => {
-    set(state => ({
-      orders: state.orders.map(order => 
-        order.id === orderId 
-          ? { ...order, status }
-          : order
-      )
+    set((state) => ({
+      orders: state.orders.map((order) => (order.id === orderId ? { ...order, status } : order)),
     }));
-  }
-})); 
+  },
+}));

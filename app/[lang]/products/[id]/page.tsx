@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useProductsStore, Product } from '@/app/zustand/store/products';
+import { useProductsStore } from '@/app/zustand/store/products';
 import { useCartStore } from '@/app/zustand/store/cart';
 import toast from 'react-hot-toast';
 import styles from './product-details.module.scss';
@@ -19,8 +19,10 @@ export default function ProductDetailsPage() {
   const dictionary = useDictionary();
 
   const product = getProductById(productId);
-  const relatedProducts = product 
-    ? getProductsByCategory(product.category).filter(p => p.id !== product.id).slice(0, 3)
+  const relatedProducts = product
+    ? getProductsByCategory(product.category)
+        .filter((p) => p.id !== product.id)
+        .slice(0, 3)
     : [];
 
   useEffect(() => {
@@ -42,7 +44,7 @@ export default function ProductDetailsPage() {
         image: product.image,
       });
     }
-    
+
     toast.success(`${quantity} ${quantity === 1 ? 'item' : 'items'} added to cart!`);
   };
 
@@ -147,10 +149,15 @@ export default function ProductDetailsPage() {
 
           <div className={styles.addToCartSection}>
             <div className={styles.quantitySelector}>
-              <label>Quantity:</label>
+              <label htmlFor="quantity">Quantity:</label>
               <div className={styles.quantityControls}>
                 <button
                   onClick={() => handleQuantityChange(quantity - 1)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handleQuantityChange(quantity - 1);
+                    }
+                  }}
                   disabled={quantity <= 1}
                   className={styles.quantityButton}
                 >
@@ -159,6 +166,11 @@ export default function ProductDetailsPage() {
                 <span className={styles.quantity}>{quantity}</span>
                 <button
                   onClick={() => handleQuantityChange(quantity + 1)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handleQuantityChange(quantity + 1);
+                    }
+                  }}
                   disabled={quantity >= 10}
                   className={styles.quantityButton}
                 >
@@ -167,11 +179,7 @@ export default function ProductDetailsPage() {
               </div>
             </div>
 
-            <button
-              onClick={handleAddToCart}
-              disabled={!product.inStock}
-              className={styles.addToCartButton}
-            >
+            <button onClick={handleAddToCart} disabled={!product.inStock} className={styles.addToCartButton}>
               {product.inStock ? `Add ${quantity} to Cart` : 'Out of Stock'}
             </button>
           </div>
@@ -183,10 +191,16 @@ export default function ProductDetailsPage() {
           <h2>Related Products</h2>
           <div className={styles.relatedGrid}>
             {relatedProducts.map((relatedProduct) => (
-              <div
+              <button
                 key={relatedProduct.id}
                 className={styles.relatedCard}
                 onClick={() => router.push(`/products/${relatedProduct.id}`)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    router.push(`/products/${relatedProduct.id}`);
+                  }
+                }}
+                type="button"
               >
                 <div className={styles.relatedImage}>
                   <img src={relatedProduct.image} alt={relatedProduct.name} />
@@ -198,11 +212,11 @@ export default function ProductDetailsPage() {
                     {relatedProduct.price.toFixed(2)}
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
       )}
     </div>
   );
-} 
+}

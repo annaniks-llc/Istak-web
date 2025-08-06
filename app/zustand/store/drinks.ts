@@ -12,7 +12,7 @@ interface PricesDggState {
   fetchDataDrinks: () => Promise<void>;
 }
 
-export const usePricesDggDataStore = create<PricesDggState>((set) => ({
+export const usePricesDggDataStore = create<PricesDggState>(() => ({
   dggPriceUsd: '',
   fetchDataDrinks: async () => {
     try {

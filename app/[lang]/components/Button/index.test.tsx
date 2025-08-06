@@ -14,7 +14,7 @@ describe('Button', () => {
     expect(screen.getByText('Click me')).toBeInTheDocument();
   });
 
-  variants.forEach(variant => {
+  variants.forEach((variant) => {
     it(`applies the correct class for variant: ${variant}`, () => {
       render(<Button text="Test" variant={variant} onClick={() => {}} />);
       const button = screen.getByRole('button');
@@ -28,4 +28,4 @@ describe('Button', () => {
     fireEvent.click(screen.getByRole('button'));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
-}); 
+});
