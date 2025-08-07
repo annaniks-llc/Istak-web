@@ -244,14 +244,14 @@
             }
         },
         "ginFamily": {
-            "title": "202 ՋԻՆ ԸՆՏԱՆԻԿ",
+            "title": "202 ՋԻՆ ԸՆՏԱՆԻՔ",
             "barEdition": "Բարի Հրատարակություն",
             "dryGin": "Չոր Ջին",
             "mandarin": "Մանդարին",
             "christmasEdition": "Սուրբ Ծննդյան Հրատարակություն"
         },
         "sharlieFamily": {
-            "title": "ՇԱՐԼԻ ԸՆՏԱՆԻԿ",
+            "title": "ՇԱՐԼԻ ԸՆՏԱՆԻՔ",
             "sharlieXO": "Շարլի X.O",
             "sharlieVSOP": "Շարլի V.S.O.P."
         },

@@ -4,8 +4,16 @@
     "productId": "1",
     "userId": "1",
     "rating": 5,
-    "title": "Excellent Premium Vodka",
-    "comment": "Smooth and clean taste. Perfect for cocktails. Highly recommend!",
+    "title": {
+      "en": "Excellent Premium Vodka",
+      "hy": "Գերազանց Պրեմիում Օղի",
+      "ru": "Отличная Премиум Водка"
+    },
+    "comment": {
+      "en": "Smooth and clean taste. Perfect for cocktails. Highly recommend!",
+      "hy": "Հարթ և մաքուր համ: Կատարյալ կոկտեյլների համար: Բարձր խորհուրդ եմ տալիս:",
+      "ru": "Гладкий и чистый вкус. Идеально для коктейлей. Очень рекомендую!"
+    },
     "createdAt": "2024-01-16T12:30:00Z",
     "verified": true
   },
@@ -14,8 +22,16 @@
     "productId": "1",
     "userId": "2",
     "rating": 4,
-    "title": "Good Quality",
-    "comment": "Nice smooth finish. Good value for the price.",
+    "title": {
+      "en": "Good Quality",
+      "hy": "Լավ Որակ",
+      "ru": "Хорошее Качество"
+    },
+    "comment": {
+      "en": "Nice smooth finish. Good value for the price.",
+      "hy": "Հաճելի հարթ ավարտ: Լավ արժեք գնի համար:",
+      "ru": "Приятный гладкий финиш. Хорошее соотношение цена-качество."
+    },
     "createdAt": "2024-01-17T09:15:00Z",
     "verified": true
   },
@@ -24,8 +40,16 @@
     "productId": "3",
     "userId": "1",
     "rating": 5,
-    "title": "Outstanding Whiskey",
-    "comment": "Rich and complex flavors. Worth every penny!",
+    "title": {
+      "en": "Outstanding Whiskey",
+      "hy": "Բացառիկ Ուիսկի",
+      "ru": "Выдающийся Виски"
+    },
+    "comment": {
+      "en": "Rich and complex flavors. Worth every penny!",
+      "hy": "Հարուստ և բարդ համեր: Արժե ամեն կոպեկ:",
+      "ru": "Богатые и сложные вкусы. Стоит каждого пенни!"
+    },
     "createdAt": "2024-01-19T14:20:00Z",
     "verified": true
   },
@@ -34,8 +58,16 @@
     "productId": "9",
     "userId": "2",
     "rating": 5,
-    "title": "Amazing Espresso Martini",
-    "comment": "Perfect coffee flavor. Great for after dinner!",
+    "title": {
+      "en": "Amazing Espresso Martini",
+      "hy": "Հրաշալի Էսպրեսո Մարտինի",
+      "ru": "Потрясающий Эспрессо Мартини"
+    },
+    "comment": {
+      "en": "Perfect coffee flavor. Great for after dinner!",
+      "hy": "Կատարյալ սուրճի համ: Հրաշալի ընթրիքից հետո:",
+      "ru": "Идеальный кофейный вкус. Отлично после ужина!"
+    },
     "createdAt": "2024-01-20T18:45:00Z",
     "verified": false
   },
@@ -44,8 +76,16 @@
     "productId": "5",
     "userId": "3",
     "rating": 4,
-    "title": "Classic London Dry",
-    "comment": "Traditional gin with excellent botanicals. Great for martinis.",
+    "title": {
+      "en": "Classic London Dry",
+      "hy": "Դասական Լոնդոնի Չոր",
+      "ru": "Классический Лондонский Сухой"
+    },
+    "comment": {
+      "en": "Traditional gin with excellent botanicals. Great for martinis.",
+      "hy": "Ավանդական ջին գերազանց բուսաբանական նյութերով: Հրաշալի մարտինիի համար:",
+      "ru": "Традиционный джин с отличными ботаническими ингредиентами. Отлично для мартини."
+    },
     "createdAt": "2024-01-18T16:30:00Z",
     "verified": true
   },
@@ -54,8 +94,16 @@
     "productId": "6",
     "userId": "1",
     "rating": 4,
-    "title": "Authentic Tequila",
-    "comment": "Smooth and authentic Mexican character. Perfect for margaritas.",
+    "title": {
+      "en": "Authentic Tequila",
+      "hy": "Ավանդական Տեկիլա",
+      "ru": "Аутентичная Текила"
+    },
+    "comment": {
+      "en": "Smooth and authentic Mexican character. Perfect for margaritas.",
+      "hy": "Հարթ և ավանդական մեքսիկական բնույթ: Կատարյալ մարգարիտայի համար:",
+      "ru": "Гладкий и аутентичный мексиканский характер. Идеально для маргариты."
+    },
     "createdAt": "2024-01-20T10:15:00Z",
     "verified": true
   },
@@ -64,8 +112,16 @@
     "productId": "8",
     "userId": "2",
     "rating": 3,
-    "title": "Decent IPA",
-    "comment": "Good hoppy flavor but could be more balanced.",
+    "title": {
+      "en": "Decent IPA",
+      "hy": "Լավ IPA",
+      "ru": "Приличное IPA"
+    },
+    "comment": {
+      "en": "Good hoppy flavor but could be more balanced.",
+      "hy": "Լավ հոպի համ, բայց կարող էր ավելի հավասարակշռված լինել:",
+      "ru": "Хороший хмельной вкус, но мог бы быть более сбалансированным."
+    },
     "createdAt": "2024-01-19T20:45:00Z",
     "verified": false
   },
@@ -74,8 +130,16 @@
     "productId": "4",
     "userId": "3",
     "rating": 5,
-    "title": "Excellent Rum",
-    "comment": "Smooth Caribbean rum with great tropical notes.",
+    "title": {
+      "en": "Excellent Rum",
+      "hy": "Գերազանց Ռոմ",
+      "ru": "Отличный Ром"
+    },
+    "comment": {
+      "en": "Smooth Caribbean rum with great tropical notes.",
+      "hy": "Հարթ կարիբյան ռոմ հրաշալի արևադարձային նոտաներով:",
+      "ru": "Гладкий карибский ром с отличными тропическими нотами."
+    },
     "createdAt": "2024-01-17T14:20:00Z",
     "verified": true
   }

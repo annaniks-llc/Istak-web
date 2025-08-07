@@ -2,6 +2,16 @@
   {
     "id": "WELCOME10",
     "code": "WELCOME10",
+    "name": {
+      "en": "Welcome Discount",
+      "hy": "Բարի Գալուստ Զեղչ",
+      "ru": "Приветственная Скидка"
+    },
+    "description": {
+      "en": "Get 10% off your first order",
+      "hy": "Ստացեք 10% զեղչ ձեր առաջին պատվերի համար",
+      "ru": "Получите 10% скидку на ваш первый заказ"
+    },
     "discount": 10,
     "type": "percentage",
     "minOrder": 50,
@@ -15,6 +25,16 @@
   {
     "id": "SAVE20",
     "code": "SAVE20",
+    "name": {
+      "en": "Big Savings",
+      "hy": "Մեծ Խնայողություններ",
+      "ru": "Большие Скидки"
+    },
+    "description": {
+      "en": "Save 20% on orders over $100",
+      "hy": "Խնայեք 20% $100-ից ավելի պատվերների համար",
+      "ru": "Экономьте 20% на заказах свыше $100"
+    },
     "discount": 20,
     "type": "percentage",
     "minOrder": 100,
@@ -28,6 +48,16 @@
   {
     "id": "FREESHIP",
     "code": "FREESHIP",
+    "name": {
+      "en": "Free Shipping",
+      "hy": "Անվճար Առաքում",
+      "ru": "Бесплатная Доставка"
+    },
+    "description": {
+      "en": "Free shipping on orders over $75",
+      "hy": "Անվճար առաքում $75-ից ավելի պատվերների համար",
+      "ru": "Бесплатная доставка на заказы свыше $75"
+    },
     "discount": 9.99,
     "type": "fixed",
     "minOrder": 75,
@@ -41,6 +71,16 @@
   {
     "id": "NEWCUSTOMER",
     "code": "NEWCUSTOMER",
+    "name": {
+      "en": "New Customer Special",
+      "hy": "Նոր Հաճախորդի Հատուկ",
+      "ru": "Специальное Предложение для Новых Клиентов"
+    },
+    "description": {
+      "en": "15% off for new customers",
+      "hy": "15% զեղչ նոր հաճախորդների համար",
+      "ru": "15% скидка для новых клиентов"
+    },
     "discount": 15,
     "type": "percentage",
     "minOrder": 30,
@@ -54,6 +94,16 @@
   {
     "id": "PREMIUM25",
     "code": "PREMIUM25",
+    "name": {
+      "en": "Premium Discount",
+      "hy": "Պրեմիում Զեղչ",
+      "ru": "Премиум Скидка"
+    },
+    "description": {
+      "en": "25% off premium products",
+      "hy": "25% զեղչ պրեմիում ապրանքների համար",
+      "ru": "25% скидка на премиум товары"
+    },
     "discount": 25,
     "type": "percentage",
     "minOrder": 150,

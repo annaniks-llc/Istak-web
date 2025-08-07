@@ -2,15 +2,39 @@
   {
     "id": "1",
     "email": "demo@example.com",
-    "firstName": "John",
-    "lastName": "Doe",
+    "firstName": {
+      "en": "John",
+      "hy": "Ջոն",
+      "ru": "Джон"
+    },
+    "lastName": {
+      "en": "Doe",
+      "hy": "Դո",
+      "ru": "Доу"
+    },
     "phone": "+1234567890",
     "address": {
-      "street": "123 Main St",
-      "city": "New York",
-      "state": "NY",
+      "street": {
+        "en": "123 Main St",
+        "hy": "123 Գլխավոր Փողոց",
+        "ru": "123 Главная Улица"
+      },
+      "city": {
+        "en": "New York",
+        "hy": "Նյու Յորք",
+        "ru": "Нью-Йорк"
+      },
+      "state": {
+        "en": "NY",
+        "hy": "Նյու Յորք",
+        "ru": "Нью-Йорк"
+      },
       "zipCode": "10001",
-      "country": "United States"
+      "country": {
+        "en": "United States",
+        "hy": "ԱՄՆ",
+        "ru": "США"
+      }
     },
     "createdAt": "2024-01-15T10:30:00Z",
     "lastLogin": "2024-01-20T14:45:00Z",
@@ -24,15 +48,39 @@
   {
     "id": "2",
     "email": "jane.smith@example.com",
-    "firstName": "Jane",
-    "lastName": "Smith",
+    "firstName": {
+      "en": "Jane",
+      "hy": "Ջեյն",
+      "ru": "Джейн"
+    },
+    "lastName": {
+      "en": "Smith",
+      "hy": "Սմիթ",
+      "ru": "Смит"
+    },
     "phone": "+1987654321",
     "address": {
-      "street": "456 Oak Ave",
-      "city": "Los Angeles",
-      "state": "CA",
+      "street": {
+        "en": "456 Oak Ave",
+        "hy": "456 Կաղնու Պող",
+        "ru": "456 Дубовый Проспект"
+      },
+      "city": {
+        "en": "Los Angeles",
+        "hy": "Լոս Անջելես",
+        "ru": "Лос-Анджелес"
+      },
+      "state": {
+        "en": "CA",
+        "hy": "Կալիֆոռնիա",
+        "ru": "Калифорния"
+      },
       "zipCode": "90210",
-      "country": "United States"
+      "country": {
+        "en": "United States",
+        "hy": "ԱՄՆ",
+        "ru": "США"
+      }
     },
     "createdAt": "2024-01-10T09:15:00Z",
     "lastLogin": "2024-01-19T16:20:00Z",
@@ -46,15 +94,39 @@
   {
     "id": "3",
     "email": "mike.wilson@example.com",
-    "firstName": "Mike",
-    "lastName": "Wilson",
+    "firstName": {
+      "en": "Mike",
+      "hy": "Մայք",
+      "ru": "Майк"
+    },
+    "lastName": {
+      "en": "Wilson",
+      "hy": "Ուիլսոն",
+      "ru": "Уилсон"
+    },
     "phone": "+1555123456",
     "address": {
-      "street": "789 Pine St",
-      "city": "Chicago",
-      "state": "IL",
+      "street": {
+        "en": "789 Pine St",
+        "hy": "789 Սոճու Փողոց",
+        "ru": "789 Сосновая Улица"
+      },
+      "city": {
+        "en": "Chicago",
+        "hy": "Չիկագո",
+        "ru": "Чикаго"
+      },
+      "state": {
+        "en": "IL",
+        "hy": "Իլինոյս",
+        "ru": "Иллинойс"
+      },
       "zipCode": "60601",
-      "country": "United States"
+      "country": {
+        "en": "United States",
+        "hy": "ԱՄՆ",
+        "ru": "США"
+      }
     },
     "createdAt": "2024-01-05T11:45:00Z",
     "lastLogin": "2024-01-18T13:30:00Z",

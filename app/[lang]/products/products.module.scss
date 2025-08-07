@@ -1,27 +1,100 @@
 @import "@/app/styles/var.scss";
 
 .container {
-  min-height: 100vh;
-  background: #f8f9fa;
-  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  // padding: 20px;
+}
+
+.topSection {
+  position: relative;
+  height: 400px;
+  background-image: url('/img/png/productsTopSection.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 40px;
+  // border-radius: 12px;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    z-index: 1;
+  }
+
+  .topSectionContent {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 20px;
+
+      .breadcrumbSeparator {
+        color: rgba(255, 255, 255, 0.6);
+        margin: 0 4px;
+      }
+    }
+
+    .mainTitle {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      font-weight: 400;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 600px;
+      line-height: 1.5;
+    }
+  }
 }
 
 .header {
   text-align: center;
   margin-bottom: 40px;
-  max-width: 1200px;
-  margin: 0 auto 40px;
 
   h1 {
     font-size: 36px;
     font-weight: 700;
     color: $color_primary_dark;
-    margin-bottom: 12px;
+    margin: 0 0 16px 0;
   }
 
   p {
-    color: #666;
     font-size: 18px;
+    color: #666;
+    margin: 0;
+    max-width: 600px;
+    margin: 0 auto;
   }
 }
 
@@ -152,7 +225,7 @@
 
 .productsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   max-width: 1200px;
   margin: 0 auto;

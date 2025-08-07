@@ -1,7 +1,15 @@
 {
   "store": {
-    "name": "Premium Drinks Store",
-    "description": "Your premium destination for fine alcoholic beverages",
+    "name": {
+      "en": "Premium Drinks Store",
+      "hy": "Պրեմիում Խմիչքների Խանութ",
+      "ru": "Премиум Магазин Напитков"
+    },
+    "description": {
+      "en": "Your premium destination for fine alcoholic beverages",
+      "hy": "Ձեր պրեմիում նպատակակետը բարձրորակ ալկոհոլային ըմպելիքների համար",
+      "ru": "Ваш премиум пункт назначения для изысканных алкогольных напитков"
+    },
     "currency": "USD",
     "taxRate": 0.1,
     "shippingCost": 9.99,
@@ -9,11 +17,27 @@
     "contactEmail": "info@premiumdrinks.com",
     "contactPhone": "+1-800-DRINKS",
     "address": {
-      "street": "123 Liquor Lane",
-      "city": "Beverage City",
-      "state": "CA",
+      "street": {
+        "en": "123 Liquor Lane",
+        "hy": "123 Խմիչքների Փողոց",
+        "ru": "123 Улица Напитков"
+      },
+      "city": {
+        "en": "Beverage City",
+        "hy": "Ըմպելիքների Քաղաք",
+        "ru": "Город Напитков"
+      },
+      "state": {
+        "en": "CA",
+        "hy": "Կալիֆոռնիա",
+        "ru": "Калифорния"
+      },
       "zipCode": "90210",
-      "country": "United States"
+      "country": {
+        "en": "United States",
+        "hy": "ԱՄՆ",
+        "ru": "США"
+      }
     },
     "socialMedia": {
       "facebook": "https://facebook.com/premiumdrinks",
@@ -34,48 +58,104 @@
   "paymentMethods": [
     {
       "id": "credit_card",
-      "name": "Credit Card",
-      "description": "Visa, Mastercard, American Express",
+      "name": {
+        "en": "Credit Card",
+        "hy": "Վարկային Քարտ",
+        "ru": "Кредитная Карта"
+      },
+      "description": {
+        "en": "Visa, Mastercard, American Express",
+        "hy": "Visa, Mastercard, American Express",
+        "ru": "Visa, Mastercard, American Express"
+      },
       "enabled": true
     },
     {
       "id": "paypal",
-      "name": "PayPal",
-      "description": "Pay with your PayPal account",
+      "name": {
+        "en": "PayPal",
+        "hy": "PayPal",
+        "ru": "PayPal"
+      },
+      "description": {
+        "en": "Pay with your PayPal account",
+        "hy": "Վճարեք ձեր PayPal հաշվով",
+        "ru": "Оплатите вашим аккаунтом PayPal"
+      },
       "enabled": true
     },
     {
       "id": "apple_pay",
-      "name": "Apple Pay",
-      "description": "Pay with Apple Pay",
+      "name": {
+        "en": "Apple Pay",
+        "hy": "Apple Pay",
+        "ru": "Apple Pay"
+      },
+      "description": {
+        "en": "Pay with Apple Pay",
+        "hy": "Վճարեք Apple Pay-ով",
+        "ru": "Оплатите через Apple Pay"
+      },
       "enabled": true
     },
     {
       "id": "google_pay",
-      "name": "Google Pay",
-      "description": "Pay with Google Pay",
+      "name": {
+        "en": "Google Pay",
+        "hy": "Google Pay",
+        "ru": "Google Pay"
+      },
+      "description": {
+        "en": "Pay with Google Pay",
+        "hy": "Վճարեք Google Pay-ով",
+        "ru": "Оплатите через Google Pay"
+      },
       "enabled": true
     }
   ],
   "shippingMethods": [
     {
       "id": "standard",
-      "name": "Standard Shipping",
-      "description": "5-7 business days",
+      "name": {
+        "en": "Standard Shipping",
+        "hy": "Ստանդարտ Առաքում",
+        "ru": "Стандартная Доставка"
+      },
+      "description": {
+        "en": "5-7 business days",
+        "hy": "5-7 աշխատանքային օր",
+        "ru": "5-7 рабочих дней"
+      },
       "cost": 9.99,
       "enabled": true
     },
     {
       "id": "express",
-      "name": "Express Shipping",
-      "description": "2-3 business days",
+      "name": {
+        "en": "Express Shipping",
+        "hy": "Արագ Առաքում",
+        "ru": "Экспресс Доставка"
+      },
+      "description": {
+        "en": "2-3 business days",
+        "hy": "2-3 աշխատանքային օր",
+        "ru": "2-3 рабочих дня"
+      },
       "cost": 19.99,
       "enabled": true
     },
     {
       "id": "overnight",
-      "name": "Overnight Shipping",
-      "description": "Next business day",
+      "name": {
+        "en": "Overnight Shipping",
+        "hy": "Գիշերային Առաքում",
+        "ru": "Ночная Доставка"
+      },
+      "description": {
+        "en": "Next business day",
+        "hy": "Հաջորդ աշխատանքային օր",
+        "ru": "Следующий рабочий день"
+      },
       "cost": 29.99,
       "enabled": true
     }
@@ -83,28 +163,68 @@
   "orderStatuses": [
     {
       "id": "pending",
-      "name": "Pending",
-      "description": "Order is being processed"
+      "name": {
+        "en": "Pending",
+        "hy": "Սպասում",
+        "ru": "В Ожидании"
+      },
+      "description": {
+        "en": "Order is being processed",
+        "hy": "Պատվերը մշակվում է",
+        "ru": "Заказ обрабатывается"
+      }
     },
     {
       "id": "processing",
-      "name": "Processing",
-      "description": "Order is being prepared"
+      "name": {
+        "en": "Processing",
+        "hy": "Մշակում",
+        "ru": "Обработка"
+      },
+      "description": {
+        "en": "Order is being prepared",
+        "hy": "Պատվերը պատրաստվում է",
+        "ru": "Заказ готовится"
+      }
     },
     {
       "id": "shipped",
-      "name": "Shipped",
-      "description": "Order has been shipped"
+      "name": {
+        "en": "Shipped",
+        "hy": "Առաքված",
+        "ru": "Отправлен"
+      },
+      "description": {
+        "en": "Order has been shipped",
+        "hy": "Պատվերը առաքվել է",
+        "ru": "Заказ отправлен"
+      }
     },
     {
       "id": "delivered",
-      "name": "Delivered",
-      "description": "Order has been delivered"
+      "name": {
+        "en": "Delivered",
+        "hy": "Առաքված",
+        "ru": "Доставлен"
+      },
+      "description": {
+        "en": "Order has been delivered",
+        "hy": "Պատվերը առաքվել է",
+        "ru": "Заказ доставлен"
+      }
     },
     {
       "id": "cancelled",
-      "name": "Cancelled",
-      "description": "Order has been cancelled"
+      "name": {
+        "en": "Cancelled",
+        "hy": "Չեղարկված",
+        "ru": "Отменен"
+      },
+      "description": {
+        "en": "Order has been cancelled",
+        "hy": "Պատվերը չեղարկվել է",
+        "ru": "Заказ отменен"
+      }
     }
   ]
 } 

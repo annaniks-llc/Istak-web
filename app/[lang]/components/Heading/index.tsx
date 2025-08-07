@@ -3,7 +3,7 @@ import { useDictionary } from '@/dictionary-provider';
 import Link from 'next/link';
 import Button from '../Button';
 import styles from './heading.module.scss';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/app/zustand/store/auth';
 import { useCartStore } from '@/app/zustand/store/cart';
@@ -11,9 +11,15 @@ import { useCartStore } from '@/app/zustand/store/cart';
 export default function Heading() {
   const dictionary = useDictionary();
   const pathname = usePathname();
+  const { lang } = useParams();
   const [isScrolled, setIsScrolled] = useState(false);
   const { user, isAuthenticated, logout } = useAuthStore();
   const { getTotalItems } = useCartStore();
+
+  // Check if we're on home page or products page
+  const isHomePage = pathname === `/${lang}` || pathname === `/${lang}/`;
+  const isProductsPage = pathname === `/${lang}/products`;
+  const shouldUseDarkColor = !isHomePage && !isProductsPage;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,20 +36,20 @@ export default function Heading() {
   };
 
   return (
-    <div className={`${styles.heading} ${isScrolled ? styles.scrolled : ''}`}>
+    <div className={`${styles.heading} ${isScrolled ? styles.scrolled : ''} ${shouldUseDarkColor ? styles.darkColor : ''}`}>
       <Link href="/" className={styles.logo}>
         <img src="/img/svg/logo.svg" alt="logo" width={100} height={100} />
       </Link>
 
       <nav className={styles.navBar}>
-        <Link className={`${styles.link} ${pathname === '/' ? styles.active : ''}`} href="/">
+        <Link className={`${styles.link} ${pathname === `/${lang}` ? styles.active : ''}`} href="/">
           {dictionary.navigation.home}
         </Link>
-        <Link className={`${styles.link} ${pathname === '/products' ? styles.active : ''}`} href="/products">
+        <Link className={`${styles.link} ${pathname === `/${lang}/products` ? styles.active : ''}`} href="/products">
           {dictionary.navigation.products}
         </Link>
         {isAuthenticated && (
-          <Link className={`${styles.link} ${pathname === '/dashboard' ? styles.active : ''}`} href="/dashboard">
+          <Link className={`${styles.link} ${pathname === `/${lang}/dashboard` ? styles.active : ''}`} href="/dashboard">
             {dictionary.navigation.dashboard}
           </Link>
         )}
@@ -68,11 +74,11 @@ export default function Heading() {
         ) : (
           <div className={styles.authButtons}>
             <Link href="/login">
-              <Button text={dictionary.navigation.login} variant="light" onClick={() => {}} />
+              <Button text={`${dictionary.navigation.login}/${dictionary.navigation.register}`} variant="light" onClick={() => {}} />
             </Link>
-            <Link href="/register">
+            {/* <Link href="/register">
               <Button text={dictionary.navigation.register} variant="light" onClick={() => {}} />
-            </Link>
+            </Link> */}
           </div>
         )}
       </div>

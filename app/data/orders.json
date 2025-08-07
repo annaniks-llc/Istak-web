@@ -5,14 +5,22 @@
     "items": [
       {
         "productId": "1",
-        "name": "Premium Vodka",
+        "name": {
+          "en": "Premium Vodka",
+          "hy": "Պրեմիում Օղի",
+          "ru": "Премиум Водка"
+        },
         "price": 45.99,
         "quantity": 2,
         "total": 91.98
       },
       {
         "productId": "3",
-        "name": "Single Malt Whiskey",
+        "name": {
+          "en": "Single Malt Whiskey",
+          "hy": "Միակ Մալտ Ուիսկի",
+          "ru": "Односолодовый Виски"
+        },
         "price": 79.99,
         "quantity": 1,
         "total": 79.99
@@ -25,18 +33,50 @@
     "status": "delivered",
     "paymentMethod": "credit_card",
     "shippingAddress": {
-      "street": "123 Main St",
-      "city": "New York",
-      "state": "NY",
+      "street": {
+        "en": "123 Main St",
+        "hy": "123 Գլխավոր Փողոց",
+        "ru": "123 Главная Улица"
+      },
+      "city": {
+        "en": "New York",
+        "hy": "Նյու Յորք",
+        "ru": "Нью-Йорк"
+      },
+      "state": {
+        "en": "NY",
+        "hy": "Նյու Յորք",
+        "ru": "Нью-Йорк"
+      },
       "zipCode": "10001",
-      "country": "United States"
+      "country": {
+        "en": "United States",
+        "hy": "ԱՄՆ",
+        "ru": "США"
+      }
     },
     "billingAddress": {
-      "street": "123 Main St",
-      "city": "New York",
-      "state": "NY",
+      "street": {
+        "en": "123 Main St",
+        "hy": "123 Գլխավոր Փողոց",
+        "ru": "123 Главная Улица"
+      },
+      "city": {
+        "en": "New York",
+        "hy": "Նյու Յորք",
+        "ru": "Нью-Йорк"
+      },
+      "state": {
+        "en": "NY",
+        "hy": "Նյու Յորք",
+        "ru": "Нью-Йорк"
+      },
       "zipCode": "10001",
-      "country": "United States"
+      "country": {
+        "en": "United States",
+        "hy": "ԱՄՆ",
+        "ru": "США"
+      }
     },
     "createdAt": "2024-01-15T14:30:00Z",
     "updatedAt": "2024-01-18T10:15:00Z",
@@ -49,14 +89,22 @@
     "items": [
       {
         "productId": "5",
-        "name": "London Dry Gin",
+        "name": {
+          "en": "London Dry Gin",
+          "hy": "Լոնդոնի Չոր Ջին",
+          "ru": "Лондонский Сухой Джин"
+        },
         "price": 38.99,
         "quantity": 1,
         "total": 38.99
       },
       {
         "productId": "9",
-        "name": "Espresso Martini",
+        "name": {
+          "en": "Espresso Martini",
+          "hy": "Էսպրեսո Մարտինի",
+          "ru": "Эспрессо Мартини"
+        },
         "price": 15.99,
         "quantity": 3,
         "total": 47.97
@@ -69,18 +117,50 @@
     "status": "processing",
     "paymentMethod": "paypal",
     "shippingAddress": {
-      "street": "456 Oak Ave",
-      "city": "Los Angeles",
-      "state": "CA",
+      "street": {
+        "en": "456 Oak Ave",
+        "hy": "456 Կաղնու Պող",
+        "ru": "456 Дубовый Проспект"
+      },
+      "city": {
+        "en": "Los Angeles",
+        "hy": "Լոս Անջելես",
+        "ru": "Лос-Анджелес"
+      },
+      "state": {
+        "en": "CA",
+        "hy": "Կալիֆոռնիա",
+        "ru": "Калифорния"
+      },
       "zipCode": "90210",
-      "country": "United States"
+      "country": {
+        "en": "United States",
+        "hy": "ԱՄՆ",
+        "ru": "США"
+      }
     },
     "billingAddress": {
-      "street": "456 Oak Ave",
-      "city": "Los Angeles",
-      "state": "CA",
+      "street": {
+        "en": "456 Oak Ave",
+        "hy": "456 Կաղնու Պող",
+        "ru": "456 Дубовый Проспект"
+      },
+      "city": {
+        "en": "Los Angeles",
+        "hy": "Լոս Անջելես",
+        "ru": "Лос-Анджелес"
+      },
+      "state": {
+        "en": "CA",
+        "hy": "Կալիֆոռնիա",
+        "ru": "Калифорния"
+      },
       "zipCode": "90210",
-      "country": "United States"
+      "country": {
+        "en": "United States",
+        "hy": "ԱՄՆ",
+        "ru": "США"
+      }
     },
     "createdAt": "2024-01-20T16:45:00Z",
     "updatedAt": "2024-01-20T16:45:00Z",
@@ -93,14 +173,22 @@
     "items": [
       {
         "productId": "6",
-        "name": "Premium Tequila",
+        "name": {
+          "en": "Premium Tequila",
+          "hy": "Պրեմիում Տեկիլա",
+          "ru": "Премиум Текила"
+        },
         "price": 49.99,
         "quantity": 1,
         "total": 49.99
       },
       {
         "productId": "8",
-        "name": "Craft Beer IPA",
+        "name": {
+          "en": "Craft Beer IPA",
+          "hy": "Արհեստական Գարեջուր IPA",
+          "ru": "Крафтовое Пиво IPA"
+        },
         "price": 8.99,
         "quantity": 6,
         "total": 53.94
@@ -113,18 +201,50 @@
     "status": "shipped",
     "paymentMethod": "credit_card",
     "shippingAddress": {
-      "street": "123 Main St",
-      "city": "New York",
-      "state": "NY",
+      "street": {
+        "en": "123 Main St",
+        "hy": "123 Գլխավոր Փողոց",
+        "ru": "123 Главная Улица"
+      },
+      "city": {
+        "en": "New York",
+        "hy": "Նյու Յորք",
+        "ru": "Нью-Йорк"
+      },
+      "state": {
+        "en": "NY",
+        "hy": "Նյու Յորք",
+        "ru": "Нью-Йорк"
+      },
       "zipCode": "10001",
-      "country": "United States"
+      "country": {
+        "en": "United States",
+        "hy": "ԱՄՆ",
+        "ru": "США"
+      }
     },
     "billingAddress": {
-      "street": "123 Main St",
-      "city": "New York",
-      "state": "NY",
+      "street": {
+        "en": "123 Main St",
+        "hy": "123 Գլխավոր Փողոց",
+        "ru": "123 Главная Улица"
+      },
+      "city": {
+        "en": "New York",
+        "hy": "Նյու Յորք",
+        "ru": "Нью-Йорк"
+      },
+      "state": {
+        "en": "NY",
+        "hy": "Նյու Յորք",
+        "ru": "Нью-Йорк"
+      },
       "zipCode": "10001",
-      "country": "United States"
+      "country": {
+        "en": "United States",
+        "hy": "ԱՄՆ",
+        "ru": "США"
+      }
     },
     "createdAt": "2024-01-19T11:20:00Z",
     "updatedAt": "2024-01-20T09:30:00Z",

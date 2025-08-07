@@ -6,6 +6,7 @@ import { useCartStore } from '@/app/zustand/store/cart';
 import toast from 'react-hot-toast';
 import styles from './products.module.scss';
 import { useDictionary } from '@/dictionary-provider';
+import ProductCard from '../components/ProductCard';
 
 const categories = ['all', 'vodka', 'cocktail', 'whiskey', 'rum', 'gin', 'tequila', 'wine', 'beer'] as const;
 
@@ -92,13 +93,34 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className={styles.container}>
+    <>
+      <div className={styles.topSection}>
+        <div className={styles.topSectionContent}>
+          <div className={styles.breadcrumb}>
+            <span>{dictionary.navigation.home}</span>
+            <span className={styles.breadcrumbSeparator}>/</span>
+            <span>{dictionary.products.title}</span>
+            {/* <span className={styles.breadcrumbSeparator}>/</span>
+            <span>{dictionary.products.categories.all}</span> */}
+          </div>
+          <h1 className={styles.mainTitle}>
+            {dictionary.products.title}
+          </h1>
+          {/* <p className={styles.subtitle}>
+            {dictionary.products.subtitle}
+          </p> */}
+        </div>
+      </div>
+      <div className={styles.container}>
+        {/* Top Section with Background Image */}
+
+        {/* 
       <div className={styles.header}>
         <h1>{dictionary.products.title}</h1>
         <p>{dictionary.products.subtitle}</p>
-      </div>
+      </div> */}
 
-      <div className={styles.filters}>
+        {/* <div className={styles.filters}>
         <div className={styles.searchContainer}>
           <input
             type="text"
@@ -143,87 +165,46 @@ export default function ProductsPage() {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className={styles.results}>
+        {/* <div className={styles.results}>
         <p className={styles.resultsCount}>
           {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} found
         </p>
+      </div> */}
+
+        {filteredProducts.length === 0 ? (
+          <div className={styles.emptyState}>
+            <p>{dictionary.products.search.noResults}</p>
+            <button
+              onClick={() => {
+                setSelectedCategory('all');
+                setSearchQuery('');
+              }}
+              className={styles.clearFiltersButton}
+            >
+              {dictionary.products.filters.clear}
+            </button>
+          </div>
+        ) : (
+          <div className={styles.productsGrid}>
+            {filteredProducts.map((product) => {
+              console.log(product, 'productttttt');
+              return <ProductCard
+                key={product.id}
+                title={product.name}
+                prise={product.price}
+                volume={product.volume}
+                src={product.image}
+                onAddToCart={() => handleAddToCart(product)}
+                disabled={!product.inStock}
+              />
+            })}
+          </div>
+        )}
       </div>
+    
+    </>
 
-      {filteredProducts.length === 0 ? (
-        <div className={styles.emptyState}>
-          <p>{dictionary.products.search.noResults}</p>
-          <button
-            onClick={() => {
-              setSelectedCategory('all');
-              setSearchQuery('');
-            }}
-            className={styles.clearFiltersButton}
-          >
-            {dictionary.products.filters.clear}
-          </button>
-        </div>
-      ) : (
-        <div className={styles.productsGrid}>
-          {filteredProducts.map((product) => (
-            <div key={product.id} className={styles.productCard}>
-              <div className={styles.productImage}>
-                <img src={product.image} alt={product.name} />
-                <div className={styles.productOverlay}>
-                  <button onClick={() => handleAddToCart(product)} className={styles.addToCartButton} disabled={!product.inStock}>
-                    {product.inStock ? dictionary.products.product.addToCart : dictionary.products.product.outOfStock}
-                  </button>
-                </div>
-              </div>
-
-              <div className={styles.productInfo}>
-                <div className={styles.productHeader}>
-                  <h3>{product.name}</h3>
-                  <span className={styles.category}>{product.category}</span>
-                </div>
-
-                <p className={styles.description}>{product.description}</p>
-
-                <div className={styles.productDetails}>
-                  <div className={styles.rating}>
-                    <span className={styles.stars}>
-                      {'★'.repeat(Math.floor(product.rating))}
-                      {'☆'.repeat(5 - Math.floor(product.rating))}
-                    </span>
-                    <span className={styles.ratingText}>
-                      {product.rating} ({product.reviews} reviews)
-                    </span>
-                  </div>
-
-                  <div className={styles.specs}>
-                    <span className={styles.volume}>{product.volume}ml</span>
-                    <span className={styles.alcohol}>{product.alcoholContent}% ABV</span>
-                  </div>
-
-                  <div className={styles.origin}>
-                    <span>Origin: {product.origin}</span>
-                  </div>
-                </div>
-
-                <div className={styles.productFooter}>
-                  <div className={styles.price}>
-                    <span className={styles.currency}>$</span>
-                    {product.price.toFixed(2)}
-                  </div>
-                  <div className={styles.stockStatus}>
-                    {product.inStock ? (
-                      <span className={styles.inStock}>In Stock</span>
-                    ) : (
-                      <span className={styles.outOfStock}>Out of Stock</span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
   );
 }

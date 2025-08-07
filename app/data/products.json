@@ -1,15 +1,27 @@
 [
   {
     "id": "1",
-    "name": "Premium Vodka",
-    "description": "Smooth and clean premium vodka with a crisp finish. Perfect for cocktails or sipping neat.",
+    "name": {
+      "en": "Premium Vodka",
+      "hy": "Պրեմիում Օղի",
+      "ru": "Премиум Водка"
+    },
+    "description": {
+      "en": "Smooth and clean premium vodka with a crisp finish. Perfect for cocktails or sipping neat.",
+      "hy": "Հարթ և մաքուր պրեմիում օղի կտրուկ ավարտով: Կատարյալ է կոկտեյլների կամ մաքուր խմելու համար:",
+      "ru": "Гладкая и чистая премиум водка с хрустящим финишем. Идеально подходит для коктейлей или употребления в чистом виде."
+    },
     "price": 45.99,
     "volume": 750,
     "category": "vodka",
-    "image": "/img/png/drink.png",
+    "image": "/img/png/drink1.png",
     "ingredients": ["Grain", "Water"],
     "alcoholContent": 40,
-    "origin": "Russia",
+    "origin": {
+      "en": "Russia",
+      "hy": "Ռուսաստան",
+      "ru": "Россия"
+    },
     "inStock": true,
     "rating": 4.5,
     "reviews": 128,
@@ -20,15 +32,27 @@
   },
   {
     "id": "2",
-    "name": "Classic Martini",
-    "description": "A sophisticated blend of gin and vermouth, garnished with an olive or lemon twist.",
+    "name": {
+      "en": "Classic Martini",
+      "hy": "Դասական Մարտինի",
+      "ru": "Классический Мартини"
+    },
+    "description": {
+      "en": "A sophisticated blend of gin and vermouth, garnished with an olive or lemon twist.",
+      "hy": "Դժինի և վերմուտի նրբագույն խառնուրդ, զարդարված ձիթապտղով կամ կիտրոնի պտղով:",
+      "ru": "Изысканная смесь джина и вермута, украшенная оливкой или лимонной цедрой."
+    },
     "price": 12.99,
     "volume": 200,
     "category": "cocktail",
-    "image": "/img/png/drink.png",
+    "image": "/img/png/drink2.png",
     "ingredients": ["Gin", "Dry Vermouth", "Olive"],
     "alcoholContent": 35,
-    "origin": "United States",
+    "origin": {
+      "en": "United States",
+      "hy": "ԱՄՆ",
+      "ru": "США"
+    },
     "inStock": true,
     "rating": 4.8,
     "reviews": 95,
@@ -39,15 +63,27 @@
   },
   {
     "id": "3",
-    "name": "Single Malt Whiskey",
-    "description": "Aged for 12 years in oak barrels, offering rich flavors of vanilla, oak, and spice.",
+    "name": {
+      "en": "Single Malt Whiskey",
+      "hy": "Միակ Մալտ Ուիսկի",
+      "ru": "Односолодовый Виски"
+    },
+    "description": {
+      "en": "Aged for 12 years in oak barrels, offering rich flavors of vanilla, oak, and spice.",
+      "hy": "12 տարի հասած կաղնու տակառներում, առաջարկում է վանիլի, կաղնու և համեմունքների հարուստ համեր:",
+      "ru": "Выдержанный 12 лет в дубовых бочках, предлагает богатые вкусы ванили, дуба и специй."
+    },
     "price": 89.99,
     "volume": 750,
     "category": "whiskey",
-    "image": "/img/png/drink.png",
+    "image": "/img/png/drink3.png",
     "ingredients": ["Malted Barley", "Water"],
     "alcoholContent": 43,
-    "origin": "Scotland",
+    "origin": {
+      "en": "Scotland",
+      "hy": "Շոտլանդիա",
+      "ru": "Шотландия"
+    },
     "inStock": true,
     "rating": 4.7,
     "reviews": 203,
@@ -58,15 +94,27 @@
   },
   {
     "id": "4",
-    "name": "Aged Rum",
-    "description": "Smooth Caribbean rum aged for 8 years, with notes of caramel and tropical fruits.",
+    "name": {
+      "en": "Aged Rum",
+      "hy": "Հասած Ռոմ",
+      "ru": "Выдержанный Ром"
+    },
+    "description": {
+      "en": "Smooth Caribbean rum aged for 8 years, with notes of caramel and tropical fruits.",
+      "hy": "Հարթ կարիբյան ռոմ 8 տարի հասած, կարամելի և արևադարձային մրգերի նոտաներով:",
+      "ru": "Гладкий карибский ром, выдержанный 8 лет, с нотами карамели и тропических фруктов."
+    },
     "price": 65.99,
     "volume": 750,
     "category": "rum",
-    "image": "/img/png/drink.png",
+    "image": "/img/png/drink4.png",
     "ingredients": ["Sugarcane", "Water"],
     "alcoholContent": 40,
-    "origin": "Jamaica",
+    "origin": {
+      "en": "Jamaica",
+      "hy": "Ջամայկա",
+      "ru": "Ямайка"
+    },
     "inStock": true,
     "rating": 4.3,
     "reviews": 87,
@@ -77,15 +125,27 @@
   },
   {
     "id": "5",
-    "name": "London Dry Gin",
-    "description": "Classic London dry gin with juniper berries and traditional botanicals.",
+    "name": {
+      "en": "London Dry Gin",
+      "hy": "Լոնդոնի Չոր Ջին",
+      "ru": "Лондонский Сухой Джин"
+    },
+    "description": {
+      "en": "Classic London dry gin with juniper berries and traditional botanicals.",
+      "hy": "Դասական լոնդոնյան չոր ջին գիհու հատապտուղներով և ավանդական բուսաբանական նյութերով:",
+      "ru": "Классический лондонский сухой джин с ягодами можжевельника и традиционными ботаническими ингредиентами."
+    },
     "price": 38.99,
     "volume": 750,
     "category": "gin",
-    "image": "/img/png/drink.png",
+    "image": "/img/png/drink1.png",
     "ingredients": ["Juniper", "Botanicals", "Grain"],
     "alcoholContent": 47,
-    "origin": "England",
+    "origin": {
+      "en": "England",
+      "hy": "Անգլիա",
+      "ru": "Англия"
+    },
     "inStock": true,
     "rating": 4.6,
     "reviews": 156,
@@ -96,15 +156,27 @@
   },
   {
     "id": "6",
-    "name": "Premium Tequila",
-    "description": "100% agave tequila with smooth finish and authentic Mexican character.",
+    "name": {
+      "en": "Premium Tequila",
+      "hy": "Պրեմիում Տեկիլա",
+      "ru": "Премиум Текила"
+    },
+    "description": {
+      "en": "100% agave tequila with smooth finish and authentic Mexican character.",
+      "hy": "100% ագավե տեկիլա հարթ ավարտով և ավանդական մեքսիկական բնույթով:",
+      "ru": "100% агавовая текила с гладким финишем и аутентичным мексиканским характером."
+    },
     "price": 55.99,
     "volume": 750,
     "category": "tequila",
-    "image": "/img/png/drink.png",
+    "image": "/img/png/drink2.png",
     "ingredients": ["Blue Agave"],
     "alcoholContent": 40,
-    "origin": "Mexico",
+    "origin": {
+      "en": "Mexico",
+      "hy": "Մեքսիկա",
+      "ru": "Мексика"
+    },
     "inStock": true,
     "rating": 4.4,
     "reviews": 112,
@@ -115,15 +187,27 @@
   },
   {
     "id": "7",
-    "name": "Red Wine Blend",
-    "description": "Rich red wine blend with notes of dark fruit, oak, and subtle tannins.",
+    "name": {
+      "en": "Red Wine Blend",
+      "hy": "Կարմիր Գինու Խառնուրդ",
+      "ru": "Красное Вино Бленд"
+    },
+    "description": {
+      "en": "Rich red wine blend with notes of dark fruit, oak, and subtle tannins.",
+      "hy": "Հարուստ կարմիր գինու խառնուրդ մուգ մրգերի, կաղնու և նուրբ տանինների նոտաներով:",
+      "ru": "Богатый бленд красного вина с нотами темных фруктов, дуба и тонких танинов."
+    },
     "price": 28.99,
     "volume": 750,
     "category": "wine",
-    "image": "/img/png/drink.png",
+    "image": "/img/png/drink3.png",
     "ingredients": ["Red Grapes"],
     "alcoholContent": 13.5,
-    "origin": "France",
+    "origin": {
+      "en": "France",
+      "hy": "Ֆրանսիա",
+      "ru": "Франция"
+    },
     "inStock": true,
     "rating": 4.2,
     "reviews": 89,
@@ -134,15 +218,27 @@
   },
   {
     "id": "8",
-    "name": "Craft Beer IPA",
-    "description": "Hoppy India Pale Ale with citrus notes and balanced bitterness.",
+    "name": {
+      "en": "Craft Beer IPA",
+      "hy": "Արհեստական Գարեջուր IPA",
+      "ru": "Крафтовое Пиво IPA"
+    },
+    "description": {
+      "en": "Hoppy India Pale Ale with citrus notes and balanced bitterness.",
+      "hy": "Հոպի Ինդիա Պեյլ Էյլ ցիտրուսային նոտաներով և հավասարակշռված դառնությամբ:",
+      "ru": "Хмельной India Pale Ale с цитрусовыми нотами и сбалансированной горечью."
+    },
     "price": 8.99,
     "volume": 330,
     "category": "beer",
-    "image": "/img/png/drink.png",
+    "image": "/img/png/drink4.png",
     "ingredients": ["Malt", "Hops", "Yeast", "Water"],
     "alcoholContent": 6.5,
-    "origin": "United States",
+    "origin": {
+      "en": "United States",
+      "hy": "ԱՄՆ",
+      "ru": "США"
+    },
     "inStock": true,
     "rating": 4.1,
     "reviews": 234,
@@ -153,15 +249,27 @@
   },
   {
     "id": "9",
-    "name": "Espresso Martini",
-    "description": "Coffee-infused cocktail with vodka, coffee liqueur, and fresh espresso.",
+    "name": {
+      "en": "Espresso Martini",
+      "hy": "Էսպրեսո Մարտինի",
+      "ru": "Эспрессо Мартини"
+    },
+    "description": {
+      "en": "Coffee-infused cocktail with vodka, coffee liqueur, and fresh espresso.",
+      "hy": "Սուրճով ներծծված կոկտեյլ օղի, սուրճի լիկյոր և թարմ էսպրեսոյով:",
+      "ru": "Коктейль с кофе, водкой, кофейным ликером и свежим эспрессо."
+    },
     "price": 15.99,
     "volume": 200,
     "category": "cocktail",
-    "image": "/img/png/drink.png",
+    "image": "/img/png/drink1.png",
     "ingredients": ["Vodka", "Coffee Liqueur", "Espresso"],
     "alcoholContent": 30,
-    "origin": "United States",
+    "origin": {
+      "en": "United States",
+      "hy": "ԱՄՆ",
+      "ru": "США"
+    },
     "inStock": true,
     "rating": 4.9,
     "reviews": 67,
@@ -172,15 +280,27 @@
   },
   {
     "id": "10",
-    "name": "Bourbon Whiskey",
-    "description": "American bourbon aged in charred oak barrels with sweet vanilla and caramel notes.",
+    "name": {
+      "en": "Bourbon Whiskey",
+      "hy": "Բուրբոն Ուիսկի",
+      "ru": "Бурбон Виски"
+    },
+    "description": {
+      "en": "American bourbon aged in charred oak barrels with sweet vanilla and caramel notes.",
+      "hy": "Ամերիկյան բուրբոն հասած այրված կաղնու տակառներում քաղցր վանիլի և կարամելի նոտաներով:",
+      "ru": "Американский бурбон, выдержанный в обожженных дубовых бочках со сладкими нотами ванили и карамели."
+    },
     "price": 42.99,
     "volume": 750,
     "category": "whiskey",
-    "image": "/img/png/drink.png",
+    "image": "/img/png/drink2.png",
     "ingredients": ["Corn", "Rye", "Barley"],
     "alcoholContent": 45,
-    "origin": "United States",
+    "origin": {
+      "en": "United States",
+      "hy": "ԱՄՆ",
+      "ru": "США"
+    },
     "inStock": true,
     "rating": 4.3,
     "reviews": 178,

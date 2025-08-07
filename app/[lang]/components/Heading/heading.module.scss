@@ -16,6 +16,10 @@
     background: #221c13;
   }
 
+  &.darkColor {
+    background: #231F20;
+  }
+
   &::after {
     content: "";
     height: 1px;
@@ -61,7 +65,7 @@
     display: flex;
     align-items: center;
     gap: 28px;
-    padding: 0px 28px;
+    padding-left: 28px;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     height: fit-content;
 
@@ -130,5 +134,9 @@
       width: 237px;
       height: 52px;
     }
+  }
+  @media (max-width: 1111px) {
+      padding: 0 50px;
+    
   }
 }

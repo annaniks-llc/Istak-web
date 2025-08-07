@@ -7,7 +7,7 @@ function Products() {
   return (
     <div className={styles.container}>
       <ProductCard title="Wheat Malt" prise={300} volume={0.3} src="/img/png/drink.png" />
-      <ProductCard title="Wheat Malt" prise={300} volume={0.3} src="/img/png/drink.png" />
+      <ProductCard title="Wheat Malt" prise={300} volume={0.3} src="/img/png/drink2.png" />
       <ProductCard title="Wheat Malt" prise={300} volume={0.3} src="/img/png/drink.png" />
     </div>
   );
