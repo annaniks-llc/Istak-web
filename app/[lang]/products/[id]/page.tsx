@@ -1,19 +1,23 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useProductsStore } from '@/app/zustand/store/products';
+import { Product, useProductsStore } from '@/app/zustand/store/products';
 import { useCartStore } from '@/app/zustand/store/cart';
 import toast from 'react-hot-toast';
 import styles from './product-details.module.scss';
 import { useDictionary } from '@/dictionary-provider';
 import Breadcrumb from '../../components/Breadcrumb';
 import ProductImageScroll from '@/app/[lang]/components/ProductImageScroll';
+import Button from '../../components/Button';
+import ProductCard from '../../components/ProductCard';
 
 export default function ProductDetailsPage() {
   const [quantity, setQuantity] = useState(1);
   const [selectedVolume, setSelectedVolume] = useState(0.5);
   const [isContainerScrolling, setIsContainerScrolling] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [activeInDiv, setActiveInDiv] = useState(false);
   const params = useParams();
   const router = useRouter();
   const productId = params.id as string;
@@ -26,10 +30,11 @@ export default function ProductDetailsPage() {
   const product = getProductById(productId);
   const relatedProducts = product
     ? getProductsByCategory(product.category)
-        .filter((p) => p.id !== product.id)
-        .slice(0, 3)
+      .filter((p) => p.id !== product.id)
+      .slice(0, 3)
     : [];
-
+  console.log(relatedProducts,"relatedProductsrelatedProducts");
+  
   // Product images - first image and second image
   const productImages = product ? [
     product.image, // First image (original)
@@ -57,113 +62,62 @@ export default function ProductDetailsPage() {
   }, [isLoading, products.length, product, router, lang, productId]);
 
   // Custom scroll behavior for product image container
+
+
   useEffect(() => {
-    let isContainerScrolling = false;
-
     const handleWheel = (e: WheelEvent) => {
-      const container = document.querySelector(`.${styles.productImageContainer}`);
+      const container = containerRef.current;
       if (!container) return;
 
-      const containerRect = container.getBoundingClientRect();
+      const rect = container.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // Debug logging
-      console.log('Wheel event:', {
-        deltaY: e.deltaY,
-        containerTop: containerRect.top,
-        containerBottom: containerRect.bottom,
-        windowHeight,
-        inContainer: containerRect.top <= windowHeight && containerRect.bottom >= 0
-      });
+      // Եթե div-ը էկրանի մեջ է
+      const inView = rect.top <= windowHeight && rect.bottom >= 0;
 
-      // Check if we're in the image container area
-      if (containerRect.top <= windowHeight && containerRect.bottom >= 0) {
-        const containerElement = container as HTMLElement;
-        const currentScrollTop = containerElement.scrollTop;
-        const maxScrollTop = containerElement.scrollHeight - containerElement.clientHeight;
-        
-        console.log('Container scroll info:', {
-          currentScrollTop,
-          maxScrollTop,
-          scrollHeight: containerElement.scrollHeight,
-          clientHeight: containerElement.clientHeight
-        });
-        
-        // Check if we can scroll within the container
-        if (currentScrollTop > 0 || e.deltaY < 0) {
-          // We can scroll up or we're scrolling down and not at bottom
-          if (!(currentScrollTop >= maxScrollTop && e.deltaY > 0)) {
-            // Prevent window scroll and handle container scroll instead
-            e.preventDefault();
-            e.stopPropagation();
-            
-            console.log('Scrolling within container');
-            
-            // Apply scroll to the container
-            containerElement.scrollTop += e.deltaY;
-            setIsContainerScrolling(true);
-            return;
-          }
-        } else if (e.deltaY > 0) {
-          // We're at the top and scrolling down - start container scroll
-          e.preventDefault();
-          e.stopPropagation();
-          
-          console.log('Starting container scroll');
-          
-          containerElement.scrollTop += e.deltaY;
-          setIsContainerScrolling(true);
-          return;
+      if (inView) {
+        const atTop = container.scrollTop === 0;
+        const atBottom =
+          container.scrollTop + container.clientHeight >= container.scrollHeight;
+
+        if (!activeInDiv) {
+          // Սկսում ենք div scroll
+          setActiveInDiv(true);
         }
-      }
-      
-      // If we get here, allow normal window scrolling
-      console.log('Allowing normal window scroll');
-      setIsContainerScrolling(false);
-    };
 
-    const handleScroll = () => {
-      if (isContainerScrolling) return;
+        if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
+          // Div-ում հասել ենք վերև/ներքև -> վերադարձնում ենք window scroll-ին
+          setActiveInDiv(false);
+          return; // թույլ ենք տալիս window scroll
+        }
 
-      const container = document.querySelector(`.${styles.productImageContainer}`);
-      if (!container) return;
-
-      const containerRect = container.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // When container enters viewport, prepare for container scrolling
-      if (containerRect.top <= windowHeight && containerRect.top > 0) {
-        // Container is in view - scroll events will be handled by wheel handler
-        setIsContainerScrolling(false);
+        // Քայլում ենք div-ի մեջ
+        e.preventDefault();
+        container.scrollTop += e.deltaY;
+      } else {
+        setActiveInDiv(false); // դուրս ենք div-ից
       }
     };
 
-    // Add event listeners
-    const container = document.querySelector(`.${styles.productImageContainer}`);
-    if (container) {
-      container.addEventListener('wheel', handleWheel as EventListener, { passive: false });
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("wheel", handleWheel, { passive: false });
 
     return () => {
-      if (container) {
-        container.removeEventListener('wheel', handleWheel as EventListener);
-      }
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("wheel", handleWheel);
     };
-  }, [styles.productImageContainer]);
+  }, [activeInDiv]);
 
-  const handleAddToCart = () => {
+
+
+  const handleAddToCart = (item?:Product) => {
     if (!product) return;
-
+    const productForCard=item?item:product
     for (let i = 0; i < quantity; i++) {
       addItem({
-        id: product.id,
-        name: typeof product.name === 'string' ? product.name : product.name.en,
-        price: product.price,
+        id: productForCard.id,
+        name: typeof productForCard.name === 'string' ? productForCard.name : productForCard.name.en,
+        price: productForCard.price,
         volume: selectedVolume * 1000, // Convert to ml
-        image: product.image,
+        image: productForCard.image,
       });
     }
 
@@ -237,7 +191,7 @@ export default function ProductDetailsPage() {
       <Breadcrumb items={breadcrumbItems} />
 
       <div className={styles.productSection}>
-        <div className={styles.productImageContainer}>
+        <div ref={containerRef} className={styles.productImageContainer}>
           <img
             src={product.image}
             alt={getLocalizedText(product.name)}
@@ -248,23 +202,7 @@ export default function ProductDetailsPage() {
             alt={getLocalizedText(product.name)}
             className={styles.mainImage}
           />
-          
-          {/* Debug indicator */}
-          <div style={{
-            position: 'absolute',
-            top: '10px',
-            right: '10px',
-            background: 'rgba(0,0,0,0.8)',
-            color: 'white',
-            padding: '8px',
-            borderRadius: '4px',
-            fontSize: '12px',
-            zIndex: 1000
-          }}>
-            <div>Container Height: 750px</div>
-            <div>Images: 2</div>
-            <div>Scroll Active: {isContainerScrolling ? 'Yes' : 'No'}</div>
-          </div>
+
         </div>
 
         <div className={styles.productInfo}>
@@ -306,58 +244,59 @@ export default function ProductDetailsPage() {
             <p>{getLocalizedText(product.description)}</p>
           </div>
 
-          <div className={styles.quantitySection}>
-            <span className={styles.quantityLabel}>ՔԱՆԱԿԸ</span>
+          <div className={styles.quantitySelector}>
+            <label htmlFor="quantity">Quantity:</label>
             <div className={styles.quantityControls}>
-              <input
-                type="number"
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-              />
+              <button
+                onClick={() => handleQuantityChange(quantity - 1)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handleQuantityChange(quantity - 1);
+                  }
+                }}
+                disabled={quantity <= 1}
+                className={styles.quantityButton}
+              >
+                -
+              </button>
+              <div className={styles.quantity}>{quantity}</div>
+              <button
+                onClick={() => handleQuantityChange(quantity + 1)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handleQuantityChange(quantity + 1);
+                  }
+                }}
+                disabled={quantity >= 10}
+                className={styles.quantityButton}
+              >
+                +
+              </button>
             </div>
           </div>
 
           <div className={styles.actionButtons}>
-            <button className={styles.wishlistButton}>
-              Add To Wishlist
-            </button>
-            <button
-              onClick={handleAddToCart}
-              disabled={!product.inStock}
-              className={styles.addToCartButton}
-            >
-              Add To Cart
-            </button>
+            <Button text="Add to cart" variant="default" onClick={handleAddToCart} />
+           
           </div>
         </div>
       </div>
 
-      {relatedProducts.length > 0 && (
+      {products.length > 0 && (
         <div className={styles.relatedProducts}>
-          <h2>Related Products</h2>
+          <h2>այլ ապրանքներ</h2>
           <div className={styles.relatedGrid}>
-            {relatedProducts.map((relatedProduct) => (
-              <button
-                key={relatedProduct.id}
-                className={styles.relatedCard}
-                onClick={() => router.push(`/${lang}/products/${relatedProduct.id}`)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    router.push(`/${lang}/products/${relatedProduct.id}`);
-                  }
-                }}
-                type="button"
-              >
-                <div className={styles.relatedImage}>
-                  <img src={relatedProduct.image} alt={getLocalizedText(relatedProduct.name)} />
-                </div>
-                <div className={styles.relatedInfo}>
-                  <h3>{getLocalizedText(relatedProduct.name)}</h3>
-                  <div className={styles.relatedPrice}>
-                    {relatedProduct.price} Դր
-                  </div>
-                </div>
-              </button>
+            {products.map((item) => (
+              <ProductCard
+                key={item.id}
+                title={item.name}
+                prise={item.price}
+                volume={item.volume}
+                src={item.image}
+                onAddToCart={() => handleAddToCart(item)}
+                goTo={()=>router.push(`/${lang}/products/${item.id}`)}
+                disabled={!item.inStock}
+              />
             ))}
           </div>
         </div>

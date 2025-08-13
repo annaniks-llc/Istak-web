@@ -10,11 +10,12 @@ interface IProductCard {
   prise: number;
   volume: number;
   onAddToCart?: () => void;
+  goTo?: () => void;
   disabled?: boolean;
   showAddToCartButton?: boolean;
 }
 
-function ProductCard({ src, title, prise, volume, onAddToCart, disabled = false, showAddToCartButton = true }: IProductCard) {
+function ProductCard({ src, title, prise, volume, onAddToCart, goTo, disabled = false, showAddToCartButton = true }: IProductCard) {
   const { lang } = useParams();
   const currentLang = lang as string;
 
@@ -38,7 +39,7 @@ function ProductCard({ src, title, prise, volume, onAddToCart, disabled = false,
           />
         </div>} 
       </div>
-      <div className={styles.bottom}>
+      <div className={styles.bottom} onClick={goTo}>
         <span className={styles.title}>{getLocalizedTitle()}</span>
         <div className={styles.productInfo}>
           <span className={styles.volume}>

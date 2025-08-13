@@ -10,13 +10,10 @@
 }
 
 .productSection {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 48px;
   margin-bottom: 48px;
-  // background: white;
-  border-radius: 12px;
-  padding: 32px;
+  // padding: 32px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -25,22 +22,61 @@
   }
 }
 
+.quantitySelector {
+  display: flex;
+  align-items: center;
+
+  .quantityControls {
+    margin-left: 20px;
+    width: 125px;
+    height: 40px;
+    border: 0.77px solid #EBE8E4;
+    display: flex;
+    align-items: center;
+
+    .quantityButton {
+      width: 41px;
+      background: none;
+      border: none;
+      font-size: 20px;
+    }
+
+    .quantity {
+      width: 41px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
 .productImageContainer {
   margin-bottom: 40px;
+  width: 487px;
   height: 750px;
   overflow-y: scroll;
 
   position: relative;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  // border-radius: 12px;
   background: #fff;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow-y: auto;
+  /* scroll-ը պահում ենք */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+
+  /* IE և հին Edge */
+  &::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+  }
 
   @media (max-width: 768px) {
-    border-radius: 8px;
+    // border-radius: 8px;
     margin-bottom: 16px;
   }
 
@@ -146,8 +182,18 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid #EBE8E4;
+  margin-bottom: 25px;
+  position: relative;
+  &::after{
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    width: 570px;
+    max-width: 100%;
+    height: 1px;
+    background: #EBE8E4;
+  }
+  // border-bottom: 1px solid #EBE8E4;
 
   .volumeLabel {
     font-weight: 600;
@@ -173,6 +219,7 @@
       background: transparent;
       border: 1px solid $color_primary_dark;
       color: $color_primary_dark;
+      box-sizing: border-box;
 
       &:hover {
         border-color: $color_secondary;
@@ -218,7 +265,7 @@
     gap: 12px;
     background: white;
     border: 2px solid #e5e7eb;
-    border-radius: 6px;
+    // border-radius: 6px;
     padding: 4px;
     width: 82px;
     height: 50px;
@@ -244,13 +291,15 @@
   display: flex;
   gap: 16px;
   margin-top: 16px;
+  width: 200px;
+  height: 52px;
 
   .wishlistButton {
     background: #231F20;
     color: white;
     border: none;
     padding: 16px 24px;
-    border-radius: 8px;
+    // border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -289,15 +338,20 @@
 
 .relatedProducts {
   background: white;
-  border-radius: 12px;
-  padding: 32px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 
   h2 {
     font-size: 24px;
     font-weight: 700;
-    color: $color_primary_dark;
-    margin-bottom: 24px;
+    color: $color_secondary;
+    margin-bottom: 50px;
+    margin-top: 100px;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 48px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+    text-align: center;
   }
 }
 
@@ -309,7 +363,7 @@
 
 .relatedCard {
   border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  // border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s ease;

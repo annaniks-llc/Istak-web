@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import styles from './products.module.scss';
 import { useDictionary } from '@/dictionary-provider';
 import ProductCard from '../components/ProductCard';
+import { useParams, useRouter } from 'next/navigation';
 
 const categories = ['all', 'vodka', 'cocktail', 'whiskey', 'rum', 'gin', 'tequila', 'wine', 'beer'] as const;
 
@@ -15,7 +16,8 @@ export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'name' | 'price' | 'rating'>('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
-
+  const router = useRouter();
+  const { lang } = useParams();
   const { products, isLoading, fetchProducts, searchProducts } = useProductsStore();
   const { addItem } = useCartStore();
   const dictionary = useDictionary();
@@ -26,10 +28,10 @@ export default function ProductsPage() {
 
   const handleAddToCart = (product: Product) => {
     // Handle multilingual product name
-    const productName = typeof product.name === 'string' 
-      ? product.name 
+    const productName = typeof product.name === 'string'
+      ? product.name
       : product.name.en || 'Product';
-    
+
     addItem({
       id: product.id,
       name: productName,
@@ -201,14 +203,14 @@ export default function ProductsPage() {
                 volume={product.volume}
                 src={product.image}
                 onAddToCart={() => handleAddToCart(product)}
+                goTo={() => router.push(`/${lang}/products/${product.id}`)}
                 disabled={!product.inStock}
-                showAddToCartButton={false}
               />
             })}
           </div>
         )}
       </div>
-    
+
     </>
 
   );
