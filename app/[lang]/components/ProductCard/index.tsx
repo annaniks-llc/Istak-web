@@ -11,9 +11,10 @@ interface IProductCard {
   volume: number;
   onAddToCart?: () => void;
   disabled?: boolean;
+  showAddToCartButton?: boolean;
 }
 
-function ProductCard({ src, title, prise, volume, onAddToCart, disabled = false }: IProductCard) {
+function ProductCard({ src, title, prise, volume, onAddToCart, disabled = false, showAddToCartButton = true }: IProductCard) {
   const { lang } = useParams();
   const currentLang = lang as string;
 
@@ -29,13 +30,13 @@ function ProductCard({ src, title, prise, volume, onAddToCart, disabled = false 
     <div className={styles.item}>
       <div className={styles.imageCont}>
         <img src={src} className={styles.image} alt={getLocalizedTitle()} />
-        <div className={styles.addToCartOverlay}>
+        {showAddToCartButton && <div className={styles.addToCartOverlay}>
           <AddToCartButton 
             onClick={onAddToCart}
             disabled={disabled}
             className={styles.addToCartButton}
           />
-        </div>
+        </div>} 
       </div>
       <div className={styles.bottom}>
         <span className={styles.title}>{getLocalizedTitle()}</span>

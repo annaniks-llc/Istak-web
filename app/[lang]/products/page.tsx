@@ -25,14 +25,19 @@ export default function ProductsPage() {
   }, [fetchProducts]);
 
   const handleAddToCart = (product: Product) => {
+    // Handle multilingual product name
+    const productName = typeof product.name === 'string' 
+      ? product.name 
+      : product.name.en || 'Product';
+    
     addItem({
       id: product.id,
-      name: product.name,
+      name: productName,
       price: product.price,
       volume: product.volume,
       image: product.image,
     });
-    toast.success(`${product.name} added to cart!`);
+    toast.success(`${productName} added to cart!`);
   };
 
   const filteredProducts = React.useMemo(() => {
@@ -55,8 +60,8 @@ export default function ProductsPage() {
 
       switch (sortBy) {
         case 'name':
-          aValue = a.name.toLowerCase();
-          bValue = b.name.toLowerCase();
+          aValue = typeof a.name === 'string' ? a.name.toLowerCase() : a.name.en.toLowerCase();
+          bValue = typeof b.name === 'string' ? b.name.toLowerCase() : b.name.en.toLowerCase();
           break;
         case 'price':
           aValue = a.price;
@@ -67,8 +72,8 @@ export default function ProductsPage() {
           bValue = b.rating;
           break;
         default:
-          aValue = a.name.toLowerCase();
-          bValue = b.name.toLowerCase();
+          aValue = typeof a.name === 'string' ? a.name.toLowerCase() : a.name.en.toLowerCase();
+          bValue = typeof b.name === 'string' ? b.name.toLowerCase() : b.name.en.toLowerCase();
       }
 
       if (sortOrder === 'asc') {
@@ -189,7 +194,6 @@ export default function ProductsPage() {
         ) : (
           <div className={styles.productsGrid}>
             {filteredProducts.map((product) => {
-              console.log(product, 'productttttt');
               return <ProductCard
                 key={product.id}
                 title={product.name}
@@ -198,6 +202,7 @@ export default function ProductsPage() {
                 src={product.image}
                 onAddToCart={() => handleAddToCart(product)}
                 disabled={!product.inStock}
+                showAddToCartButton={false}
               />
             })}
           </div>

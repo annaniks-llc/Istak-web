@@ -8,6 +8,7 @@ describe('ProductCard', () => {
     title: 'Test Product',
     prise: 500,
     volume: 0.5,
+    showAddToCartButton: true,
   };
 
   it('renders product card with correct props', () => {
@@ -30,6 +31,7 @@ describe('ProductCard', () => {
       title: 'Another Product',
       prise: 750,
       volume: 1.0,
+      showAddToCartButton: true,
     };
 
     render(<ProductCard {...differentProps} />);
@@ -47,6 +49,7 @@ describe('ProductCard', () => {
       title: 'Free Product',
       prise: 0,
       volume: 0,
+      showAddToCartButton: true,
     };
 
     render(<ProductCard {...zeroProps} />);

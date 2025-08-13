@@ -7,14 +7,19 @@ import { useCartStore } from '@/app/zustand/store/cart';
 import toast from 'react-hot-toast';
 import styles from './product-details.module.scss';
 import { useDictionary } from '@/dictionary-provider';
+import Breadcrumb from '../../components/Breadcrumb';
+import ProductImageScroll from '@/app/[lang]/components/ProductImageScroll';
 
 export default function ProductDetailsPage() {
   const [quantity, setQuantity] = useState(1);
+  const [selectedVolume, setSelectedVolume] = useState(0.5);
+  const [isContainerScrolling, setIsContainerScrolling] = useState(false);
   const params = useParams();
   const router = useRouter();
   const productId = params.id as string;
+  const { lang } = params;
 
-  const { getProductById, getProductsByCategory, products } = useProductsStore();
+  const { getProductById, getProductsByCategory, products, isLoading, fetchProducts } = useProductsStore();
   const { addItem } = useCartStore();
   const dictionary = useDictionary();
 
@@ -25,12 +30,129 @@ export default function ProductDetailsPage() {
         .slice(0, 3)
     : [];
 
+  // Product images - first image and second image
+  const productImages = product ? [
+    product.image, // First image (original)
+    "/img/png/drink1.png", // Second image (variation)
+    "/img/png/drink2.png" // Third image (another variation)
+  ] : [];
+
+  // Debug: log the images array
+  console.log('Product Images:', productImages);
+  console.log('Product:', product);
+
   useEffect(() => {
-    if (!product && products.length > 0) {
-      toast.error('Product not found');
-      router.push('/products');
+    // Fetch products if they haven't been loaded yet
+    if (products.length === 0) {
+      void fetchProducts();
     }
-  }, [product, products.length, router]);
+  }, [products.length, fetchProducts]);
+
+  useEffect(() => {
+    // Check if product exists after products are loaded
+    if (!isLoading && products.length > 0 && !product) {
+      toast.error('Product not found');
+      router.push(`/${lang}/products`);
+    }
+  }, [isLoading, products.length, product, router, lang, productId]);
+
+  // Custom scroll behavior for product image container
+  useEffect(() => {
+    let isContainerScrolling = false;
+
+    const handleWheel = (e: WheelEvent) => {
+      const container = document.querySelector(`.${styles.productImageContainer}`);
+      if (!container) return;
+
+      const containerRect = container.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Debug logging
+      console.log('Wheel event:', {
+        deltaY: e.deltaY,
+        containerTop: containerRect.top,
+        containerBottom: containerRect.bottom,
+        windowHeight,
+        inContainer: containerRect.top <= windowHeight && containerRect.bottom >= 0
+      });
+
+      // Check if we're in the image container area
+      if (containerRect.top <= windowHeight && containerRect.bottom >= 0) {
+        const containerElement = container as HTMLElement;
+        const currentScrollTop = containerElement.scrollTop;
+        const maxScrollTop = containerElement.scrollHeight - containerElement.clientHeight;
+        
+        console.log('Container scroll info:', {
+          currentScrollTop,
+          maxScrollTop,
+          scrollHeight: containerElement.scrollHeight,
+          clientHeight: containerElement.clientHeight
+        });
+        
+        // Check if we can scroll within the container
+        if (currentScrollTop > 0 || e.deltaY < 0) {
+          // We can scroll up or we're scrolling down and not at bottom
+          if (!(currentScrollTop >= maxScrollTop && e.deltaY > 0)) {
+            // Prevent window scroll and handle container scroll instead
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Scrolling within container');
+            
+            // Apply scroll to the container
+            containerElement.scrollTop += e.deltaY;
+            setIsContainerScrolling(true);
+            return;
+          }
+        } else if (e.deltaY > 0) {
+          // We're at the top and scrolling down - start container scroll
+          e.preventDefault();
+          e.stopPropagation();
+          
+          console.log('Starting container scroll');
+          
+          containerElement.scrollTop += e.deltaY;
+          setIsContainerScrolling(true);
+          return;
+        }
+      }
+      
+      // If we get here, allow normal window scrolling
+      console.log('Allowing normal window scroll');
+      setIsContainerScrolling(false);
+    };
+
+    const handleScroll = () => {
+      if (isContainerScrolling) return;
+
+      const container = document.querySelector(`.${styles.productImageContainer}`);
+      if (!container) return;
+
+      const containerRect = container.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // When container enters viewport, prepare for container scrolling
+      if (containerRect.top <= windowHeight && containerRect.top > 0) {
+        // Container is in view - scroll events will be handled by wheel handler
+        setIsContainerScrolling(false);
+      }
+    };
+
+    // Add event listeners
+    const container = document.querySelector(`.${styles.productImageContainer}`);
+    if (container) {
+      container.addEventListener('wheel', handleWheel as EventListener, { passive: false });
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      if (container) {
+        container.removeEventListener('wheel', handleWheel as EventListener);
+      }
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [styles.productImageContainer]);
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -38,9 +160,9 @@ export default function ProductDetailsPage() {
     for (let i = 0; i < quantity; i++) {
       addItem({
         id: product.id,
-        name: product.name,
+        name: typeof product.name === 'string' ? product.name : product.name.en,
         price: product.price,
-        volume: product.volume,
+        volume: selectedVolume * 1000, // Convert to ml
         image: product.image,
       });
     }
@@ -54,7 +176,15 @@ export default function ProductDetailsPage() {
     }
   };
 
-  if (!product) {
+  const getLocalizedText = (text: string | { en: string; hy: string; ru: string }) => {
+    if (typeof text === 'string') {
+      return text;
+    }
+    return text[lang as keyof typeof text] || text.en;
+  };
+
+  // Show loading state while fetching products
+  if (isLoading || products.length === 0) {
     return (
       <div className={styles.container}>
         <div className={styles.loading}>
@@ -65,122 +195,138 @@ export default function ProductDetailsPage() {
     );
   }
 
+  // Show error state if product not found
+  if (!product) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.loading}>
+          <p>Product not found</p>
+          <button
+            onClick={() => router.push(`/${lang}/products`)}
+            className={styles.backButton}
+          >
+            Back to Products
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const volumeOptions = [0.5, 0.75, 1.0];
+
+  // Prepare breadcrumb items
+  const breadcrumbItems = [
+    {
+      label: 'HOME',
+      href: `/${lang}`
+    },
+    {
+      label: 'SHOP',
+      href: `/${lang}/products`
+    },
+    {
+      label: product.category.toUpperCase()
+    },
+    {
+      label: getLocalizedText(product.name).toUpperCase()
+    }
+  ];
+
   return (
     <div className={styles.container}>
-      <div className={styles.breadcrumb}>
-        <button onClick={() => router.push('/products')} className={styles.backButton}>
-          ← {dictionary.common.back} {dictionary.navigation.products}
-        </button>
-      </div>
+      <Breadcrumb items={breadcrumbItems} />
 
       <div className={styles.productSection}>
-        <div className={styles.productImage}>
-          <img src={product.image} alt={product.name} />
+        <div className={styles.productImageContainer}>
+          <img
+            src={product.image}
+            alt={getLocalizedText(product.name)}
+            className={styles.mainImage}
+          />
+          <img
+            src={product.image}
+            alt={getLocalizedText(product.name)}
+            className={styles.mainImage}
+          />
+          
+          {/* Debug indicator */}
+          <div style={{
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            background: 'rgba(0,0,0,0.8)',
+            color: 'white',
+            padding: '8px',
+            borderRadius: '4px',
+            fontSize: '12px',
+            zIndex: 1000
+          }}>
+            <div>Container Height: 750px</div>
+            <div>Images: 2</div>
+            <div>Scroll Active: {isContainerScrolling ? 'Yes' : 'No'}</div>
+          </div>
         </div>
 
         <div className={styles.productInfo}>
           <div className={styles.productHeader}>
-            <div className={styles.category}>{product.category}</div>
-            <h1>{product.name}</h1>
-            <div className={styles.rating}>
-              <span className={styles.stars}>
-                {'★'.repeat(Math.floor(product.rating))}
-                {'☆'.repeat(5 - Math.floor(product.rating))}
-              </span>
-              <span className={styles.ratingText}>
-                {product.rating} ({product.reviews} reviews)
-              </span>
+            <h1 className={styles.productTitle}>{getLocalizedText(product.name)}</h1>
+            <div className={styles.productPrice}>
+              {product.price} Դր
             </div>
           </div>
 
-          <div className={styles.priceSection}>
-            <div className={styles.price}>
-              <span className={styles.currency}>$</span>
-              {product.price.toFixed(2)}
+          <div className={styles.productAttributes}>
+            <div className={styles.attribute}>
+              <span className={styles.attributeLabel}>ԱՐՏԱԴՐՄԱՆ ԵՐԿԻՐ :</span>
+              <span className={styles.attributeValue}>{getLocalizedText(product.origin)}</span>
             </div>
-            <div className={styles.stockStatus}>
-              {product.inStock ? (
-                <span className={styles.inStock}>In Stock</span>
-              ) : (
-                <span className={styles.outOfStock}>Out of Stock</span>
-              )}
+            <div className={styles.attribute}>
+              <span className={styles.attributeLabel}>ԱԼԿՈՀՈԼԻ ՔԱՆԱԿԸ:</span>
+              <span className={styles.attributeValue}>{product.alcoholContent}%</span>
+            </div>
+          </div>
+
+          <div className={styles.volumeSelection}>
+            <span className={styles.volumeLabel}>ԾԱՎԱԼԸ:</span>
+            <div className={styles.volumeButtons}>
+              {volumeOptions.map((volume) => (
+                <button
+                  key={volume}
+                  className={`${styles.volumeButton} ${selectedVolume === volume ? styles.selected : ''}`}
+                  onClick={() => setSelectedVolume(volume)}
+                  type="button"
+                >
+                  {volume} L
+                </button>
+              ))}
             </div>
           </div>
 
           <div className={styles.description}>
-            <h3>Description</h3>
-            <p>{product.description}</p>
+            <p>{getLocalizedText(product.description)}</p>
           </div>
 
-          <div className={styles.specifications}>
-            <h3>Specifications</h3>
-            <div className={styles.specsGrid}>
-              <div className={styles.spec}>
-                <span className={styles.specLabel}>Volume:</span>
-                <span className={styles.specValue}>{product.volume}ml</span>
-              </div>
-              <div className={styles.spec}>
-                <span className={styles.specLabel}>Alcohol Content:</span>
-                <span className={styles.specValue}>{product.alcoholContent}% ABV</span>
-              </div>
-              <div className={styles.spec}>
-                <span className={styles.specLabel}>Origin:</span>
-                <span className={styles.specValue}>{product.origin}</span>
-              </div>
-              <div className={styles.spec}>
-                <span className={styles.specLabel}>Category:</span>
-                <span className={styles.specValue}>{product.category}</span>
-              </div>
+          <div className={styles.quantitySection}>
+            <span className={styles.quantityLabel}>ՔԱՆԱԿԸ</span>
+            <div className={styles.quantityControls}>
+              <input
+                type="number"
+                value={quantity}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+              />
             </div>
           </div>
 
-          {product.ingredients && product.ingredients.length > 0 && (
-            <div className={styles.ingredients}>
-              <h3>Ingredients</h3>
-              <div className={styles.ingredientsList}>
-                {product.ingredients.map((ingredient, index) => (
-                  <span key={index} className={styles.ingredient}>
-                    {ingredient}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div className={styles.addToCartSection}>
-            <div className={styles.quantitySelector}>
-              <label htmlFor="quantity">Quantity:</label>
-              <div className={styles.quantityControls}>
-                <button
-                  onClick={() => handleQuantityChange(quantity - 1)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      handleQuantityChange(quantity - 1);
-                    }
-                  }}
-                  disabled={quantity <= 1}
-                  className={styles.quantityButton}
-                >
-                  -
-                </button>
-                <span className={styles.quantity}>{quantity}</span>
-                <button
-                  onClick={() => handleQuantityChange(quantity + 1)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      handleQuantityChange(quantity + 1);
-                    }
-                  }}
-                  disabled={quantity >= 10}
-                  className={styles.quantityButton}
-                >
-                  +
-                </button>
-              </div>
-            </div>
-
-            <button onClick={handleAddToCart} disabled={!product.inStock} className={styles.addToCartButton}>
-              {product.inStock ? `Add ${quantity} to Cart` : 'Out of Stock'}
+          <div className={styles.actionButtons}>
+            <button className={styles.wishlistButton}>
+              Add To Wishlist
+            </button>
+            <button
+              onClick={handleAddToCart}
+              disabled={!product.inStock}
+              className={styles.addToCartButton}
+            >
+              Add To Cart
             </button>
           </div>
         </div>
@@ -194,22 +340,21 @@ export default function ProductDetailsPage() {
               <button
                 key={relatedProduct.id}
                 className={styles.relatedCard}
-                onClick={() => router.push(`/products/${relatedProduct.id}`)}
+                onClick={() => router.push(`/${lang}/products/${relatedProduct.id}`)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
-                    router.push(`/products/${relatedProduct.id}`);
+                    router.push(`/${lang}/products/${relatedProduct.id}`);
                   }
                 }}
                 type="button"
               >
                 <div className={styles.relatedImage}>
-                  <img src={relatedProduct.image} alt={relatedProduct.name} />
+                  <img src={relatedProduct.image} alt={getLocalizedText(relatedProduct.name)} />
                 </div>
                 <div className={styles.relatedInfo}>
-                  <h3>{relatedProduct.name}</h3>
+                  <h3>{getLocalizedText(relatedProduct.name)}</h3>
                   <div className={styles.relatedPrice}>
-                    <span className={styles.currency}>$</span>
-                    {relatedProduct.price.toFixed(2)}
+                    {relatedProduct.price} Դր
                   </div>
                 </div>
               </button>
