@@ -3,98 +3,116 @@
 .container {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, $color_primary_dark 0%, $color_primary 100%);
+  background: white;
   padding: 20px;
   padding-top: 104px;
 }
 
+.breadcrumbContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .formContainer {
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  padding: 40px;
   width: 100%;
   max-width: 400px;
-  animation: fadeInUp 0.6s ease-out;
+  position: relative;
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 32px;
+  // text-align: center;
+  margin-bottom: 20px;
 
   h1 {
-    font-size: 28px;
-    font-weight: 700;
+    font-family: Mardoto;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 24px;
+    leading-trim: NONE;
+    line-height: 100%;
+    letter-spacing: 0px;
+    margin: 0;
     color: $color_primary_dark;
-    margin-bottom: 8px;
-  }
-
-  p {
-    color: #666;
-    font-size: 16px;
   }
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .formGroup {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
 
-  label {
-    font-weight: 600;
-    color: $color_primary_dark;
-    font-size: 14px;
+.passwordToggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
   }
+}
 
-  input {
-    padding: 12px 16px;
-    border: 2px solid #e1e5e9;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    background: white;
+.forgotPassword {
+  text-align: right;
+  margin-top: -8px;
 
-    &:focus {
-      outline: none;
-      border-color: $color_secondary;
-      box-shadow: 0 0 0 3px rgba(213, 135, 59, 0.1);
-    }
+  .forgotPasswordLink {
+    font-family: Mardoto;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    text-align: right;
+    color: $color_primary_dark;
+    text-decoration: none;
+    transition: color 0.2s ease;
 
-    &.error {
-      border-color: #ef4444;
-    }
-
-    &::placeholder {
-      color: #9ca3af;
+    &:hover {
+      color: $color_secondary;
+      text-decoration: underline;
     }
   }
 }
 
-.errorMessage {
-  color: #ef4444;
-  font-size: 12px;
-  margin-top: 4px;
+.submitButtonContainer {
+  margin-top: 8px;
+  height: 52px;
 }
 
 .submitButton {
+  width: 100%;
   background: $color_secondary;
   color: white;
   border: none;
-  padding: 14px 24px;
+  padding: 16px 24px;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 
   &:hover:not(:disabled) {
     background: darken($color_secondary, 10%);
@@ -107,66 +125,64 @@
   }
 }
 
-.footer {
+.registration {
   text-align: center;
-  margin-top: 24px;
+  margin-top: 32px;
   padding-top: 24px;
   border-top: 1px solid #e5e7eb;
 
   p {
     color: #666;
     font-size: 14px;
+    margin: 0;
   }
-}
 
-.link {
-  color: $color_secondary;
-  text-decoration: none;
-  font-weight: 600;
+  .registrationLink {
+    color: $color_secondary;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
 
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.demo {
-  margin-top: 24px;
-  padding: 16px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  border-left: 4px solid $color_secondary;
-
-  p {
-    margin: 4px 0;
-    font-size: 12px;
-    color: #666;
-
-    &:first-child {
-      font-weight: 600;
-      color: $color_primary_dark;
-      margin-bottom: 8px;
+    &:hover {
+      color: darken($color_secondary, 10%);
     }
   }
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+.recaptcha {
+  text-align: center;
+  margin-top: 100px;
+  padding-top: 24px;
+  // border-top: 1px solid #e5e7eb;
+
+  p {
+    color: #999;
+    font-size: 12px;
+    margin: 0;
+    line-height: 1.4;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .recaptchaLink {
+    color: $color_secondary;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: darken($color_secondary, 10%);
+    }
   }
 }
 
 @media (max-width: 480px) {
   .formContainer {
-    padding: 24px;
     margin: 16px;
   }
 
   .header h1 {
-    font-size: 24px;
+    font-size: 28px;
+  }
+
+  .form {
+    gap: 20px;
   }
 }

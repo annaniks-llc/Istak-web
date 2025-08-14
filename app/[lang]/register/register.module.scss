@@ -3,77 +3,83 @@
 .container {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, $color_primary_dark 0%, $color_primary 100%);
+  background: white;
   padding: 20px;
-  padding-top: 120px;
+  padding-top: 104px;
+}
+
+.breadcrumbContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .formContainer {
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  padding: 40px;
   width: 100%;
-  max-width: 500px;
-  animation: fadeInUp 0.6s ease-out;
+  max-width: 400px;
+  position: relative;
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 
   h1 {
-    font-size: 28px;
-    font-weight: 700;
+    font-family: Mardoto;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 24px;
+    leading-trim: NONE;
+    line-height: 100%;
+    letter-spacing: 0px;
+    margin: 0;
     color: $color_primary_dark;
-    margin-bottom: 8px;
-  }
-
-  p {
-    color: #666;
-    font-size: 16px;
   }
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-.row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
+  gap: 24px;
 }
 
 .formGroup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nameRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+
+  .formGroup {
+    flex: 1;
+    width: 46%;
+  }
+}
+
+.phoneInputContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
 
-  label {
-    font-weight: 600;
-    color: $color_primary_dark;
-    font-size: 14px;
-  }
-
-  input {
-    padding: 12px 16px;
-    border: 2px solid #e1e5e9;
-    border-radius: 8px;
-    font-size: 16px;
+  // Custom styles for react-phone-number-input
+  :global(.PhoneInput) {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: #F6F4F1;
     transition: all 0.3s ease;
-    background: white;
+    overflow: hidden;
 
-    &:focus {
-      outline: none;
+    &:focus-within {
       border-color: $color_secondary;
       box-shadow: 0 0 0 3px rgba(213, 135, 59, 0.1);
     }
@@ -81,6 +87,46 @@
     &.error {
       border-color: #ef4444;
     }
+  }
+
+  &.error {
+    :global(.PhoneInput) {
+      border-color: #ef4444;
+    }
+  }
+
+  :global(.PhoneInputCountry) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 12px;
+    background: transparent;
+    border: none;
+    min-width: 30px;
+    justify-content: center;
+
+    .PhoneInputCountryIcon {
+      width: 20px;
+      height: 15px;
+      border-radius: 2px;
+    }
+
+    .PhoneInputCountrySelectArrow {
+      width: 12px;
+      height: 12px;
+      color: #666;
+      margin-left: 4px;
+    }
+  }
+
+  :global(.PhoneInputInput) {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 16px;
+    font-size: 16px;
+    font-family: inherit;
+    background: transparent;
 
     &::placeholder {
       color: #9ca3af;
@@ -88,23 +134,184 @@
   }
 }
 
-.errorMessage {
-  color: #ef4444;
-  font-size: 12px;
-  margin-top: 4px;
+.dateInputContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  // Custom styles for react-datepicker
+  :global(.react-datepicker-wrapper) {
+    width: 100%;
+  }
+
+  :global(.react-datepicker__input-container) {
+    width: 100%;
+  }
+
+  :global(.react-datepicker__input-container input) {
+    font-family: Mardoto;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 0%;
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    background-color: #F6F4F1;
+    color: $color_primary_dark;
+    outline: none;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+    box-sizing: border-box;
+
+    &::placeholder {
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 16px;
+      leading-trim: NONE;
+      line-height: 100%;
+      letter-spacing: 0%;
+      vertical-align: middle;
+      color: $color_primary;
+      text-transform: capitalize;
+    }
+
+    &:focus {
+      background-color: #F6F4F1;
+      box-shadow: 0 0 0 3px rgba(213, 135, 59, 0.1);
+    }
+
+    &:hover:not(:disabled) {
+      background-color: #F6F4F1;
+    }
+  }
+
+  &.error {
+    :global(.react-datepicker__input-container input) {
+      border: 2px solid #ef4444;
+    }
+  }
+}
+
+.dateInputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.customDateInput {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  input {
+    width: 100%;
+    height: 52px;
+    padding: 16px 20px;
+    padding-right: 60px; // Make room for the icon
+    border: none;
+    // border-radius: 8px;
+    font-family: Mardoto;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 0%;
+    background-color: #F6F4F1;
+    color: $color_primary_dark;
+    outline: none;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    &::placeholder {
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 16px;
+      leading-trim: NONE;
+      line-height: 100%;
+      letter-spacing: 0%;
+      vertical-align: middle;
+      color: $color_primary;
+      text-transform: capitalize;
+    }
+
+    &:focus {
+      background-color: #F6F4F1;
+      box-shadow: 0 0 0 3px rgba(213, 135, 59, 0.1);
+    }
+
+    &:hover:not(:disabled) {
+      background-color: #F6F4F1;
+    }
+
+    &.error {
+      border: 2px solid #ef4444;
+    }
+  }
+
+  .calendarIcon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+.datePickerWrapper {
+  width: 100%;
+}
+
+.datePickerPopper {
+  z-index: 1000;
+}
+
+.passwordInputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .passwordToggle {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+.submitButtonContainer {
+  margin-top: 8px;
+  height: 52px;
 }
 
 .submitButton {
+  width: 100%;
   background: $color_secondary;
   color: white;
   border: none;
-  padding: 14px 24px;
+  padding: 16px 24px;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 
   &:hover:not(:disabled) {
     background: darken($color_secondary, 10%);
@@ -117,46 +324,85 @@
   }
 }
 
-.footer {
+.errorMessage {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.loginLink {
   text-align: center;
-  margin-top: 24px;
+  margin-top: 32px;
   padding-top: 24px;
   border-top: 1px solid #e5e7eb;
 
   p {
     color: #666;
     font-size: 14px;
+    margin: 0;
+  }
+
+  .loginLinkText {
+    color: $color_secondary;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: darken($color_secondary, 10%);
+    }
   }
 }
 
-.link {
-  color: $color_secondary;
-  text-decoration: none;
-  font-weight: 600;
+.recaptcha {
+  text-align: center;
+  margin-top: 100px;
+  padding-top: 24px;
 
-  &:hover {
-    text-decoration: underline;
+  p {
+    color: #999;
+    font-size: 12px;
+    margin: 0;
+    line-height: 1.4;
   }
-}
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .recaptchaLink {
+    color: $color_secondary;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: darken($color_secondary, 10%);
+    }
   }
 }
 
 @media (max-width: 480px) {
   .formContainer {
-    padding: 24px;
     margin: 16px;
   }
 
   .header h1 {
-    font-size: 24px;
+    font-size: 20px;
+  }
+
+  .form {
+    gap: 20px;
+  }
+
+  .nameRow {
+    flex-direction: column;
+    gap: 16px;
+
+    .formGroup {
+      width: 100%;
+    }
+  }
+
+  .phoneInputContainer {
+    :global(.PhoneInputCountry) {
+      min-width: 70px;
+      padding: 12px 8px;
+    }
   }
 }
