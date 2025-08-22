@@ -9,10 +9,10 @@ import { useDictionary } from '@/dictionary-provider';
 import ProductCard from '../components/ProductCard';
 import { useParams, useRouter } from 'next/navigation';
 
-const categories = ['all', 'vodka', 'cocktail', 'whiskey', 'rum', 'gin', 'tequila', 'wine', 'beer'] as const;
+const categories = ['all', 'vodka', 'gin', 'family', 'limited'] as const;
 
 export default function ProductsPage() {
-  const [selectedCategory, setSelectedCategory] = useState<'all' | Product['category']>('all');
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'vodka' | 'gin' | 'family' | 'limited'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'name' | 'price' | 'rating'>('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
@@ -27,18 +27,25 @@ export default function ProductsPage() {
   }, [fetchProducts]);
 
   const handleAddToCart = (product: Product) => {
+    console.log('Products page - Adding product to cart:', product);
+    
     // Handle multilingual product name
     const productName = typeof product.name === 'string'
       ? product.name
       : product.name.en || 'Product';
 
-    addItem({
+    const cartItem = {
       id: product.id,
       name: productName,
       price: product.price,
       volume: product.volume,
       image: product.image,
-    });
+    };
+    
+    console.log('Products page - Cart item to add:', cartItem);
+    addItem(cartItem);
+    console.log('Products page - Product added to cart successfully');
+    
     toast.success(`${productName} added to cart!`);
   };
 
@@ -106,19 +113,64 @@ export default function ProductsPage() {
           <div className={styles.breadcrumb}>
             <span>{dictionary.navigation.home}</span>
             <span className={styles.breadcrumbSeparator}>/</span>
-            <span>{dictionary.products.title}</span>
-            {/* <span className={styles.breadcrumbSeparator}>/</span>
-            <span>{dictionary.products.categories.all}</span> */}
+            <span>{dictionary.navigation.products}</span>
+            <span className={styles.breadcrumbSeparator}>/</span>
+            <span>ԻՍՏԱԿ ՕՂԻ</span>
           </div>
           <h1 className={styles.mainTitle}>
-            {dictionary.products.title}
+            ԻՍՏԱԿ ՕՂԻ
           </h1>
-          {/* <p className={styles.subtitle}>
-            {dictionary.products.subtitle}
-          </p> */}
         </div>
       </div>
+
+      {/* Product Category Filters */}
+      <div className={styles.categoryFilters}>
+        <button
+          className={`${styles.filterButton} ${selectedCategory === 'all' ? styles.active : ''}`}
+          onClick={() => setSelectedCategory('all')}
+        >
+          ԲՈԼՈՐ ԱՊՐԱՆՔՆԵՐ
+        </button>
+        <button
+          className={`${styles.filterButton} ${selectedCategory === 'vodka' ? styles.active : ''}`}
+          onClick={() => setSelectedCategory('vodka')}
+        >
+          ԻՍՏԱԿ ՕՂԻ
+        </button>
+        <button
+          className={`${styles.filterButton} ${selectedCategory === 'gin' ? styles.active : ''}`}
+          onClick={() => setSelectedCategory('gin')}
+        >
+          202 ՋԻՆ
+        </button>
+        <button
+          className={`${styles.filterButton} ${selectedCategory === 'family' ? styles.active : ''}`}
+          onClick={() => setSelectedCategory('family')}
+        >
+          SHARLIE ԸՆՏԱՆԻՔ
+        </button>
+        <button
+          className={`${styles.filterButton} ${selectedCategory === 'limited' ? styles.active : ''}`}
+          onClick={() => setSelectedCategory('limited')}
+        >
+          ԼԻՄԻԹԵԴ ՏԵՍԱԿԱՆԻ
+        </button>
+      </div>
+
       <div className={styles.container}>
+        {/* Results Counter */}
+        {/* <div className={styles.resultsCounter}>
+          <p>
+            {selectedCategory === 'all' 
+              ? `${filteredProducts.length} բոլոր ապրանքները`
+              : `${filteredProducts.length} ապրանք ${selectedCategory === 'vodka' ? 'ԻՍՏԱԿ ՕՂԻ' : 
+                  selectedCategory === 'gin' ? '202 ՋԻՆ' :
+                  selectedCategory === 'family' ? 'SHARLIE ԸՆՏԱՆԻՔ' :
+                  'ԼԻՄԻԹԵԴ ՏԵՍԱԿԱՆԻ'} կատեգորիայում`
+            }
+          </p>
+        </div> */}
+
         {/* Top Section with Background Image */}
 
         {/* 

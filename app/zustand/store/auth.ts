@@ -7,6 +7,7 @@ export interface User {
   firstName: string;
   lastName: string;
   phone?: string;
+  dateOfBirth?: Date;
   address?: {
     street: string;
     city: string;
@@ -24,6 +25,8 @@ interface AuthState {
   logout: () => void;
   register: (userData: RegisterData) => Promise<{ success: boolean; error?: string }>;
   updateProfile: (userData: Partial<User>) => Promise<{ success: boolean; error?: string }>;
+  reset: () => void;
+  getAuthState: () => { user: User | null; isAuthenticated: boolean; isLoading: boolean };
 }
 
 interface RegisterData {
@@ -32,6 +35,7 @@ interface RegisterData {
   firstName: string;
   lastName: string;
   phone?: string;
+  dateOfBirth?: Date;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -42,6 +46,7 @@ export const useAuthStore = create<AuthState>()(
       isLoading: false,
 
       login: async (email: string, password: string) => {
+        console.log('Login attempt for:', email);
         set({ isLoading: true });
 
         try {
@@ -56,6 +61,7 @@ export const useAuthStore = create<AuthState>()(
               firstName: 'John',
               lastName: 'Doe',
               phone: '+1234567890',
+              dateOfBirth: new Date('1990-01-01'),
               address: {
                 street: '123 Main St',
                 city: 'New York',
@@ -65,20 +71,47 @@ export const useAuthStore = create<AuthState>()(
               createdAt: new Date().toISOString(),
             };
 
+            console.log('Login successful, setting user:', user);
             set({ user, isAuthenticated: true, isLoading: false });
             return { success: true };
           } else {
+            console.log('Login failed - invalid credentials');
             set({ isLoading: false });
             return { success: false, error: 'Invalid credentials' };
           }
-        } catch {
+        } catch (error) {
+          console.error('Login error:', error);
           set({ isLoading: false });
           return { success: false, error: 'Login failed' };
         }
       },
 
       logout: () => {
-        set({ user: null, isAuthenticated: false });
+        console.log('Logout called - clearing auth state');
+        
+        // Clear all auth state
+        set({ 
+          user: null, 
+          isAuthenticated: false, 
+          isLoading: false 
+        });
+        
+        // Clear any stored tokens or session data
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('auth-storage');
+          sessionStorage.clear();
+        }
+        
+        console.log('Logout completed - auth state cleared');
+      },
+
+      // Add a reset function to clear all state
+      reset: () => {
+        set({ 
+          user: null, 
+          isAuthenticated: false, 
+          isLoading: false 
+        });
       },
 
       register: async (userData: RegisterData) => {
@@ -94,6 +127,7 @@ export const useAuthStore = create<AuthState>()(
             firstName: userData.firstName,
             lastName: userData.lastName,
             phone: userData.phone,
+            dateOfBirth: userData.dateOfBirth,
             createdAt: new Date().toISOString(),
           };
 
@@ -126,10 +160,31 @@ export const useAuthStore = create<AuthState>()(
           return { success: false, error: 'Profile update failed' };
         }
       },
+
+      getAuthState: () => {
+        return {
+          user: get().user,
+          isAuthenticated: get().isAuthenticated,
+          isLoading: get().isLoading,
+        };
+      },
     }),
     {
       name: 'auth-storage',
-      partialize: (state) => ({ user: state.user, isAuthenticated: state.isAuthenticated }),
+      partialize: (state) => ({ 
+        user: state.user, 
+        isAuthenticated: state.isAuthenticated 
+      }),
+      onRehydrateStorage: () => (state) => {
+        // Ensure state is properly initialized after rehydration
+        if (state) {
+          // If no user, ensure we're not authenticated
+          if (!state.user) {
+            state.isAuthenticated = false;
+            state.isLoading = false;
+          }
+        }
+      },
     },
   ),
 );

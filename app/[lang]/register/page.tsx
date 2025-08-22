@@ -51,31 +51,81 @@ export default function RegisterPage() {
     formState: { errors },
     setValue,
     watch,
+    clearErrors,
+    reset,
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
   });
 
   const watchedValues = watch();
 
+  const validateForm = (data: RegisterFormData): string | null => {
+    if (!data.email || data.email.trim() === '') {
+      return 'Please enter your email address';
+    }
+    
+    if (!data.firstName || data.firstName.trim() === '') {
+      return 'Please enter your first name';
+    }
+    
+    if (!data.lastName || data.lastName.trim() === '') {
+      return 'Please enter your last name';
+    }
+    
+    if (!data.phone || data.phone.trim() === '') {
+      return 'Please enter your phone number';
+    }
+    
+    if (!data.dateOfBirth) {
+      return 'Please select your date of birth';
+    }
+    
+    if (!data.password || data.password.length < 6) {
+      return 'Password must be at least 6 characters long';
+    }
+    
+    if (!data.confirmPassword) {
+      return 'Please confirm your password';
+    }
+    
+    if (data.password !== data.confirmPassword) {
+      return 'Passwords do not match';
+    }
+    
+    return null;
+  };
+
   const onSubmit = async (data: RegisterFormData) => {
     setIsLoading(true);
 
     try {
+      // Validate form before submission
+      const validationError = validateForm(data);
+      if (validationError) {
+        toast.error(validationError);
+        setIsLoading(false);
+        return;
+      }
+
       const result = await registerUser({
         email: data.email,
         password: data.password,
         firstName: data.firstName,
         lastName: data.lastName,
         phone: data.phone,
+        dateOfBirth: data.dateOfBirth,
       });
 
       if (result.success) {
         toast.success('Registration successful! Welcome to our store.');
-        router.push('/dashboard');
+        clearErrors(); // Clear any form errors
+        reset(); // Reset form to initial state
+        router.push(`/${lang}/dashboard`);
       } else {
         toast.error(result.error || 'Registration failed');
       }
-    } catch {
+    } catch (error) {
+      console.error('Registration error:', error);
       toast.error('An unexpected error occurred');
     } finally {
       setIsLoading(false);
@@ -90,15 +140,34 @@ export default function RegisterPage() {
     const phoneValue = value || '';
     setPhoneNumber(phoneValue);
     setValue('phone', phoneValue);
+    
+    // Clear phone error when user starts typing
+    if (phoneValue && errors.phone) {
+      // Clear the error by setting a valid value
+      setValue('phone', phoneValue);
+    }
   };
 
   const handleDateChange = (date: Date | null) => {
     setDateOfBirth(date);
     if (date) {
       setValue('dateOfBirth', date);
+      // Clear date error when user selects a date
+      if (errors.dateOfBirth) {
+        setValue('dateOfBirth', date);
+      }
     } else {
       setValue('dateOfBirth', undefined as any);
     }
+  };
+
+  const handleFormReset = () => {
+    reset();
+    setPhoneNumber('');
+    setDateOfBirth(null);
+    setShowPassword(false);
+    setShowConfirmPassword(false);
+    clearErrors();
   };
 
   const breadcrumbItems = [
@@ -314,6 +383,7 @@ export default function RegisterPage() {
                 void onSubmit(data);
               })}
             />
+           
           </div>
         </form>
 

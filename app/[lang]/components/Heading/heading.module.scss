@@ -4,13 +4,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 100px;
-  // background: $color_menu;
+  padding: 0 188px;
   width: 100%;
   box-sizing: border-box;
   position: fixed;
+  top: 0;
+  left: 0;
   transition: background-color 0.3s ease;
   z-index: 1000;
+  height: 92px;
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255, 0.3);
 
   &.scrolled {
     background: #221c13;
@@ -20,54 +24,181 @@
     background: #231F20;
   }
 
-  &::after {
-    content: "";
-    height: 1px;
-    width: 100vw;
-    background: rgba(255, 255, 255, 0.1);
-    position: absolute;
-    top: 104px;
-    left: 0;
-  }
-
+  // Logo Section
   .logo {
     text-decoration: none;
+
+    .logoText {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .logoMain {
+        font-family: var(--font-bebas), 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 1;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .logoSub {
+        font-family: var(--font-mardoto), 'Inter', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: -2px;
+      }
+    }
   }
 
-  // border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  // Navigation Section
   .navBar {
     display: flex;
+    align-items: center;
     gap: 62px;
+    position: relative;
 
-    .link {
+    .navItem {
+      position: relative;
+
+      .navButton {
+        background: none;
+        border: none;
+        font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        letter-spacing: 2%;
+        text-transform: uppercase;
+        color: white;
+        padding: 31px 0;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        position: relative;
+
+        &:hover {
+          color: $color_secondary;
+        }
+
+        &.active {
+          border-bottom: 2px solid $color_secondary;
+        }
+      }
+
+      // Dropdown
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #7A7A7A;
+        // background: #2a2a2a;
+        // border-radius: 8px;
+        // padding: 16px 0;
+        min-width: 160px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        z-index: 1001;
+
+        .dropdownItem {
+          display: block;
+          text-decoration: none;
+          padding: 8px 20px;
+          color: white;
+          line-height: 24px;
+          transition: background-color 0.3s ease;
+          position: relative;
+          font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
+          font-weight: 400;
+          font-style: Regular;
+          font-size: 20px;
+          line-height: 30px;
+          letter-spacing: 2%;
+          text-transform: uppercase;
+
+          &:hover {
+            background-color: $color_primary_dark;
+          }
+
+          .dropdownText {
+            display: block;
+          }
+
+          .dropdownHighlight {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background: $color_secondary;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+          }
+
+          &:hover .dropdownHighlight {
+            opacity: 1;
+          }
+
+          &:first-child .dropdownHighlight {
+            top: 0;
+          }
+
+          &:last-child .dropdownHighlight {
+            bottom: 0;
+          }
+        }
+      }
+    }
+
+    .navLink {
+      font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
       font-weight: 400;
-      font-style: Regular;
       font-size: 20px;
       line-height: 30px;
       letter-spacing: 2%;
       text-transform: uppercase;
       color: white;
-      padding: 36px 0px;
+      padding: 36px 0;
       text-decoration: none;
       transition: color 0.3s ease;
+      position: relative;
 
       &:hover {
         color: $color_secondary;
       }
-    }
 
-    .active {
-      border-bottom: 2px solid $color_secondary;
+      &.active {
+        border-bottom: 2px solid $color_secondary;
+      }
     }
   }
 
-  .icons {
+  // Right Section
+  .rightSection {
     display: flex;
     align-items: center;
     gap: 28px;
-    padding-left: 28px;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-    height: fit-content;
+
+    .iconButton {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
 
     .cartIcon {
       position: relative;
@@ -75,22 +206,34 @@
       display: flex;
       align-items: center;
       justify-content: center;
-    }
+      padding: 8px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
 
-    .cartBadge {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: $color_secondary;
-      color: white;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 600;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      img {
+        filter: brightness(0) invert(1);
+      }
+
+      .cartBadge {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        background: $color_secondary;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 600;
+        font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
+      }
     }
 
     .userMenu {
@@ -102,6 +245,7 @@
         color: white;
         font-size: 16px;
         font-weight: 600;
+        font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
       }
 
       .logoutButton {
@@ -114,6 +258,7 @@
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
+        font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
 
         &:hover {
           background: #dc2626;
@@ -121,22 +266,77 @@
       }
     }
 
-    .authButtons {
-      display: flex;
-      gap: 12px;
-
+    .authButton {
       a {
         text-decoration: none;
       }
-    }
 
-    button {
-      width: 237px;
-      height: 52px;
+      button {
+        width: 237px;
+        height: 52px;
+        font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
+      }
     }
   }
-  @media (max-width: 1111px) {
-      padding: 0 50px;
-    
+
+  // Responsive Design
+  @media (max-width: 1200px) {
+    padding: 0 50px;
+
+    .navBar {
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    padding: 0 30px;
+
+    .navBar {
+      gap: 30px;
+
+      .navLink,
+      .navButton {
+        font-size: 18px;
+        padding: 30px 0;
+      }
+    }
+
+    .logo .logoText {
+      .logoMain {
+        font-size: 28px;
+      }
+
+      .logoSub {
+        font-size: 12px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 20px;
+    height: 80px;
+
+    .navBar {
+      display: none; // Hide navigation on mobile
+    }
+
+    .logo .logoText {
+      .logoMain {
+        font-size: 24px;
+      }
+
+      .logoSub {
+        font-size: 10px;
+      }
+    }
+
+    .rightSection {
+      gap: 20px;
+
+      .authButton button {
+        width: 180px;
+        height: 44px;
+      }
+    }
   }
 }

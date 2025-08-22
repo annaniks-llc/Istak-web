@@ -1,7 +1,7 @@
 @import "../../../../../styles/var.scss";
 
 .container {
-  padding: 0px 30px;
+  padding: 0px 30px 0px 188px;
   display: flex;
   align-items: center;
   justify-content: end;
@@ -12,6 +12,7 @@
     max-width: 100%;
 
     .title {
+      font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
       font-weight: 400;
       font-style: Regular;
       font-size: 48px;
@@ -24,7 +25,7 @@
 
     .description {
       font-family: Mardoto;
-      font-weight: 900;
+      font-weight: 400;
       font-style: Black;
       font-size: 20px;
       leading-trim: NONE;
@@ -33,6 +34,9 @@
       color: $color_primary;
       margin-top: 10px;
       margin-bottom: 40px;
+      span {
+        font-weight: 900;
+      }
     }
 
     button {

@@ -1,6 +1,69 @@
 @import '../styles/var.scss';
 
+/* Font Face Declarations for Custom Fonts */
+
+/* Mardoto Font Family */
+@font-face {
+  font-family: 'Mardoto';
+  src: url('../styles/fonts/am_mardoto/Mardoto-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mardoto';
+  src: url('../styles/fonts/am_mardoto/Mardoto-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mardoto';
+  src: url('../styles/fonts/am_mardoto/Mardoto-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mardoto';
+  src: url('../styles/fonts/am_mardoto/Mardoto-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mardoto';
+  src: url('../styles/fonts/am_mardoto/Mardoto-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mardoto';
+  src: url('../styles/fonts/am_mardoto/Mardoto-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Arm Hmk's Bebas Neue Font Family */
+@font-face {
+  font-family: 'Arm Hmk\'s Bebas Neue';
+  src: url('../styles/fonts/am_arm-hmks-bebas-neue/Arm Hmk\'s Bebas Neue.TTF') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Font mappings using local fonts */
 :root {
+  --font-mardoto: 'Mardoto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-bebas: 'Arm Hmk\'s Bebas Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --background: #ffffff;
   --foreground: #171717;
   box-sizing: border-box;

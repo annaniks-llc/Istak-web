@@ -1,0 +1,75 @@
+.cocktailCard {
+  background: white;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  &:hover {
+    transform: translateY(-2px);
+    // box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.imageContainer {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cocktailImage {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-family: var(--font-bebas), 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #1a1a1a;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  font-family: var(--font-mardoto), 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #666666;
+  margin: 0;
+  font-style: italic;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .cocktailCard {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    line-height: 16px;
+  }
+}

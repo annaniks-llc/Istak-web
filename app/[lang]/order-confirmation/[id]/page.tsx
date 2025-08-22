@@ -20,16 +20,25 @@ export default function OrderConfirmationPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push('/login');
-      return;
-    }
-
+    // Allow both authenticated users and guest users to view order confirmation
     const foundOrder = getOrderById(orderId);
-    if (foundOrder && foundOrder.userId === user?.id) {
-      setOrder(foundOrder);
+    if (foundOrder) {
+      // For authenticated users, check if it's their order
+      if (isAuthenticated && user && foundOrder.userId === user.id) {
+        setOrder(foundOrder);
+      } 
+      // For guest users, allow access to any order by ID (since they don't have user ID)
+      else if (!isAuthenticated) {
+        setOrder(foundOrder);
+      }
+      // For authenticated users viewing someone else's order, don't show it
+      else if (isAuthenticated && user && foundOrder.userId !== user.id) {
+        router.push('/dashboard');
+        return;
+      }
     } else {
-      router.push('/dashboard');
+      // Order not found
+      router.push('/');
     }
     setIsLoading(false);
   }, [orderId, getOrderById, user, isAuthenticated, router]);
@@ -51,8 +60,8 @@ export default function OrderConfirmationPage() {
         <div className={styles.error}>
           <h1>Order Not Found</h1>
           <p>The order you&apos;re looking for doesn&apos;t exist or you don&apos;t have permission to view it.</p>
-          <button onClick={() => router.push('/dashboard')} className={styles.backButton}>
-            Go to Dashboard
+          <button onClick={() => router.push('/')} className={styles.backButton}>
+            Go to Home
           </button>
         </div>
       </div>
@@ -92,6 +101,12 @@ export default function OrderConfirmationPage() {
         <div className={styles.successIcon}>✅</div>
         <h1>{dictionary.orderConfirmation.success}</h1>
         <p>Thank you for your order. We&apos;ll send you updates as your order progresses.</p>
+        
+        {!isAuthenticated && (
+          <div className={styles.guestNote}>
+            <p>💡 This is a guest order. Please save your Order ID ({order.id}) for future reference.</p>
+          </div>
+        )}
       </div>
 
       <div className={styles.orderDetails}>

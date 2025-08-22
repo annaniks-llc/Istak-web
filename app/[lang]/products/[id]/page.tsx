@@ -33,6 +33,15 @@ export default function ProductDetailsPage() {
       .filter((p) => p.id !== product.id)
       .slice(0, 3)
     : [];
+
+  // Calculate dynamic price based on selected volume
+  const calculatePrice = (basePrice: number, baseVolume: number, selectedVolume: number) => {
+    // Base price is for 0.5L, calculate proportional price for other volumes
+    const pricePerLiter = basePrice / baseVolume;
+    return Math.round((pricePerLiter * selectedVolume) * 100) / 100; // Round to 2 decimal places
+  };
+
+  const currentPrice = product ? calculatePrice(product.price, 0.5, selectedVolume) : 0;
   console.log(relatedProducts,"relatedProductsrelatedProducts");
   
   // Product images - first image and second image
@@ -115,7 +124,7 @@ export default function ProductDetailsPage() {
       addItem({
         id: productForCard.id,
         name: typeof productForCard.name === 'string' ? productForCard.name : productForCard.name.en,
-        price: productForCard.price,
+        price: item ? productForCard.price : currentPrice, // Use current price for main product, base price for related products
         volume: selectedVolume * 1000, // Convert to ml
         image: productForCard.image,
       });
@@ -209,8 +218,12 @@ export default function ProductDetailsPage() {
           <div className={styles.productHeader}>
             <h1 className={styles.productTitle}>{getLocalizedText(product.name)}</h1>
             <div className={styles.productPrice}>
-              {product.price} Դր
+              {currentPrice} Դր
+              
             </div>
+            {/* <div className={styles.pricePerLiter}>
+              {product.price / 0.5} Դր/լ
+            </div> */}
           </div>
 
           <div className={styles.productAttributes}>
@@ -227,17 +240,22 @@ export default function ProductDetailsPage() {
           <div className={styles.volumeSelection}>
             <span className={styles.volumeLabel}>ԾԱՎԱԼԸ:</span>
             <div className={styles.volumeButtons}>
-              {volumeOptions.map((volume) => (
-                <button
-                  key={volume}
-                  className={`${styles.volumeButton} ${selectedVolume === volume ? styles.selected : ''}`}
-                  onClick={() => setSelectedVolume(volume)}
-                  type="button"
-                >
-                  {volume} L
-                </button>
-              ))}
+              {volumeOptions.map((volume) => {
+                const volumePrice = calculatePrice(product.price, 0.5, volume);
+                return (
+                  <button
+                    key={volume}
+                    className={`${styles.volumeButton} ${selectedVolume === volume ? styles.selected : ''}`}
+                    onClick={() => setSelectedVolume(volume)}
+                    type="button"
+                    title={`${volumePrice} Դր`}
+                  >
+                    {volume} L
+                  </button>
+                );
+              })}
             </div>
+            
           </div>
 
           <div className={styles.description}>

@@ -1,0 +1,96 @@
+/* Font Face Declarations for Custom Fonts */
+
+/* IMPORTANT: Uncomment these font declarations AFTER you add the actual font files */
+
+/*
+/* Mardoto Font Family */
+@font-face {
+  font-family: 'Mardoto';
+  src: url('./Mardoto/Mardoto-Regular.woff2') format('woff2'),
+       url('./Mardoto/Mardoto-Regular.woff') format('woff'),
+       url('./Mardoto/Mardoto-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mardoto';
+  src: url('./Mardoto/Mardoto-Medium.woff2') format('woff2'),
+       url('./Mardoto/Mardoto-Medium.woff') format('woff'),
+       url('./Mardoto/Mardoto-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mardoto';
+  src: url('./Mardoto/Mardoto-SemiBold.woff2') format('woff2'),
+       url('./Mardoto/Mardoto-SemiBold.woff') format('woff'),
+       url('./Mardoto/Mardoto-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mardoto';
+  src: url('./Mardoto/Mardoto-Bold.woff2') format('woff2'),
+       url('./Mardoto/Mardoto-Bold.woff') format('woff'),
+       url('./Mardoto/Mardoto-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Arm Hmk's Bebas Neue Font Family */
+@font-face {
+  font-family: 'Arm Hmk\'s Bebas Neue';
+  src: url('./BebasNeue/ArmHmksBebasNeue-Regular.woff2') format('woff2'),
+       url('./BebasNeue/ArmHmksBebasNeue-Regular.woff') format('woff'),
+       url('./BebasNeue/ArmHmksBebasNeue-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arm Hmk\'s Bebas Neue';
+  src: url('./BebasNeue/ArmHmksBebasNeue-Medium.woff2') format('woff2'),
+       url('./BebasNeue/ArmHmksBebasNeue-Medium.woff') format('woff'),
+       url('./BebasNeue/ArmHmksBebasNeue-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arm Hmk\'s Bebas Neue';
+  src: url('./BebasNeue/ArmHmksBebasNeue-SemiBold.woff2') format('woff2'),
+       url('./BebasNeue/ArmHmksBebasNeue-SemiBold.woff') format('woff'),
+       url('./BebasNeue/ArmHmksBebasNeue-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arm Hmk\'s Bebas Neue';
+  src: url('./BebasNeue/ArmHmksBebasNeue-Bold.woff2') format('woff2'),
+       url('./BebasNeue/ArmHmksBebasNeue-Bold.woff') format('woff'),
+       url('./BebasNeue/ArmHmksBebasNeue-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* TEMPORARY: Using Google Fonts as fallbacks until custom fonts are added */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
+
+/* Fallback font mappings */
+:root {
+  --font-mardoto: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-bebas: 'Oswald', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}

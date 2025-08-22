@@ -45,9 +45,9 @@ const mockProducts: Product[] = [
     ingredients: ['Grain', 'Water'],
     alcoholContent: 40,
     origin: {
-      en: 'Russia',
-      hy: 'Ռուսաստան',
-      ru: 'Россия'
+      en: 'Armenia',
+      hy: 'Հայաստան',
+      ru: 'Армения'
     },
     inStock: true,
     rating: 4.5,

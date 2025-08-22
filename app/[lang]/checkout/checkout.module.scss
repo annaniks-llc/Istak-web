@@ -3,268 +3,285 @@
 .container {
   min-height: 100vh;
   background: #f8f9fa;
-  padding: 40px 20px;
+  padding: 20px;
+  padding-top: 104px;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 40px;
-  max-width: 1200px;
-  margin: 0 auto 40px;
-
-  h1 {
-    font-size: 36px;
-    font-weight: 700;
-    color: $color_primary_dark;
-    margin-bottom: 8px;
-  }
-
-  p {
-    color: #666;
-    font-size: 18px;
-  }
+.breadcrumbContainer {
+  width: 100%;
+  margin-bottom: 32px;
 }
 
 .checkoutContent {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 32px;
+  gap: 48px;
   max-width: 1200px;
   margin: 0 auto;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
 }
 
-.checkoutForm {
-  background: white;
-  border-radius: 12px;
-  padding: 32px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
+// Left Section - Delivery Information
+.deliverySection {
+  // background: white;
+  border-radius: 16px;
+  padding: 40px;
+  // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-.section {
-  margin-bottom: 32px;
-
-  h2 {
-    font-size: 24px;
-    font-weight: 700;
+  .sectionTitle {
+    font-family: "Arm Hmk's Bebas Neue";
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 34px;
+    line-height: 34px;
+    letter-spacing: 3.4%;
+    text-transform: uppercase;
     color: $color_primary_dark;
-    margin-bottom: 20px;
-  }
-}
-
-.formGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-}
-
-.formGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  label {
-    font-weight: 600;
-    color: $color_primary_dark;
-    font-size: 14px;
+    margin: 0 0 32px 0;
   }
 
-  input {
-    padding: 12px 16px;
-    border: 2px solid #e1e5e9;
+  .guestNote {
+    background: #f8f9fa;
+    border: 1px solid #e1e5e9;
     border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    background: white;
+    padding: 16px;
+    margin-bottom: 24px;
 
-    &:focus {
-      outline: none;
-      border-color: $color_secondary;
-      box-shadow: 0 0 0 3px rgba(213, 135, 59, 0.1);
-    }
-
-    &.error {
-      border-color: #ef4444;
-    }
-
-    &::placeholder {
-      color: #9ca3af;
+    p {
+      font-family: Mardoto;
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+      text-align: center;
     }
   }
 }
 
-.errorMessage {
-  color: #ef4444;
-  font-size: 12px;
-  margin-top: 4px;
+.deliveryForm {
+  .formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+
+    &.fullWidth {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .inputGroup {
+    width: 100%;
+  }
 }
 
-.paymentMethods {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #D1D1D8;
+  margin: 24px 0;
 }
 
-.paymentOption {
+.paymentAndSubmit {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px;
-  border: 2px solid #e1e5e9;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 32px 0;
+}
 
-  &:hover {
-    border-color: $color_secondary;
+.paymentMethod {
+  flex: 1;
+  padding: 11px 30px;
+  background: #f8f9fa;
+  border: 1px solid #e1e5e9;
+  box-sizing: border-box;
+  .paymentLabel {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    font-family: Mardoto;
+    font-weight: 500;
+    font-size: 16px;
+    color: $color_primary_dark;
   }
 
-  input[type="radio"] {
+  .paymentRadio {
     width: 18px;
     height: 18px;
-    accent-color: $color_secondary;
+    accent-color: #007bff;
+    cursor: pointer;
+    border: 2px solid #d1d1d8;
+    border-radius: 50%;
+    background: white;
   }
 
-  .radioLabel {
-    font-size: 16px;
-    font-weight: 600;
-    color: $color_primary_dark;
+  .paymentText {
+    flex: 1;
+  }
+
+  .visaLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 32px;
+    background: white;
+    border-radius: 6px;
   }
 }
 
 .submitButton {
-  background: $color_secondary;
-  color: white;
-  border: none;
-  padding: 16px 32px;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
+  flex-shrink: 0;
 
-  &:hover:not(:disabled) {
-    background: darken($color_secondary, 10%);
-    transform: translateY(-1px);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+  button {
+    height: 56px;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 200px;
   }
 }
 
-.orderSummary {
+// Right Section - Order Summary
+.orderSummarySection {
   background: white;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 2px solid #e1e5e9;
+  border-radius: 16px;
+  padding: 32px;
   height: fit-content;
   position: sticky;
-  top: 20px;
+  top: 120px;
 
-  h2 {
-    font-size: 24px;
-    font-weight: 700;
+  .sectionTitle {
+    font-family: Mardoto;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 28px;
+    line-height: 32px;
+    letter-spacing: 0%;
+    text-transform: uppercase;
     color: $color_primary_dark;
-    margin-bottom: 24px;
+    margin: 0 0 32px 0;
   }
 }
 
-.orderItems {
+
+
+.summaryDetails {
   margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.orderItem {
+.summaryRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid #e5e7eb;
+  font-family: Mardoto;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: $color_primary_dark;
 
-  &:last-child {
-    border-bottom: none;
+  .freeDelivery {
+    color: #3AA39F;
   }
-
-  .itemInfo {
-    h3 {
-      font-size: 16px;
-      font-weight: 600;
-      color: $color_primary_dark;
-      margin-bottom: 4px;
-    }
-
-    .itemQuantity {
-      font-size: 14px;
-      color: #666;
-    }
-  }
-
-  .itemPrice {
-    font-size: 16px;
-    font-weight: 700;
-    color: $color_primary_dark;
-  }
-}
-
-.orderTotals {
-  border-top: 2px solid #e5e7eb;
-  padding-top: 16px;
 }
 
 .totalRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
-  font-size: 16px;
+  padding: 20px 0;
+  border-top: 2px solid #e1e5e9;
+  font-family: Mardoto;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: $color_primary_dark;
+}
 
-  &.grandTotal {
-    font-size: 20px;
-    font-weight: 700;
-    color: $color_primary_dark;
-    border-top: 1px solid #e5e7eb;
-    padding-top: 16px;
-    margin-top: 8px;
+// Responsive Design
+@media (max-width: 1024px) {
+  .checkoutContent {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .orderSummarySection {
+    position: static;
   }
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 20px 16px;
+    padding: 16px;
+    padding-top: 104px;
   }
 
-  .header {
-    h1 {
-      font-size: 28px;
-    }
+  .checkoutContent {
+    gap: 24px;
+  }
 
-    p {
-      font-size: 16px;
+  .deliverySection {
+    padding: 24px;
+  }
+
+  .deliveryForm {
+    .formRow {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
     }
   }
 
-  .checkoutForm {
+  .paymentMethod {
+    margin: 24px 0;
+    padding: 20px;
+
+    .paymentLabel {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+
+  .orderSummarySection {
+    padding: 24px;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+
+}
+
+@media (max-width: 480px) {
+  .deliverySection {
     padding: 20px;
   }
 
-  .orderSummary {
-    position: static;
+  .orderSummarySection {
     padding: 20px;
+  }
+
+  .summaryRow,
+  .totalRow {
+    font-size: 14px;
   }
 
   .submitButton {
-    padding: 14px 24px;
-    font-size: 16px;
+    button {
+      height: 48px;
+      font-size: 16px;
+    }
   }
 }

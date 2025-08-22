@@ -1,0 +1,512 @@
+[
+  {
+    "id": 1,
+    "name": {
+      "en": "Mojito",
+      "hy": "Մոխիտո",
+      "ru": "Мохито"
+    },
+    "description": {
+      "en": "A refreshing Cuban cocktail made with white rum, sugar, lime juice, soda water, and fresh mint",
+      "hy": "Թարմացնող կուբայական կոկտեյլ, պատրաստված սպիտակ ռոմից, շաքարից, կիտրոնի հյութից, սոդայից և թարմ մանթից",
+      "ru": "Освежающий кубинский коктейль, приготовленный из белого рома, сахара, сока лайма, газированной воды и свежей мяты"
+    },
+    "ingredients": {
+      "en": ["White rum", "Fresh mint", "Lime juice", "Sugar", "Soda water"],
+      "hy": ["Սպիտակ ռոմ", "Թարմ մանթ", "Կիտրոնի հյութ", "Շաքար", "Սոդա"],
+      "ru": ["Белый ром", "Свежая мята", "Сок лайма", "Сахар", "Газированная вода"]
+    },
+    "instructions": {
+      "en": "Muddle mint with sugar and lime juice. Add rum and top with soda water. Garnish with mint sprig.",
+      "hy": "Մանթը շաքարի և կիտրոնի հյութի հետ մանրացնել: Ավելացնել ռոմ և վերևից սոդա: Զարդարել մանթի ճյուղով:",
+      "ru": "Разомните мяту с сахаром и соком лайма. Добавьте ром и долейте газированной водой. Украсьте веточкой мяты."
+    },
+    "category": "rum",
+    "difficulty": "easy",
+    "prepTime": "5 minutes",
+    "servings": 1,
+    "alcoholContent": "10%",
+    "glassType": "Highball",
+    "pricing": {
+      "AM": {
+        "price": 4500,
+        "currency": "AMD",
+        "currencySymbol": "֏",
+        "region": "Armenia",
+        "taxRate": 0.20,
+        "discount": 0
+      },
+      "RU": {
+        "price": 1200,
+        "currency": "RUB",
+        "currencySymbol": "₽",
+        "region": "Russia",
+        "taxRate": 0.18,
+        "discount": 0
+      },
+      "US": {
+        "price": 12.99,
+        "currency": "USD",
+        "currencySymbol": "$",
+        "region": "United States",
+        "taxRate": 0.08,
+        "discount": 0
+      },
+      "EU": {
+        "price": 11.50,
+        "currency": "EUR",
+        "currencySymbol": "€",
+        "region": "European Union",
+        "taxRate": 0.21,
+        "discount": 0
+      }
+    },
+    "rating": 4.8,
+    "image": "/img/png/cocktail1.png",
+    "gallery": [
+      "/img/png/cocktail1.png",
+      "/img/png/cocktail1.png"
+    ],
+    "tags": ["refreshing", "summer", "mint", "rum", "cuban"],
+    "nutritionalInfo": {
+      "calories": 150,
+      "carbs": 15,
+      "sugar": 12,
+      "protein": 0
+    },
+    "seasonal": ["spring", "summer"],
+    "popular": true,
+    "featured": true,
+    "availability": {
+      "AM": true,
+      "RU": true,
+      "US": true,
+      "EU": true
+    }
+  },
+  {
+    "id": 2,
+    "name": {
+      "en": "Margarita",
+      "hy": "Մարգարիտա",
+      "ru": "Маргарита"
+    },
+    "description": {
+      "en": "A classic Mexican cocktail made with tequila, triple sec, and fresh lime juice, served with a salted rim",
+      "hy": "Դասական մեքսիկական կոկտեյլ, պատրաստված տեկիլայից, տրիպլ սեկից և թարմ կիտրոնի հյութից, մատուցվում է աղած եզրով",
+      "ru": "Классический мексиканский коктейль, приготовленный из текилы, трипл-сека и свежего сока лайма, подается с соленым краем"
+    },
+    "ingredients": {
+      "en": ["Tequila", "Triple sec", "Lime juice", "Salt", "Ice"],
+      "hy": ["Տեկիլա", "Տրիպլ սեկ", "Կիտրոնի հյութ", "Աղ", "Սառույց"],
+      "ru": ["Текила", "Трипл-сек", "Сок лайма", "Соль", "Лед"]
+    },
+    "instructions": {
+      "en": "Rim glass with salt. Shake tequila, triple sec, and lime juice with ice. Strain into glass.",
+      "hy": "Բաժակի եզրը աղով պատել: Տեկիլան, տրիպլ սեկը և կիտրոնի հյութը սառույցի հետ թափահարել: Զտել բաժակի մեջ:",
+      "ru": "Ободок стакана посолить. Встряхнуть текилу, трипл-сек и сок лайма со льдом. Процедить в стакан."
+    },
+    "category": "tequila",
+    "difficulty": "easy",
+    "prepTime": "3 minutes",
+    "servings": 1,
+    "alcoholContent": "12%",
+    "glassType": "Margarita glass",
+    "pricing": {
+      "AM": {
+        "price": 5200,
+        "currency": "AMD",
+        "currencySymbol": "֏",
+        "region": "Armenia",
+        "taxRate": 0.20,
+        "discount": 0.10
+      },
+      "RU": {
+        "price": 1350,
+        "currency": "RUB",
+        "currencySymbol": "₽",
+        "region": "Russia",
+        "taxRate": 0.18,
+        "discount": 0.05
+      },
+      "US": {
+        "price": 14.99,
+        "currency": "USD",
+        "currencySymbol": "$",
+        "region": "United States",
+        "taxRate": 0.08,
+        "discount": 0
+      },
+      "EU": {
+        "price": 13.80,
+        "currency": "EUR",
+        "currencySymbol": "€",
+        "region": "European Union",
+        "taxRate": 0.21,
+        "discount": 0.15
+      }
+    },
+    "rating": 4.9,
+    "image": "/img/png/cocktail2.png",
+    "gallery": [
+      "/img/png/cocktail2.png",
+      "/img/png/cocktail2.png"
+    ],
+    "tags": ["classic", "mexican", "tequila", "lime", "salty"],
+    "nutritionalInfo": {
+      "calories": 180,
+      "carbs": 18,
+      "sugar": 15,
+      "protein": 0
+    },
+    "seasonal": ["all-year"],
+    "popular": true,
+    "featured": true,
+    "availability": {
+      "AM": true,
+      "RU": true,
+      "US": true,
+      "EU": true
+    }
+  },
+  {
+    "id": 3,
+    "name": {
+      "en": "Old Fashioned",
+      "hy": "Հին Ֆեշն",
+      "ru": "Олд Фешен"
+    },
+    "description": {
+      "en": "A sophisticated bourbon cocktail with bitters, sugar, and a twist of orange, served over ice",
+      "hy": "Բարդ բուրբոն կոկտեյլ բիտտերով, շաքարով և նարնջի պտղաթերթով, մատուցվում է սառույցի վրա",
+      "ru": "Изысканный коктейль с бурбоном, биттерами, сахаром и долькой апельсина, подается со льдом"
+    },
+    "ingredients": {
+      "en": ["Bourbon", "Angostura bitters", "Sugar cube", "Orange peel", "Ice"],
+      "hy": ["Բուրբոն", "Անգոստուրա բիտտեր", "Շաքարի խորանարդ", "Նարնջի կեղև", "Սառույց"],
+      "ru": ["Бурбон", "Ангостура биттеры", "Сахарный кубик", "Апельсиновая цедра", "Лед"]
+    },
+    "instructions": {
+      "en": "Muddle sugar with bitters. Add bourbon and ice. Stir gently and garnish with orange peel.",
+      "hy": "Շաքարը բիտտերի հետ մանրացնել: Ավելացնել բուրբոն և սառույց: Զգուշորեն խառնել և զարդարել նարնջի կեղևով:",
+      "ru": "Разомните сахар с биттерами. Добавьте бурбон и лед. Аккуратно размешайте и украсьте апельсиновой цедрой."
+    },
+    "category": "whiskey",
+    "difficulty": "medium",
+    "prepTime": "7 minutes",
+    "servings": 1,
+    "alcoholContent": "15%",
+    "glassType": "Rocks glass",
+    "pricing": {
+      "AM": {
+        "price": 6800,
+        "currency": "AMD",
+        "currencySymbol": "֏",
+        "region": "Armenia",
+        "taxRate": 0.20,
+        "discount": 0
+      },
+      "RU": {
+        "price": 1800,
+        "currency": "RUB",
+        "currencySymbol": "₽",
+        "region": "Russia",
+        "taxRate": 0.18,
+        "discount": 0
+      },
+      "US": {
+        "price": 16.99,
+        "currency": "USD",
+        "currencySymbol": "$",
+        "region": "United States",
+        "taxRate": 0.08,
+        "discount": 0
+      },
+      "EU": {
+        "price": 15.20,
+        "currency": "EUR",
+        "currencySymbol": "€",
+        "region": "European Union",
+        "taxRate": 0.21,
+        "discount": 0
+      }
+    },
+    "rating": 4.7,
+    "image": "/img/png/cocktail3.png",
+    "gallery": [
+      "/img/png/cocktail3.png",
+      "/img/png/cocktail3.png"
+    ],
+    "tags": ["classic", "bourbon", "whiskey", "sophisticated", "winter"],
+    "nutritionalInfo": {
+      "calories": 200,
+      "carbs": 8,
+      "sugar": 8,
+      "protein": 0
+    },
+    "seasonal": ["autumn", "winter"],
+    "popular": true,
+    "featured": false,
+    "availability": {
+      "AM": true,
+      "RU": true,
+      "US": true,
+      "EU": true
+    }
+  },
+  {
+    "id": 4,
+    "name": {
+      "en": "Negroni",
+      "hy": "Նեգրոնի",
+      "ru": "Негрони"
+    },
+    "description": {
+      "en": "An Italian aperitif cocktail made with gin, vermouth rosso, and Campari, served over ice",
+      "hy": "Իտալական ապերիտիվ կոկտեյլ, պատրաստված ջինից, վերմուտ ռոսսոյից և Կամպարիից, մատուցվում է սառույցի վրա",
+      "ru": "Итальянский аперитив-коктейль, приготовленный из джина, вермута россо и Кампари, подается со льдом"
+    },
+    "ingredients": {
+      "en": ["Gin", "Vermouth rosso", "Campari", "Orange peel", "Ice"],
+      "hy": ["Ջին", "Վերմուտ ռոսսո", "Կամպարի", "Նարնջի կեղև", "Սառույց"],
+      "ru": ["Джин", "Вермут россо", "Кампари", "Апельсиновая цедра", "Лед"]
+    },
+    "instructions": {
+      "en": "Stir gin, vermouth, and Campari with ice. Strain into glass and garnish with orange peel.",
+      "hy": "Ջինը, վերմուտը և Կամպարին սառույցի հետ խառնել: Զտել բաժակի մեջ և զարդարել նարնջի կեղևով:",
+      "ru": "Размешайте джин, вермут и Кампари со льдом. Процедите в стакан и украсьте апельсиновой цедрой."
+    },
+    "category": "gin",
+    "difficulty": "easy",
+    "prepTime": "4 minutes",
+    "servings": 1,
+    "alcoholContent": "14%",
+    "glassType": "Rocks glass",
+    "pricing": {
+      "AM": {
+        "price": 6200,
+        "currency": "AMD",
+        "currencySymbol": "֏",
+        "region": "Armenia",
+        "taxRate": 0.20,
+        "discount": 0.05
+      },
+      "RU": {
+        "price": 1650,
+        "currency": "RUB",
+        "currencySymbol": "₽",
+        "region": "Russia",
+        "taxRate": 0.18,
+        "discount": 0
+      },
+      "US": {
+        "price": 15.99,
+        "currency": "USD",
+        "currencySymbol": "$",
+        "region": "United States",
+        "taxRate": 0.08,
+        "discount": 0
+      },
+      "EU": {
+        "price": 14.50,
+        "currency": "EUR",
+        "currencySymbol": "€",
+        "region": "European Union",
+        "taxRate": 0.21,
+        "discount": 0.10
+      }
+    },
+    "rating": 4.6,
+    "image": "/img/png/cocktail4.png",
+    "gallery": [
+      "/img/png/cocktail4.png",
+      "/img/png/cocktail4.png"
+    ],
+    "tags": ["italian", "aperitif", "gin", "bitter", "sophisticated"],
+    "nutritionalInfo": {
+      "calories": 170,
+      "carbs": 12,
+      "sugar": 10,
+      "protein": 0
+    },
+    "seasonal": ["all-year"],
+    "popular": true,
+    "featured": false,
+    "availability": {
+      "AM": true,
+      "RU": true,
+      "US": true,
+      "EU": true
+    }
+  },
+  {
+    "id": 5,
+    "name": {
+      "en": "Pina Colada",
+      "hy": "Պինյա Կոլադա",
+      "ru": "Пинья Колада"
+    },
+    "description": {
+      "en": "A tropical cocktail made with rum, coconut cream, and pineapple juice, served blended or shaken",
+      "hy": "Արևադարձային կոկտեյլ, պատրաստված ռոմից, կոկոսի կրեմից և անանասի հյութից, մատուցվում է խառնված կամ թափահարված",
+      "ru": "Тропический коктейль, приготовленный из рома, кокосовых сливок и ананасового сока, подается взбитым или взболтанным"
+    },
+    "ingredients": {
+      "en": ["White rum", "Coconut cream", "Pineapple juice", "Pineapple wedge", "Ice"],
+      "hy": ["Սպիտակ ռոմ", "Կոկոսի կրեմ", "Անանասի հյութ", "Անանասի կտոր", "Սառույց"],
+      "ru": ["Белый ром", "Кокосовые сливки", "Ананасовый сок", "Долька ананаса", "Лед"]
+    },
+    "instructions": {
+      "en": "Blend rum, coconut cream, and pineapple juice with ice. Pour into glass and garnish with pineapple.",
+      "hy": "Ռոմը, կոկոսի կրեմը և անանասի հյութը սառույցի հետ խառնել: Լցնել բաժակի մեջ և զարդարել անանասով:",
+      "ru": "Взбейте ром, кокосовые сливки и ананасовый сок со льдом. Перелейте в стакан и украсьте ананасом."
+    },
+    "category": "rum",
+    "difficulty": "easy",
+    "prepTime": "6 minutes",
+    "servings": 1,
+    "alcoholContent": "11%",
+    "glassType": "Hurricane glass",
+    "pricing": {
+      "AM": {
+        "price": 4800,
+        "currency": "AMD",
+        "currencySymbol": "֏",
+        "region": "Armenia",
+        "taxRate": 0.20,
+        "discount": 0.15
+      },
+      "RU": {
+        "price": 1280,
+        "currency": "RUB",
+        "currencySymbol": "₽",
+        "region": "Russia",
+        "taxRate": 0.18,
+        "discount": 0.10
+      },
+      "US": {
+        "price": 13.99,
+        "currency": "USD",
+        "currencySymbol": "$",
+        "region": "United States",
+        "taxRate": 0.08,
+        "discount": 0
+      },
+      "EU": {
+        "price": 12.80,
+        "currency": "EUR",
+        "currencySymbol": "€",
+        "region": "European Union",
+        "taxRate": 0.21,
+        "discount": 0.20
+      }
+    },
+    "rating": 4.5,
+    "image": "/img/png/cocktail5.png",
+    "gallery": [
+      "/img/png/cocktail5.png",
+      "/img/png/cocktail5.png"
+    ],
+    "tags": ["tropical", "summer", "coconut", "pineapple", "sweet"],
+    "nutritionalInfo": {
+      "calories": 250,
+      "carbs": 25,
+      "sugar": 22,
+      "protein": 2
+    },
+    "seasonal": ["spring", "summer"],
+    "popular": true,
+    "featured": true,
+    "availability": {
+      "AM": true,
+      "RU": true,
+      "US": true,
+      "EU": true
+    }
+  },
+  {
+    "id": 6,
+    "name": {
+      "en": "Manhattan",
+      "hy": "Մանհեթեն",
+      "ru": "Манхэттен"
+    },
+    "description": {
+      "en": "A classic whiskey cocktail made with rye whiskey, sweet vermouth, and bitters",
+      "hy": "Դասական վիսկի կոկտեյլ, պատրաստված ցորենի վիսկիից, քաղցր վերմուտից և բիտտերից",
+      "ru": "Классический виски-коктейль, приготовленный из ржаного виски, сладкого вермута и биттеров"
+    },
+    "ingredients": {
+      "en": ["Rye whiskey", "Sweet vermouth", "Angostura bitters", "Cherry", "Ice"],
+      "hy": ["Ցորենի վիսկի", "Քաղցր վերմուտ", "Անգոստուրա բիտտեր", "Բալ", "Սառույց"],
+      "ru": ["Ржаной виски", "Сладкий вермут", "Ангостура биттеры", "Вишня", "Лед"]
+    },
+    "instructions": {
+      "en": "Stir whiskey, vermouth, and bitters with ice. Strain into glass and garnish with cherry.",
+      "hy": "Վիսկին, վերմուտը և բիտտերը սառույցի հետ խառնել: Զտել բաժակի մեջ և զարդարել բալով:",
+      "ru": "Размешайте виски, вермут и биттеры со льдом. Процедите в стакан и украсьте вишней."
+    },
+    "category": "whiskey",
+    "difficulty": "medium",
+    "prepTime": "5 minutes",
+    "servings": 1,
+    "alcoholContent": "16%",
+    "glassType": "Cocktail glass",
+    "pricing": {
+      "AM": {
+        "price": 7200,
+        "currency": "AMD",
+        "currencySymbol": "֏",
+        "region": "Armenia",
+        "taxRate": 0.20,
+        "discount": 0
+      },
+      "RU": {
+        "price": 1950,
+        "currency": "RUB",
+        "currencySymbol": "₽",
+        "region": "Russia",
+        "taxRate": 0.18,
+        "discount": 0
+      },
+      "US": {
+        "price": 17.99,
+        "currency": "USD",
+        "currencySymbol": "$",
+        "region": "United States",
+        "taxRate": 0.08,
+        "discount": 0
+      },
+      "EU": {
+        "price": 16.50,
+        "currency": "EUR",
+        "currencySymbol": "€",
+        "region": "European Union",
+        "taxRate": 0.21,
+        "discount": 0
+      }
+    },
+    "rating": 4.8,
+    "image": "/img/png/cocktail1.png",
+    "gallery": [
+      "/img/png/cocktail1.png",
+      "/img/png/cocktail1.png"
+    ],
+    "tags": ["classic", "whiskey", "rye", "sophisticated", "winter"],
+    "nutritionalInfo": {
+      "calories": 190,
+      "carbs": 10,
+      "sugar": 8,
+      "protein": 0
+    },
+    "seasonal": ["autumn", "winter"],
+    "popular": true,
+    "featured": false,
+    "availability": {
+      "AM": true,
+      "RU": true,
+      "US": true,
+      "EU": true
+    }
+  }
+] 

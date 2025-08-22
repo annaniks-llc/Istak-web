@@ -24,12 +24,10 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0.4) 50%,
-      rgba(0, 0, 0, 0.8) 100%
-    );
+    background: linear-gradient(135deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.4) 50%,
+        rgba(0, 0, 0, 0.8) 100%);
     z-index: 1;
   }
 
@@ -49,9 +47,24 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 20px;
+      font-family: "Arm Hmk's Bebas Neue";
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 16px;
+      line-height: 30px;
+      letter-spacing: 4%;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+
+      span {
+        color: #FFFFFF80;
+
+        &:last-child {
+          color: white;
+        }
+      }
+
 
       .breadcrumbSeparator {
         color: rgba(255, 255, 255, 0.6);
@@ -60,11 +73,16 @@
     }
 
     .mainTitle {
-      font-size: 48px;
-      font-weight: 700;
-      margin: 0 0 16px 0;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      letter-spacing: 1px;
+      font-family: "Arm Hmk's Bebas Neue";
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 50px;
+      line-height: 60px;
+      letter-spacing: 4%;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 0;
+
     }
 
     .subtitle {
@@ -75,6 +93,68 @@
       max-width: 600px;
       line-height: 1.5;
     }
+  }
+}
+
+/* Product Category Filters */
+.categoryFilters {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  padding: 0 20px;
+  flex-wrap: wrap;
+
+  .filterButton {
+    background:#A2A2A2;
+    padding: 8px 32px;
+    font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 2%;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 206px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      background: #e0e0e0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &.active {
+      background: #333;
+      color: white;
+      border-color: #333;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border-bottom: 2px solid $color_secondary;
+
+    }
+  }
+}
+
+/* Results Counter */
+.resultsCounter {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 0 20px;
+
+  p {
+    font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 2%;
+    text-transform: uppercase;
+    color: #666;
+    margin: 0;
   }
 }
 
@@ -444,6 +524,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -452,6 +533,45 @@
 @media (max-width: 768px) {
   .container {
     padding: 20px 16px;
+  }
+
+  .topSection {
+    height: 300px;
+
+    .topSectionContent {
+      .mainTitle {
+        font-size: 36px;
+        line-height: 44px;
+      }
+
+      .breadcrumb {
+        font-size: 14px;
+        line-height: 24px;
+      }
+    }
+  }
+
+  .categoryFilters {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+
+    .filterButton {
+      min-width: 200px;
+      padding: 14px 24px;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+
+  .resultsCounter {
+    margin-bottom: 20px;
+
+    p {
+      font-size: 16px;
+      line-height: 20px;
+    }
   }
 
   .header {

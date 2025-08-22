@@ -2,16 +2,18 @@
 
 .button {
   width: 100%;
-  height: 100%;
+  height: 100%; 
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 400;
   font-style: Regular;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 24px;
   letter-spacing: 1.6%;
   text-transform: uppercase;
+  font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
+  cursor: pointer;
 }
 
 .primary {

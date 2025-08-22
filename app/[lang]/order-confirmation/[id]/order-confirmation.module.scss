@@ -34,6 +34,24 @@
     max-width: 600px;
     margin: 0 auto;
   }
+
+  .guestNote {
+    background: #f8f9fa;
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 24px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+
+    p {
+      color: #666;
+      font-size: 14px;
+      margin: 0;
+      text-align: center;
+    }
+  }
 }
 
 .orderDetails {

@@ -1,20 +1,20 @@
 @import "@/app/styles/var.scss";
 
 .container {
-  min-height: 100vh;
+  // min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background: white;
   padding: 20px;
-  padding-top: 104px;
+  padding-top: 100px;
 }
 
 .breadcrumbContainer {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
 }
 
 .formContainer {

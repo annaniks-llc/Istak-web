@@ -3,23 +3,33 @@ import { useDictionary } from '@/dictionary-provider';
 import Link from 'next/link';
 import Button from '../Button';
 import styles from './heading.module.scss';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/app/zustand/store/auth';
 import { useCartStore } from '@/app/zustand/store/cart';
+import React from 'react';
 
 export default function Heading() {
   const dictionary = useDictionary();
   const pathname = usePathname();
   const { lang } = useParams();
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuthStore();
   const { getTotalItems } = useCartStore();
+
+  // Debug: Log cart count changes
+  const cartCount = getTotalItems();
+  React.useEffect(() => {
+    console.log('Heading component - Cart count changed:', cartCount);
+  }, [cartCount]);
 
   // Check if we're on home page or products page
   const isHomePage = pathname === `/${lang}` || pathname === `/${lang}/`;
   const isProductsPage = pathname === `/${lang}/products`;
-  const shouldUseDarkColor = !isHomePage && !isProductsPage;
+  const isCocktailsPage = pathname === `/${lang}/cocktails`;
+  const shouldUseDarkColor = !isHomePage && !isProductsPage && !isCocktailsPage;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,37 +41,104 @@ export default function Heading() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handle authentication state changes
+  useEffect(() => {
+    console.log('Heading component - Auth state changed:', { isAuthenticated, user });
+    
+    // If user is not authenticated and we're on a protected page, redirect to home
+    if (!isAuthenticated && pathname.includes('/dashboard')) {
+      console.log('Redirecting to home - user not authenticated');
+      router.push(`/${lang}`);
+    }
+  }, [isAuthenticated, pathname, router, lang]);
+
   const handleLogout = () => {
+    console.log('Heading component - Logout button clicked');
     logout();
+    console.log('Heading component - Redirecting to home after logout');
+    router.push(`/${lang}`);
+  };
+
+  const toggleProductsDropdown = () => {
+    setIsProductsDropdownOpen(!isProductsDropdownOpen);
   };
 
   return (
     <div className={`${styles.heading} ${isScrolled ? styles.scrolled : ''} ${shouldUseDarkColor ? styles.darkColor : ''}`}>
-      <Link href="/" className={styles.logo}>
-        <img src="/img/svg/logo.svg" alt="logo" width={100} height={100} />
+      {/* Logo */}
+      <Link href={`/${lang}`} className={styles.logo}>
+        <div className={styles.logoText}>
+          <span className={styles.logoMain}>ISTAK</span>
+          <span className={styles.logoSub}>DISTILLERY</span>
+        </div>
       </Link>
 
+      {/* Navigation */}
       <nav className={styles.navBar}>
-        <Link className={`${styles.link} ${pathname === `/${lang}` ? styles.active : ''}`} href="/">
-          {dictionary.navigation.home}
+        <div className={styles.navItem}>
+          <button 
+            className={`${styles.navButton} ${isProductsPage ? styles.active : ''}`}
+            onClick={toggleProductsDropdown}
+            onMouseEnter={() => setIsProductsDropdownOpen(true)}
+          >
+            {dictionary.navigation.products}
+          </button>
+          
+          {/* Products Dropdown */}
+          {isProductsDropdownOpen && (
+            <div 
+              className={styles.dropdown}
+              onMouseLeave={() => setIsProductsDropdownOpen(false)}
+            >
+              <Link href={`/${lang}/products?category=gin`} className={styles.dropdownItem}>
+                <span className={styles.dropdownText}>202 ՋԻՆ</span>
+                <div className={styles.dropdownHighlight}></div>
+              </Link>
+              <Link href={`/${lang}/products?category=vodka`} className={styles.dropdownItem}>
+                <span className={styles.dropdownText}>ԻՍՏԱԿ ՕՂԻ</span>
+                <div className={styles.dropdownHighlight}></div>
+              </Link>
+              <Link href={`/${lang}/products?category=family`} className={styles.dropdownItem}>
+                <span className={styles.dropdownText}>SHARLIE ԸՆՏԱՆԻՔ</span>
+                <div className={styles.dropdownHighlight}></div>
+              </Link>
+              <Link href={`/${lang}/products?category=limited`} className={styles.dropdownItem}>
+                <span className={styles.dropdownText}>Լիմիթիե</span>
+                <div className={styles.dropdownHighlight}></div>
+              </Link>
+            </div>
+          )}
+        </div>
+
+        <Link 
+          className={`${styles.navLink} ${isCocktailsPage ? styles.active : ''}`} 
+          href={`/${lang}/cocktails`}
+        >
+          {dictionary.navigation.cocktails}
         </Link>
-        <Link className={`${styles.link} ${pathname === `/${lang}/products` ? styles.active : ''}`} href="/products">
-          {dictionary.navigation.products}
+
+        <Link 
+          className={styles.navLink} 
+          href={`/${lang}/subscription`}
+        >
+          {dictionary.navigation.subscription}
         </Link>
-        {isAuthenticated && (
-          <Link className={`${styles.link} ${pathname === `/${lang}/dashboard` ? styles.active : ''}`} href="/dashboard">
-            {dictionary.navigation.dashboard}
-          </Link>
-        )}
       </nav>
 
-      <div className={styles.icons}>
-        <Link href="/cart" className={styles.cartIcon}>
-          <img src="/img/svg/cart.svg" alt={dictionary.navigation.cart} width={16} height={16} />
+      {/* Right Section - Icons and Auth */}
+      <div className={styles.rightSection}>
+        {/* Search Icon */}
+        {/* <button className={styles.iconButton}>
+          <img src="/img/svg/search.svg" alt={dictionary.navigation.search} width={20} height={20} />
+        </button> */}
+
+        {/* Cart Icon */}
+        <Link href={`/${lang}/cart`} className={styles.cartIcon}>
+          <img src="/img/svg/cart.svg" alt={dictionary.navigation.cart} width={20} height={20} />
           {getTotalItems() > 0 && <span className={styles.cartBadge}>{getTotalItems()}</span>}
         </Link>
-        <img src="/img/svg/search.svg" alt={dictionary.navigation.search} width={16} height={16} />
 
+        {/* Auth Section */}
         {isAuthenticated ? (
           <div className={styles.userMenu}>
             <span className={styles.userName}>
@@ -72,13 +149,14 @@ export default function Heading() {
             </button>
           </div>
         ) : (
-          <div className={styles.authButtons}>
-            <Link href="/login">
-              <Button text={`${dictionary.navigation.login}/${dictionary.navigation.register}`} variant="light" onClick={() => {}} />
+          <div className={styles.authButton}>
+            <Link href={`/${lang}/login`}>
+              <Button 
+                text={`${dictionary.navigation.login} / ${dictionary.navigation.register}`} 
+                variant="light" 
+                onClick={() => {}} 
+              />
             </Link>
-            {/* <Link href="/register">
-              <Button text={dictionary.navigation.register} variant="light" onClick={() => {}} />
-            </Link> */}
           </div>
         )}
       </div>

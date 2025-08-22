@@ -47,12 +47,13 @@ export default function LoginPage() {
       const result = await login(data.email, data.password);
       if (result.success) {
         toast.success('Login successful!');
-        router.push('/dashboard');
+        router.push(`/${lang}/dashboard`);
       } else {
-        const errorMessage = 'message' in result ? String(result.message) : 'Login failed. Please check your credentials.';
+        const errorMessage = result.error || 'Login failed. Please check your credentials.';
         toast.error(errorMessage);
       }
-    } catch {
+    } catch (error) {
+      console.error('Login error:', error);
       toast.error('An unexpected error occurred.');
     } finally {
       setIsLoading(false);
@@ -142,7 +143,7 @@ export default function LoginPage() {
 
           {/* Forgot Password Link */}
           <div className={styles.forgotPassword}>
-            <Link href="/forgot-password" className={styles.forgotPasswordLink}>
+            <Link href={`/${lang}/forgot-password`} className={styles.forgotPasswordLink}>
               Մոռացե՞լ եք գաղտնաբառը
             </Link>
           </div>
@@ -166,7 +167,7 @@ export default function LoginPage() {
         <div className={styles.registration}>
           <p>
             Դեռ չունե՞ք հաշիվ{' '}
-            <Link href="/register" className={styles.registrationLink}>
+            <Link href={`/${lang}/register`} className={styles.registrationLink}>
               Ստեղծել հաշիվ
             </Link>
           </p>

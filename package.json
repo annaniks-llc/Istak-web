@@ -9,6 +9,8 @@
     "tsc": "tsc",
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:fast": "next build",
+    "build:no-checks": "next build",
     "start": "next start -H 0.0.0.0 -p 3029",
     "lint": "next lint",
     "test": "jest",

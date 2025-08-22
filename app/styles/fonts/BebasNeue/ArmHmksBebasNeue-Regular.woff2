@@ -1,0 +1,32 @@
+# This is a placeholder file
+# Replace this with the actual ArmHmksBebasNeue-Regular.woff2 font file
+# 
+# Expected file structure:
+# app/styles/fonts/
+# ├── fonts.css
+# ├── Mardoto/
+# │   ├── Mardoto-Regular.woff2
+# │   ├── Mardoto-Regular.woff
+# │   ├── Mardoto-Regular.ttf
+# │   ├── Mardoto-Medium.woff2
+# │   ├── Mardoto-Medium.woff
+# │   ├── Mardoto-Medium.ttf
+# │   ├── Mardoto-SemiBold.woff2
+# │   ├── Mardoto-SemiBold.woff
+# │   ├── Mardoto-SemiBold.ttf
+# │   ├── Mardoto-Bold.woff2
+# │   ├── Mardoto-Bold.woff
+# │   └── Mardoto-Bold.ttf
+# └── BebasNeue/
+#     ├── ArmHmksBebasNeue-Regular.woff2
+#     ├── ArmHmksBebasNeue-Regular.woff
+#     ├── ArmHmksBebasNeue-Regular.ttf
+#     ├── ArmHmksBebasNeue-Medium.woff2
+#     ├── ArmHmksBebasNeue-Medium.woff
+#     ├── ArmHmksBebasNeue-Medium.ttf
+#     ├── ArmHmksBebasNeue-SemiBold.woff2
+#     ├── ArmHmksBebasNeue-SemiBold.woff
+#     ├── ArmHmksBebasNeue-SemiBold.ttf
+#     ├── ArmHmksBebasNeue-Bold.woff2
+#     ├── ArmHmksBebasNeue-Bold.woff
+#     └── ArmHmksBebasNeue-Bold.ttf

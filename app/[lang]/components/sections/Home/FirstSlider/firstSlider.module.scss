@@ -1,7 +1,8 @@
 @import "../../../../../styles/var.scss";
 
 .containerForFirstSection {
-  height: 89vh;
+  font-family: 'Arm Hmk\'s Bebas Neue', var(--font-bebas), 'Oswald', sans-serif;
+  height: 100vh;
   width: 100%;
   background-image: url("/img/png/sliderImg.png");
   background-position: center;

@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './input.module.scss';
 
 interface InputProps {
-  type?: 'text' | 'email' | 'password' | 'number' | 'search';
+  type?: 'text' | 'email' | 'password' | 'number' | 'search' | 'tel';
   placeholder?: string;
   value?: string;
   onChange?: (value: string) => void;

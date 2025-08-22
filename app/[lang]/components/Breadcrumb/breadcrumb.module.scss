@@ -5,13 +5,23 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
   color: #231F2080;
   width: 100%;
   justify-content: start;
+  height: fit-content;
+  font-family: "Arm Hmk's Bebas Neue";
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 30px;
+  letter-spacing: 4%;
+  text-transform: uppercase;
+  margin-top: 36px;
+
 }
 
 .breadcrumbItem {
+  font-family: "Arm Hmk's Bebas Neue";
   font-weight: 400;
   font-style: Regular;
   font-size: 16px;
@@ -32,6 +42,7 @@
     outline-offset: 2px;
     border-radius: 4px;
   }
+
   &:last-child {
     color: $color_menu;
   }
@@ -39,6 +50,7 @@
 
 .breadcrumbSeparator {
   color: #231F2080;
+
   &:last-child {
     color: $color_menu;
   }

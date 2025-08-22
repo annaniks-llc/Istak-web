@@ -13,6 +13,8 @@
     "navigation": {
         "home": "Home",
         "products": "Products",
+        "cocktails": "Cocktails",
+        "subscription": "Subscription",
         "dashboard": "Dashboard",
         "cart": "Cart",
         "login": "Login",

@@ -8,6 +8,7 @@ export enum PresaleFilterEnum {
 export enum LanguagesEnum {
   en = 'en',
   hy = 'hy',
+  ru = 'ru',
 }
 
 export interface IParams {

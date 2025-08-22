@@ -24,11 +24,9 @@ function ArtCocktails() {
         transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
         viewport={{ once: true, amount: 0.4 }}
       >
-        <h3 className={styles.title}>LImited Edition</h3>
+        <h3 className={styles.title}>Կոկտեյլների արվեստը</h3>
         <p className={styles.description}>
-          202 Dry Gin Բացահայտեք արվեստի և համի բացառիկ համադրությունը։ Այս սահմանափակ թողարկմամբ 202 Dry Gin-ը ստեղծվել է հայ
-          ճանաչված նկարիչ Տիգրան Ցիտողծյանի հեղինակած արտիստիկ պիտակով՝ ընդգծելու մեր ջինի վարպետությունն ու նրբագեղությունը։
-        </p>
+        <span>ISTAK-ի</span>  հետ կարող եք փորձարկել համեր եվ ստեղծել յուրօրինակ կոկտեյլներ, որոնք կդարձնեն ցանկացած երեկո անմոռանալի </p>
         <Button text="Իմանալ ավելին" variant="primary" onClick={() => {}} />
       </motion.div>
     </div>

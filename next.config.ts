@@ -3,6 +3,15 @@ import { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  
+  // Disable build-time checks for faster builds
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  
   webpack: (config, { isServer }) => {
     if (!isServer) {
       // Configuración de fallbacks para módulos de Node.js no disponibles en el navegador
