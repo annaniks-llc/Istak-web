@@ -1,5 +1,5 @@
 'use client';
-
+import queryString from 'query-string';
 import React, { useState, useEffect } from 'react';
 import { useProductsStore, Product } from '@/app/zustand/store/products';
 import { useCartStore } from '@/app/zustand/store/cart';
@@ -26,9 +26,14 @@ export default function ProductsPage() {
     void fetchProducts();
   }, [fetchProducts]);
 
-  const handleAddToCart = (product: Product) => {
+  useEffect(() => {
+    const parsed = queryString.parse(window.location.search);
+    setSelectedCategory(parsed.category as 'all' | 'vodka' | 'gin' | 'family' | 'limited')
+  }, [])
+
+  const handleAddToCart = (product: Product, e:any) => {
     console.log('Products page - Adding product to cart:', product);
-    
+    e.stopPropagation(); // կարևորը 👉 դադարեցնում է event bubbling-ը
     // Handle multilingual product name
     const productName = typeof product.name === 'string'
       ? product.name
@@ -41,11 +46,11 @@ export default function ProductsPage() {
       volume: product.volume,
       image: product.image,
     };
-    
+
     console.log('Products page - Cart item to add:', cartItem);
     addItem(cartItem);
     console.log('Products page - Product added to cart successfully');
-    
+
     toast.success(`${productName} added to cart!`);
   };
 
@@ -127,31 +132,46 @@ export default function ProductsPage() {
       <div className={styles.categoryFilters}>
         <button
           className={`${styles.filterButton} ${selectedCategory === 'all' ? styles.active : ''}`}
-          onClick={() => setSelectedCategory('all')}
+          onClick={() => {
+            router.push(`/${lang}/products?category=all`)
+            setSelectedCategory('all')
+          }}
         >
           ԲՈԼՈՐ ԱՊՐԱՆՔՆԵՐ
         </button>
         <button
           className={`${styles.filterButton} ${selectedCategory === 'vodka' ? styles.active : ''}`}
-          onClick={() => setSelectedCategory('vodka')}
+          onClick={() => {
+            router.push(`/${lang}/products?category=vodka`)
+            setSelectedCategory('vodka')
+          }}
         >
           ԻՍՏԱԿ ՕՂԻ
         </button>
         <button
           className={`${styles.filterButton} ${selectedCategory === 'gin' ? styles.active : ''}`}
-          onClick={() => setSelectedCategory('gin')}
+          onClick={() => {
+            router.push(`/${lang}/products?category=gin`)
+            setSelectedCategory('gin')
+          }}
         >
           202 ՋԻՆ
         </button>
         <button
           className={`${styles.filterButton} ${selectedCategory === 'family' ? styles.active : ''}`}
-          onClick={() => setSelectedCategory('family')}
+          onClick={() => {
+            router.push(`/${lang}/products?category=family`)
+            setSelectedCategory('family')
+          }}
         >
           SHARLIE ԸՆՏԱՆԻՔ
         </button>
         <button
           className={`${styles.filterButton} ${selectedCategory === 'limited' ? styles.active : ''}`}
-          onClick={() => setSelectedCategory('limited')}
+          onClick={() => {
+            router.push(`/${lang}/products?category=limited`)
+            setSelectedCategory('limited')
+          }}
         >
           ԼԻՄԻԹԵԴ ՏԵՍԱԿԱՆԻ
         </button>
@@ -254,7 +274,7 @@ export default function ProductsPage() {
                 prise={product.price}
                 volume={product.volume}
                 src={product.image}
-                onAddToCart={() => handleAddToCart(product)}
+                onAddToCart={(e:any) => handleAddToCart(product, e)}
                 goTo={() => router.push(`/${lang}/products/${product.id}`)}
                 disabled={!product.inStock}
               />

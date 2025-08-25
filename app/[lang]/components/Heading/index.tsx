@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/app/zustand/store/auth';
 import { useCartStore } from '@/app/zustand/store/cart';
 import React from 'react';
+import queryString from 'query-string';
 
 export default function Heading() {
   const dictionary = useDictionary();
@@ -16,8 +17,14 @@ export default function Heading() {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'vodka' | 'gin' | 'family' | 'limited'>('all');
   const { user, isAuthenticated, logout } = useAuthStore();
   const { getTotalItems } = useCartStore();
+
+  useEffect(() => {
+    const parsed = queryString.parse(window.location.search);
+    setSelectedCategory(parsed.category as 'all' | 'vodka' | 'gin' | 'family' | 'limited')
+  }, [window.location.search])
 
   // Debug: Log cart count changes
   const cartCount = getTotalItems();
@@ -44,7 +51,7 @@ export default function Heading() {
   // Handle authentication state changes
   useEffect(() => {
     console.log('Heading component - Auth state changed:', { isAuthenticated, user });
-    
+
     // If user is not authenticated and we're on a protected page, redirect to home
     if (!isAuthenticated && pathname.includes('/dashboard')) {
       console.log('Redirecting to home - user not authenticated');
@@ -67,42 +74,46 @@ export default function Heading() {
     <div className={`${styles.heading} ${isScrolled ? styles.scrolled : ''} ${shouldUseDarkColor ? styles.darkColor : ''}`}>
       {/* Logo */}
       <Link href={`/${lang}`} className={styles.logo}>
-        <div className={styles.logoText}>
+        <img src="/img/svg/logo.svg" alt="logo" />
+        {/* <div className={styles.logoText}>
           <span className={styles.logoMain}>ISTAK</span>
           <span className={styles.logoSub}>DISTILLERY</span>
-        </div>
+        </div> */}
       </Link>
 
       {/* Navigation */}
       <nav className={styles.navBar}>
-        <div className={styles.navItem}>
-          <button 
+        <div
+          onMouseEnter={() => setIsProductsDropdownOpen(true)}
+          onMouseLeave={() => setIsProductsDropdownOpen(false)}
+          className={styles.navItem}
+        >
+          <button
             className={`${styles.navButton} ${isProductsPage ? styles.active : ''}`}
             onClick={toggleProductsDropdown}
-            onMouseEnter={() => setIsProductsDropdownOpen(true)}
+
           >
             {dictionary.navigation.products}
           </button>
-          
+
           {/* Products Dropdown */}
           {isProductsDropdownOpen && (
-            <div 
-              className={styles.dropdown}
-              onMouseLeave={() => setIsProductsDropdownOpen(false)}
+            <div className={styles.dropdown}
+
             >
-              <Link href={`/${lang}/products?category=gin`} className={styles.dropdownItem}>
+              <Link href={`/${lang}/products?category=gin`} className={`${styles.dropdownItem} ${selectedCategory === 'gin' ? styles.active : ''}`}>
                 <span className={styles.dropdownText}>202 ՋԻՆ</span>
                 <div className={styles.dropdownHighlight}></div>
               </Link>
-              <Link href={`/${lang}/products?category=vodka`} className={styles.dropdownItem}>
+              <Link href={`/${lang}/products?category=vodka`} className={`${styles.dropdownItem} ${selectedCategory === 'vodka' ? styles.active : ''}`}>
                 <span className={styles.dropdownText}>ԻՍՏԱԿ ՕՂԻ</span>
                 <div className={styles.dropdownHighlight}></div>
               </Link>
-              <Link href={`/${lang}/products?category=family`} className={styles.dropdownItem}>
+              <Link href={`/${lang}/products?category=family`} className={`${styles.dropdownItem} ${selectedCategory === 'family' ? styles.active : ''}`}>
                 <span className={styles.dropdownText}>SHARLIE ԸՆՏԱՆԻՔ</span>
                 <div className={styles.dropdownHighlight}></div>
               </Link>
-              <Link href={`/${lang}/products?category=limited`} className={styles.dropdownItem}>
+              <Link href={`/${lang}/products?category=limited`} className={`${styles.dropdownItem} ${selectedCategory === 'limited' ? styles.active : ''}`}>
                 <span className={styles.dropdownText}>Լիմիթիե</span>
                 <div className={styles.dropdownHighlight}></div>
               </Link>
@@ -110,15 +121,15 @@ export default function Heading() {
           )}
         </div>
 
-        <Link 
-          className={`${styles.navLink} ${isCocktailsPage ? styles.active : ''}`} 
+        <Link
+          className={`${styles.navLink} ${isCocktailsPage ? styles.active : ''}`}
           href={`/${lang}/cocktails`}
         >
           {dictionary.navigation.cocktails}
         </Link>
 
-        <Link 
-          className={styles.navLink} 
+        <Link
+          className={styles.navLink}
           href={`/${lang}/subscription`}
         >
           {dictionary.navigation.subscription}
@@ -151,10 +162,10 @@ export default function Heading() {
         ) : (
           <div className={styles.authButton}>
             <Link href={`/${lang}/login`}>
-              <Button 
-                text={`${dictionary.navigation.login} / ${dictionary.navigation.register}`} 
-                variant="light" 
-                onClick={() => {}} 
+              <Button
+                text={`${dictionary.navigation.login} / ${dictionary.navigation.register}`}
+                variant="light"
+                onClick={() => { }}
               />
             </Link>
           </div>

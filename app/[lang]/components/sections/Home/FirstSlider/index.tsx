@@ -21,6 +21,7 @@ function FirstSlider() {
 
   return (
     <div className={styles.containerForFirstSection}>
+      {/* <source src="/alcohol.mp4" type="video/ogg"></source> */}
       <div className={styles.container}>
         <motion.div
           className={styles.sliderContainer}
@@ -34,9 +35,10 @@ function FirstSlider() {
               <h3 className={styles.heading}>ISTAK - Ավանդույթի ուժով</h3>
               <p className={styles.title}>Հայկական վարպետությամբ ստեղծված բարձրորակ օղի և ալկոհոլային խմիչքներ</p>
               <div className={styles.buttonContainer}>
-                <Button text="Գնել հիմա" variant="secondary" onClick={() => {}} />
+                <Button text="Գնել հիմա" variant="secondary" onClick={() => { }} />
               </div>
             </div>
+           
             {/* Optional: Other slides */}
           </Slider>
         </motion.div>

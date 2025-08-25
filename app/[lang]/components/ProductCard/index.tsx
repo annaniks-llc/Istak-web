@@ -9,7 +9,7 @@ interface IProductCard {
   title: string | { en: string; hy: string; ru: string };
   prise: number;
   volume: number;
-  onAddToCart?: () => void;
+  onAddToCart?: (e?:any) => void;
   goTo?: () => void;
   disabled?: boolean;
   showAddToCartButton?: boolean;
@@ -28,18 +28,18 @@ function ProductCard({ src, title, prise, volume, onAddToCart, goTo, disabled = 
   };
 
   return (
-    <div className={styles.item}>
+    <div className={styles.item} onClick={goTo}>
       <div className={styles.imageCont}>
         <img src={src} className={styles.image} alt={getLocalizedTitle()} />
         {showAddToCartButton && <div className={styles.addToCartOverlay}>
           <AddToCartButton 
-            onClick={onAddToCart}
+            onClick={(e:any)=>onAddToCart?.(e)}
             disabled={disabled}
             className={styles.addToCartButton}
           />
         </div>} 
       </div>
-      <div className={styles.bottom} onClick={goTo}>
+      <div className={styles.bottom}>
         <span className={styles.title}>{getLocalizedTitle()}</span>
         <div className={styles.productInfo}>
           <span className={styles.volume}>

@@ -7,6 +7,10 @@
   justify-content: end;
   gap: 131px;
   margin-top: 100px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+
   .learnMore {
     width: 759px;
     max-width: 100%;
@@ -34,6 +38,7 @@
       color: $color_primary;
       margin-top: 10px;
       margin-bottom: 40px;
+
       span {
         font-weight: 900;
       }

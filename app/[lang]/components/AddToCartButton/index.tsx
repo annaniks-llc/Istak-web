@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './addToCartButton.module.scss';
 
 interface IAddToCartButton {
-  onClick?: () => void;
+  onClick?: (e:any) => void;
   disabled?: boolean;
   className?: string;
 }

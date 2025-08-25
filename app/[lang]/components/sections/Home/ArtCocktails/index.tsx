@@ -1,10 +1,13 @@
 'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useRouter, useParams } from 'next/navigation';
 import styles from './artcocktails.module.scss';
 import Button from '../../../Button';
 
 function ArtCocktails() {
+  const router = useRouter();
+  const { lang } = useParams();
   return (
     <div className={styles.container}>
       <motion.img
@@ -26,8 +29,8 @@ function ArtCocktails() {
       >
         <h3 className={styles.title}>Կոկտեյլների արվեստը</h3>
         <p className={styles.description}>
-        <span>ISTAK-ի</span>  հետ կարող եք փորձարկել համեր եվ ստեղծել յուրօրինակ կոկտեյլներ, որոնք կդարձնեն ցանկացած երեկո անմոռանալի </p>
-        <Button text="Իմանալ ավելին" variant="primary" onClick={() => {}} />
+          <span>ISTAK-ի</span>  հետ կարող եք փորձարկել համեր եվ ստեղծել յուրօրինակ կոկտեյլներ, որոնք կդարձնեն ցանկացած երեկո անմոռանալի </p>
+        <Button text="Իմանալ ավելին" variant="primary" onClick={() => {router.push(`/${lang}/cocktails`) }} />
       </motion.div>
     </div>
   );

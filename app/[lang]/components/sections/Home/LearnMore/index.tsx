@@ -3,8 +3,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './learnMore.module.scss';
 import Button from '../../../Button';
+import { useParams, useRouter } from 'next/navigation';
 
 function LearnMore() {
+  const router = useRouter();
+  const { lang } = useParams();
   return (
     <div className={styles.container}>
       <motion.div
@@ -19,7 +22,7 @@ function LearnMore() {
           <span>202 Dry Gin</span> Բացահայտեք արվեստի և համի բացառիկ համադրությունը։ Այս սահմանափակ թողարկմամբ 202 Dry Gin-ը ստեղծվել է հայ
           ճանաչված նկարիչ Տիգրան Ցիտողծյանի հեղինակած արտիստիկ պիտակով՝ ընդգծելու մեր ջինի վարպետությունն ու նրբագեղությունը։
         </p>
-        <Button text="Իմանալ ավելին" variant="primary" onClick={() => {}} />
+        <Button text="Իմանալ ավելին" variant="primary" onClick={() => {router.push(`/${lang}/products?category=limited`)}} />
       </motion.div>
 
       <motion.img

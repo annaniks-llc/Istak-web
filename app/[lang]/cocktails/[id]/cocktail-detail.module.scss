@@ -3,15 +3,16 @@
 .container {
   min-height: 100vh;
   background: white;
-  padding: 0;
-  padding-top: 104px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 90px;
 }
 
 .breadcrumbContainer {
   width: 100%;
-  margin-bottom: 40px;
-  margin-top: 36px;
-  padding: 0 20px;
+  // margin-bottom: 40px;
+  // margin-top: 36px;
+  // padding: 0 20px;
 }
 
 /* Main Recipe Section */

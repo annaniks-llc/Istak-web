@@ -38,7 +38,91 @@
       width: 585px;
       max-width: 100%;
       height: 52px;
+      position: relative;
     }
+  }
+
+  .dateInputWrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .customDateInput {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    input {
+      width: 100%;
+      height: 52px;
+      padding: 16px 20px;
+      padding-right: 60px; // Make room for the icon
+      border: none;
+      // border-radius: 8px;
+      font-family: Mardoto;
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 0%;
+      background-color: #F6F4F1;
+      color: $color_primary_dark;
+      outline: none;
+      transition: all 0.3s ease;
+      text-transform: capitalize;
+      box-sizing: border-box;
+      cursor: pointer;
+
+      &::placeholder {
+        font-weight: 400;
+        font-style: Regular;
+        font-size: 16px;
+        leading-trim: NONE;
+        line-height: 100%;
+        letter-spacing: 0%;
+        vertical-align: middle;
+        color: $color_primary;
+        text-transform: capitalize;
+      }
+
+      &:focus {
+        background-color: #F6F4F1;
+        box-shadow: 0 0 0 3px rgba(213, 135, 59, 0.1);
+      }
+
+      &:hover:not(:disabled) {
+        background-color: #F6F4F1;
+      }
+
+      &.error {
+        border: 1px solid #dc2626;
+      }
+    }
+
+    .calendarIcon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+  }
+
+  .datePickerWrapper {
+    width: 100%;
+  }
+
+  .datePickerPopper {
+    z-index: 1000;
+  }
+  .errorMessage{
+    color: #dc2626;
+    margin-top: 4px;
+    font-size: 12px;
+    position: absolute;
+    bottom: -17px;
   }
 
   .description1,
