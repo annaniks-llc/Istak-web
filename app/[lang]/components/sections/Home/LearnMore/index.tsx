@@ -27,7 +27,7 @@ function LearnMore() {
 
       <motion.img
         className={styles.image}
-        src="/img/png/learnMoreImg.png"
+        src="/img/png/tigran_gin.jpg"
         alt="Learn More"
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}

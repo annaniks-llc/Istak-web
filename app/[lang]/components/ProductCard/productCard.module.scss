@@ -1,59 +1,67 @@
 @import "../../../styles/var.scss";
 
 .item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px; 
+  box-sizing: border-box;
   cursor: pointer;
+  flex: 0 0 280px;
+
   .imageCont {
     position: relative;
     width: 100%;
+    aspect-ratio: 1 / 1; 
+    overflow: hidden;
 
     .image {
-      height: auto;
       width: 100%;
+      height: 100%;
+      object-fit: contain; 
     }
 
     .addToCartOverlay {
       position: absolute;
-      bottom: 25px;
-      right: 25px;
+      bottom: 5%; 
+      right: 8%;
       z-index: 10;
 
       .addToCartButton {
-        // Override any default styles if needed
+        width: clamp(30px, 8%, 40px);
+        height: clamp(30px, 8%, 40px);
       }
     }
   }
 
   .bottom {
+    margin-top: 10px;
+    padding-left: 5%; // align with image left border
+    padding-right: 5%;
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    
+    gap: 4px;
+
     .title {
       font-family: Mardoto;
-      font-weight: 400;
-      font-style: Regular;
-      font-size: 24px;
-      line-height: 100%;
-      letter-spacing: 0%;
+      font-weight: 500;
+      font-size: clamp(14px, 2vw, 20px);
       color: $color_primary_dark;
-      margin-bottom: 12px;
+      line-height: 1.2;
+      word-break: break-word;
     }
 
     .productInfo {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
       gap: 12px;
 
+      .price,
       .volume {
         font-family: Mardoto;
-        font-weight: 400;
-        font-style: Regular;
-        font-size: 18px;
-        line-height: 100%;
-        letter-spacing: 0%;
+        font-size: clamp(12px, 1.5vw, 16px);
         color: $color_primary;
-        flex: 1;
       }
     }
   }

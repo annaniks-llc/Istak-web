@@ -211,11 +211,11 @@ export default function CartPage() {
           </div>
 
           <div className={styles.cartActions}>
-            <Button
+            {/* <Button
               text="Ավելացնել թեստ ապրանքներ"
               variant="light"
               onClick={addTestItems}
-            />
+            /> */}
             <Button
               text="Մաքրել զամբյուղը"
               variant="light"

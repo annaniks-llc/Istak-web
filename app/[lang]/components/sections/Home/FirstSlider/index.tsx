@@ -35,7 +35,10 @@ function FirstSlider() {
               <h3 className={styles.heading}>ISTAK - Ավանդույթի ուժով</h3>
               <p className={styles.title}>Հայկական վարպետությամբ ստեղծված բարձրորակ օղի և ալկոհոլային խմիչքներ</p>
               <div className={styles.buttonContainer}>
-                <Button text="Գնել հիմա" variant="secondary" onClick={() => { }} />
+                <Button
+                 text="Գնել հիմա"
+                  variant="secondary"
+                   onClick={() => { }} />
               </div>
             </div>
            

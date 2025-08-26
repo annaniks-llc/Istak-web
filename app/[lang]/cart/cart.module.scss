@@ -176,7 +176,7 @@
 .orderSummarySection {
   // background: white;
   border: 2px solid #e1e5e9;
-  padding: 32px;
+  padding: 1.66vw;
   height: fit-content;
   position: sticky;
   top: 120px;
@@ -185,8 +185,8 @@
     font-family: Mardoto;
     font-weight: 500;
     font-style: Medium;
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 1.25vw;
+    // line-height: 32px;
     letter-spacing: 0%;
     color: $color_primary_dark;
     margin: 0 0 32px 0;
@@ -195,7 +195,7 @@
 }
 
 .summaryDetails {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 24px;

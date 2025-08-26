@@ -15,9 +15,7 @@ import ProductCard from '../../components/ProductCard';
 export default function ProductDetailsPage() {
   const [quantity, setQuantity] = useState(1);
   const [selectedVolume, setSelectedVolume] = useState(0.5);
-  const [isContainerScrolling, setIsContainerScrolling] = useState(false);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [activeInDiv, setActiveInDiv] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<number>(0);
   const params = useParams();
   const router = useRouter();
   const productId = params.id as string;
@@ -42,14 +40,16 @@ export default function ProductDetailsPage() {
   };
 
   const currentPrice = product ? calculatePrice(product.price, 0.5, selectedVolume) : 0;
-  console.log(relatedProducts,"relatedProductsrelatedProducts");
-  
+  console.log(relatedProducts, "relatedProductsrelatedProducts");
+
   // Product images - first image and second image
   const productImages = product ? [
     product.image, // First image (original)
     "/img/png/drink1.png", // Second image (variation)
-    "/img/png/drink2.png" // Third image (another variation)
+    "/img/png/drink2.png",
+    "/img/png/drink2.png",
   ] : [];
+
 
   // Debug: log the images array
   console.log('Product Images:', productImages);
@@ -73,53 +73,11 @@ export default function ProductDetailsPage() {
   // Custom scroll behavior for product image container
 
 
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      const container = containerRef.current;
-      if (!container) return;
-
-      const rect = container.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Եթե div-ը էկրանի մեջ է
-      const inView = rect.top <= windowHeight && rect.bottom >= 0;
-
-      if (inView) {
-        const atTop = container.scrollTop === 0;
-        const atBottom =
-          container.scrollTop + container.clientHeight >= container.scrollHeight;
-
-        if (!activeInDiv) {
-          // Սկսում ենք div scroll
-          setActiveInDiv(true);
-        }
-
-        if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
-          // Div-ում հասել ենք վերև/ներքև -> վերադարձնում ենք window scroll-ին
-          setActiveInDiv(false);
-          return; // թույլ ենք տալիս window scroll
-        }
-
-        // Քայլում ենք div-ի մեջ
-        e.preventDefault();
-        container.scrollTop += e.deltaY;
-      } else {
-        setActiveInDiv(false); // դուրս ենք div-ից
-      }
-    };
-
-    window.addEventListener("wheel", handleWheel, { passive: false });
-
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-    };
-  }, [activeInDiv]);
 
 
-
-  const handleAddToCart = (item?:Product) => {
+  const handleAddToCart = (item?: Product) => {
     if (!product) return;
-    const productForCard=item?item:product
+    const productForCard = item ? item : product
     for (let i = 0; i < quantity; i++) {
       addItem({
         id: productForCard.id,
@@ -200,18 +158,31 @@ export default function ProductDetailsPage() {
       <Breadcrumb items={breadcrumbItems} />
 
       <div className={styles.productSection}>
-        <div ref={containerRef} className={styles.productImageContainer}>
-          <img
-            src={product.image}
-            alt={getLocalizedText(product.name)}
-            className={styles.mainImage}
-          />
-          <img
-            src={product.image}
-            alt={getLocalizedText(product.name)}
-            className={styles.mainImage}
-          />
+        <div className={styles.productImageContainer}>
+          {/* Main image */}
+          <div className={styles.mainImageWrapper}>
+            <img
+              src={productImages[selectedImage]}
+              alt={getLocalizedText(product.name)}
+              className={styles.mainImage}
+            />
+          </div>
 
+          {/* Thumbnails */}
+          {productImages.length > 1 && (
+            <div className={styles.thumbnailGrid}>
+              {productImages.map((img, index) =>
+                (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImage(index)}
+                    className={`${styles.thumbnailButton} ${selectedImage === index ? styles.active : ''}`}
+                  >
+                    <img src={img} alt={`${product.name} ${index + 1}`} />
+                  </button>
+                ))}
+            </div>
+          )}
         </div>
 
         <div className={styles.productInfo}>
@@ -219,7 +190,7 @@ export default function ProductDetailsPage() {
             <h1 className={styles.productTitle}>{getLocalizedText(product.name)}</h1>
             <div className={styles.productPrice}>
               {currentPrice} Դր
-              
+
             </div>
             {/* <div className={styles.pricePerLiter}>
               {product.price / 0.5} Դր/լ
@@ -255,7 +226,7 @@ export default function ProductDetailsPage() {
                 );
               })}
             </div>
-            
+
           </div>
 
           <div className={styles.description}>
@@ -263,7 +234,7 @@ export default function ProductDetailsPage() {
           </div>
 
           <div className={styles.quantitySelector}>
-            <label htmlFor="quantity">Quantity:</label>
+            <label htmlFor="quantity">Քանակ </label>
             <div className={styles.quantityControls}>
               <button
                 onClick={() => handleQuantityChange(quantity - 1)}
@@ -294,8 +265,8 @@ export default function ProductDetailsPage() {
           </div>
 
           <div className={styles.actionButtons}>
-            <Button text="Add to cart" variant="default" onClick={handleAddToCart} />
-           
+            <Button text="Ավելացնել Զամբյուղ" variant="primary" onClick={handleAddToCart} />
+
           </div>
         </div>
       </div>
@@ -312,7 +283,7 @@ export default function ProductDetailsPage() {
                 volume={item.volume}
                 src={item.image}
                 onAddToCart={() => handleAddToCart(item)}
-                goTo={()=>router.push(`/${lang}/products/${item.id}`)}
+                goTo={() => router.push(`/${lang}/products/${item.id}`)}
                 disabled={!item.inStock}
               />
             ))}

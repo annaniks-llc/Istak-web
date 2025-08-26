@@ -75,10 +75,6 @@ export default function Heading() {
       {/* Logo */}
       <Link href={`/${lang}`} className={styles.logo}>
         <img src="/img/svg/logo.svg" alt="logo" />
-        {/* <div className={styles.logoText}>
-          <span className={styles.logoMain}>ISTAK</span>
-          <span className={styles.logoSub}>DISTILLERY</span>
-        </div> */}
       </Link>
 
       {/* Navigation */}
@@ -138,6 +134,7 @@ export default function Heading() {
 
       {/* Right Section - Icons and Auth */}
       <div className={styles.rightSection}>
+      <div className={styles.verticalLine}/>
         {/* Search Icon */}
         {/* <button className={styles.iconButton}>
           <img src="/img/svg/search.svg" alt={dictionary.navigation.search} width={20} height={20} />

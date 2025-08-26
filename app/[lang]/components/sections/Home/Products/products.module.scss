@@ -1,10 +1,35 @@
 @import "../../../../../styles/var.scss";
 
 .container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  padding: 30px 188px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productsBox {
+  display: flex;
+  gap: 20px;
+  padding: 2% 5%;
   box-sizing: border-box;
-  @include inner;
+  justify-content: center;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+}
+
+.title {
+  font-family: Mardoto;
+  font-weight: 500;
+  font-size: 3vw;
+  color: $color_secondary;
+  line-height: 1.2;
+  word-break: break-word;
 }

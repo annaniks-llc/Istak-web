@@ -1,12 +1,12 @@
 @import "../../../styles/var.scss";
 
 .addToCartButton {
-  width: 62px;
-  height: 62px;
+  width: 3.2vw;
+  height: 3.2vw;
   border: none;
-  // border-radius: 8px;
-  background: #231F20;
-  color: white;
+  border-radius: 8px;
+  background: #d1d1d1;
+  color: $color_primary_dark;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -16,7 +16,8 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
   &:hover:not(.disabled) {
-    background: #1a1a1a;
+    background: $color_primary_dark;
+    color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   }

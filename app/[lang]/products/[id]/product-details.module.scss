@@ -26,7 +26,8 @@
 .quantitySelector {
   display: flex;
   align-items: center;
-  label{
+
+  label {
     font-family: Mardoto;
     font-weight: 700;
     font-style: Bold;
@@ -35,7 +36,7 @@
     letter-spacing: 0%;
     text-transform: uppercase;
   }
-  
+
 
   .quantityControls {
     margin-left: 20px;
@@ -63,51 +64,55 @@
 }
 
 .productImageContainer {
-  margin-bottom: 40px;
-  width: 487px;
-  height: 750px;
-  overflow-y: scroll;
-  cursor: pointer;
-  position: relative;
-  // border-radius: 12px;
-  background: #fff;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  overflow-y: auto;
-  /* scroll-ը պահում ենք */
-  scrollbar-width: none;
-  /* Firefox */
-  -ms-overflow-style: none;
+  gap: 16px;
+  max-width: 450px;
 
-  /* IE և հին Edge */
-  &::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Safari, Opera */
-  }
-
-  @media (max-width: 768px) {
-    // border-radius: 8px;
-    margin-bottom: 16px;
-  }
-
-
-  .mainImage {
+  .mainImageWrapper {
     width: 100%;
-    height: 600px;
-    object-fit: cover;
-    display: block;
-    transition: all 0.6s ease;
-    opacity: 1;
-    transform: scale(1);
+    max-height: 55vh;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     @media (max-width: 768px) {
-      height: 400px;
+      max-height: 300px;
     }
 
-    &:hover {
-      transform: scale(1.02);
+    .mainImage {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+
+  .thumbnailGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+
+    .thumbnailButton {
+      aspect-ratio: 1 / 1;
+      border: 2px solid #e5e7eb;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &.active {
+        border-color: var(--main-color);
+      }
     }
   }
 }
@@ -120,13 +125,9 @@
 
 .productHeader {
   .productTitle {
-    // font-size: 32px;
-    // font-weight: 700;
-    // color: $color_primary_dark;
-    // margin-bottom: 16px;
     font-family: Mardoto;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 1.87vw;
     line-height: 100%;
     letter-spacing: 0%;
     margin-bottom: 10px;
@@ -138,14 +139,10 @@
   }
 
   .productPrice {
-    // font-size: 36px;
-    // font-weight: 700;
-    // color: #ff6b35;
-    // margin-bottom: 8px;
     font-family: Mardoto;
     font-weight: 400;
     font-style: Regular;
-    font-size: 32px;
+    font-size: 1.66vw;
     line-height: 100%;
     letter-spacing: 2%;
     text-transform: capitalize;
@@ -170,7 +167,7 @@
       font-family: Mardoto;
       font-weight: 900;
       font-style: Black;
-      font-size: 16px;
+      font-size: 1vw;
       line-height: 100%;
       letter-spacing: 0%;
       text-transform: uppercase;
@@ -181,7 +178,7 @@
       font-family: Mardoto;
       font-weight: 700;
       font-style: Black;
-      font-size: 16px;
+      font-size: 1vw;
       line-height: 100%;
       letter-spacing: 0%;
       text-transform: uppercase;
@@ -212,7 +209,7 @@
   .volumeLabel {
     font-weight: 600;
     color: $color_primary_dark;
-    font-size: 16px;
+    font-size: 1vw;
   }
 
   .volumeButtons {
@@ -241,8 +238,9 @@
 
       &.selected {
         border: 2px solid $color_secondary;
-        background: $color_primary_dark;
+        background: $color_secondary;
         color: white;
+        font-weight: 600;
       }
     }
   }

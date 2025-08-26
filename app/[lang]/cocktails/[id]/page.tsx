@@ -57,6 +57,7 @@ export default function CocktailDetailPage() {
   const [loading, setLoading] = useState(true);
   const { lang, id } = useParams();
   const dictionary = useDictionary();
+  console.log(otherCocktails,'coctails')
 
   useEffect(() => {
     const fetchCocktail = async () => {

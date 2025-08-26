@@ -2,7 +2,7 @@
 
 .button {
   width: 100%;
-  height: 100%; 
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,6 +20,13 @@
   color: white;
   background-color: $color_menu;
   border: 1px solid $color_secondary;
+  transition: 0.2s ease-in;
+
+  &:hover {
+    background-color: $color_secondary;
+    border-color: $color_primary_dark ;
+    color: $color_menu;
+  }
 }
 
 .secondary {
@@ -27,6 +34,13 @@
   background-color: $color_primary_dark;
   border: none;
   border: 2px solid $color_secondary;
+  transition: 0.2s ease-in;
+
+  &:hover {
+    background-color: $color_secondary;
+    border-color: $color_primary_dark ;
+    border-color: white;
+  }
 }
 
 .light {
@@ -34,6 +48,7 @@
   background-color: white;
   border: none;
 }
+
 // Variants
 .default {
   background-color: $color_secondary;
@@ -43,5 +58,13 @@
   &:focus {
     border-color: $color_secondary;
     box-shadow: 0 0 0 3px rgba(213, 135, 59, 0.1);
+  }
+
+  transition: 0.2s ease-in;
+
+  &:hover {
+    background-color: $color_secondary;
+    border-color: $color_primary_dark ;
+    color: $color_menu;
   }
 }
